@@ -64,6 +64,8 @@ python3 -m http.server 4174
 
 Sessions, notes and the log are stored in the browser's `localStorage`; handed-in frames and pasted references in IndexedDB. Nothing is uploaded.
 
+Because the data lives in one browser, the Log section has **Export my data** and **Import data**. Export saves all finished sessions with their frames as one JSON file; import adds such a file to what is already there, so you can move to another browser or keep a backup.
+
 ## Structure
 
 Everything lives in `index.html`:

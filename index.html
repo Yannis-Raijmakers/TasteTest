@@ -1077,7 +1077,9 @@ function logHTML() {
   const n = S.log.length;
   return `<div class="sec-h"><h2>Log</h2><p>Saved in this browser</p></div>
     ${n ? `<ul class="rows log-l">${S.log.slice(0, 40).map(l => { const t = Array.isArray(l.checks) ? tally(l.checks) : null; return `<li><button type="button" data-log="${esc(l.id)}"><time>${esc(niceDate(l.finishedAt))}</time><b>${esc(l.title)}</b><span class="st">${t ? `${t.held + t.lost} → ${t.held + t.gain} of ${l.checks.length}` : ''}</span><em>${esc(l.takeaway || '')}</em></button></li>`; }).join('')}</ul>`
-      : '<p class="log-empty">No sessions yet. After your first redesign your two versions show up here side by side, with what you kept, what you gained and what is still open.</p>'}`;
+      : '<p class="log-empty">No sessions yet. After your first redesign your two versions show up here side by side, with what you kept, what you gained and what is still open.</p>'}
+    <div class="row"><button type="button" class="btn ghost" id="export">Export my data</button><input class="vh" type="file" id="import-file" accept="application/json,.json"><label class="btn ghost" for="import-file">Import data</label></div>
+    <p class="status" id="data-status" role="status">Your data lives in this browser only. Export saves the log and your frames as one file; import adds such a file to what is already here.</p>`;
 }
 function renderHome() {
   view = 'home'; activeDrop = null; stopTimer();
@@ -1343,6 +1345,36 @@ async function comparePNG(s, c) {
   return new Promise(res => cv.toBlob(res, 'image/png'));
 }
 
+/* ---------- export and import: one JSON file with the log and the stored images ---------- */
+const blobToData = b => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(b); });
+async function exportData() {
+  save(); const images = {};
+  for (const k of await DB.keys()) { const b = await DB.get(k); if (b) images[k] = await blobToData(b); }
+  saveFile(`tastetest-${dayStr()}.json`, new Blob([JSON.stringify({ app: 'tastetest', v: 2, exportedAt: new Date().toISOString(), state: { log: S.log }, images })], { type: 'application/json' }));
+  return S.log.length;
+}
+function cleanEntry(l) { // an imported file is untrusted: rebuild every entry from known fields
+  const c = l && byId(l.cid), k = c && KINDS[c.kind]; if (!k || typeof l.id !== 'string' || !/^s[a-z0-9]+$/.test(l.id)) return null;
+  const txt = (v, n) => String(v ?? '').slice(0, n), three = a => [0, 1, 2].map(i => txt(Array.isArray(a) ? a[i] : '', 160)), notes = l.notes || {};
+  const dim = d => (Array.isArray(d) && d[0] > 0 && d[1] > 0 ? [Number(d[0]), Number(d[1])] : null);
+  return { id: l.id, cid: c.id, kind: c.kind, type: c.type, n: Number(l.n) || 0, title: c.title, day: /^\d{4}-\d\d-\d\d$/.test(l.day) ? l.day : dayStr(),
+    finishedAt: isNaN(new Date(l.finishedAt)) ? new Date().toISOString() : String(l.finishedAt), mins: Number(l.mins) || 0, dim: [0, 1].map(i => dim((l.dim || [])[i])),
+    checks: k.checks.map((_, i) => { const x = (l.checks || [])[i] || []; return [!!x[0], !!x[1]]; }), notes: { p: three(notes.p), d: three(notes.d), x: three(notes.x) },
+    refs: (Array.isArray(l.refs) ? l.refs : []).slice(0, MAXREF).filter(r => r && typeof r === 'object').map(r => { const id = txt(r.id, 24).replace(/[^a-z0-9]/g, ''); return { id, key: r.key === `${l.id}.r.${id}` ? r.key : '', t: okUrl(r.t), i: okUrl(r.i), u: okUrl(r.u), title: txt(r.title, 140), host: txt(r.host, 60) }; }),
+    takeaway: txt(l.takeaway, 200) };
+}
+async function importData(file) { // merges: sessions in the file are added, a session that is already here is replaced by the one in the file
+  const d = JSON.parse(await file.text()); if (!d || d.app !== 'tastetest' || !d.state || !Array.isArray(d.state.log)) throw new Error('format');
+  const got = d.state.log.map(cleanEntry).filter(Boolean), ids = new Set(got.map(l => l.id));
+  S.log = got.concat(S.log.filter(l => !ids.has(l.id))).sort((a, b) => String(b.finishedAt).localeCompare(String(a.finishedAt)));
+  for (const [k, u] of Object.entries(d.images || {})) {
+    if (!/^s[a-z0-9]+\.(0|1|r\.[a-z0-9]+)$/.test(k) || !ids.has(k.split('.')[0]) || typeof u !== 'string' || !/^data:image\/(jpeg|png|webp);base64,/.test(u)) continue;
+    await putImg(k, await (await fetch(u)).blob());
+  }
+  save(); pruneImages();
+  return got.length;
+}
+
 /* ---------- events ---------- */
 $('#home').addEventListener('click', renderHome);
 $('#steps').addEventListener('click', e => { const b = e.target.closest('[data-step]'); if (b && !b.disabled && S.session) go(Number(b.dataset.step)); });
@@ -1365,6 +1397,7 @@ V.addEventListener('click', e => {
   else if (t.dataset.ch) openCh(t.dataset.ch);
   else if (t.dataset.log) openLog(t.dataset.log);
   else if (t.dataset.zoom) zoomKey(t.dataset.zoom, t.dataset.type);
+  else if (t.id === 'export') { const st = $('#data-status'); st.textContent = 'Preparing the file…'; exportData().then(n => { st.textContent = `Exported ${n} ${n === 1 ? 'session' : 'sessions'} with their frames. Keep the file somewhere safe.`; }).catch(() => { st.textContent = 'The export could not be made.'; }); }
   else if (!s) return;
   else if (t.id === 'pause') { if (running()) stopTimer(); else startTimer(); }
   else if (t.id === 'more') { s.t[s.step] = 300; s.extra = (s.extra || 0) + 300; startTimer(); }
@@ -1392,7 +1425,15 @@ V.addEventListener('input', e => {
   else if (t.dataset.n) { s.notes[t.dataset.n][Number(t.dataset.i)] = t.value; saveSoon(); }
   else if (t.id === 'takeaway') { s.takeaway = t.value; saveSoon(); }
 });
-V.addEventListener('change', e => { if (e.target.id === 'hand-file') { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (f) takeDesign(f); } });
+V.addEventListener('change', e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  if (e.target.id === 'hand-file') { e.target.value = ''; takeDesign(f); }
+  else if (e.target.id === 'import-file') {
+    e.target.value = ''; $('#data-status').textContent = 'Importing…';
+    importData(f).then(n => { renderHome(); $('#data-status').textContent = n ? `Imported ${n} ${n === 1 ? 'session' : 'sessions'}.` : 'That file holds no sessions this version knows.'; $('#log').scrollIntoView(); })
+      .catch(() => { $('#data-status').textContent = 'That is not a TasteTest export file.'; });
+  }
+});
 document.addEventListener('paste', e => { // a frame copied as PNG in Figma, or a screenshot for Study, lands here
   if (!activeDrop || !e.clipboardData || D.open) return;
   const it = [...e.clipboardData.items].find(i => i.kind === 'file' && i.type.startsWith('image/'));
