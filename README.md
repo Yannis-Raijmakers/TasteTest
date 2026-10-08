@@ -1,35 +1,35 @@
-# Smaaktraining
+# TasteTest
 
-Een dagelijkse oefening om je oog voor interface-design te trainen. Eén challenge, vier rondes, samen een uur:
+A daily exercise to train your eye for interface design. One challenge, four timed rounds, one hour in total:
 
-1. **Ontwerp** (20 min): een leeg canvas en een opdracht. Geen voorbeelden, geen AI.
-2. **Bestudeer** (10 min): vier geschetste voorbeeldschermen. Schrijf 3 patronen, 3 do's en 3 don'ts op.
-3. **Vergelijk** (10 min): leg je notities naast een analyse van acht observaties en vink aan wat je zelf zag.
-4. **Herontwerp** (20 min): hetzelfde scherm opnieuw, met wat je net leerde. Daarna staan beide versies naast elkaar.
+1. **Design** (20 min): a brief and a blank canvas. No references, no AI.
+2. **Study** (10 min): four sketched reference screens. Write down 3 patterns, 3 do's and 3 don'ts.
+3. **Compare** (10 min): put your notes next to an analysis of eight observations and tick the ones you spotted yourself.
+4. **Redesign** (20 min): the same screen again, with what you just learned. Afterwards both versions sit side by side.
 
-## Ontwerpen
+The idea: AI can generate a hundred screens in a minute, but someone still has to judge which one is good. That judgement is trained by designing, looking closely, and designing again.
 
-In de ontwerprondes kies je zelf waar je werkt:
+## Designing
 
-- **Schets hier**: een ingebouwd tekenvlak met pen, vormen, tekst, vullen, verplaatsen en gum.
-- **Ontwerp in Figma**: werk in Figma en haal je frame op door het als PNG te plakken (⇧⌘C in Figma, ⌘V op de pagina), of kies of sleep een afbeelding.
+In the design rounds you choose where you work:
 
-## Draaien en hosten
+- **Sketch here**: a built-in drawing area with pen, shapes, text, fill, move and eraser.
+- **Design in Figma**: work in Figma and bring your frame in by pasting it as a PNG (⇧⌘C in Figma, ⌘V on the page), or by choosing or dropping an image.
 
-De site is één statisch bestand, `index.html`, zonder build-stap of backend. Open het in een browser, of zet de map op een statische host zoals GitHub Pages, Netlify, Vercel of Cloudflare Pages.
+## Run and host
 
-Lokaal met een server:
+The site is a single static file, `index.html`. No build step, no backend. Open it in a browser, or put the folder on any static host such as GitHub Pages, Netlify, Vercel or Cloudflare Pages.
 
 ```bash
 python3 -m http.server 4174
 ```
 
-Sessies, notities en het logboek worden bewaard in `localStorage` van de browser.
+Sessions, notes and the log are stored in the browser's `localStorage`.
 
-## Opbouw
+## Structure
 
-Alles staat in `index.html`:
+Everything lives in `index.html`:
 
-- `BUILTIN`: de vijf ingebouwde challenges met voorbeeldschermen en observaties.
-- `BLOCK` en `phone()`: de bouwstenen waarmee voorbeeldschermen uit een korte lijst worden getekend.
-- `mountBoard()`: het tekenvlak. `mountSource()`: de Figma-modus.
+- `BUILTIN`: the five built-in challenges with reference screens and observations.
+- `BLOCK` and `phone()`: the building blocks that draw a reference screen from a short list.
+- `mountBoard()`: the drawing area. `mountSource()`: the Figma mode.

@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Smaaktraining</title>
-<meta name="description" content="Train je oog voor design. Elke dag één challenge in vier rondes: ontwerp, bestudeer voorbeelden, vergelijk met de analyse en herontwerp.">
-<meta property="og:title" content="Smaaktraining">
-<meta property="og:description" content="Train je oog voor design. Elke dag één challenge in vier rondes: ontwerp, bestudeer voorbeelden, vergelijk met de analyse en herontwerp.">
+<title>TasteTest</title>
+<meta name="description" content="Train your eye for design. One challenge a day in four rounds: design, study references, compare with the analysis and redesign.">
+<meta property="og:title" content="TasteTest">
+<meta property="og:description" content="Train your eye for design. One challenge a day in four rounds: design, study references, compare with the analysis and redesign.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f1f1f5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f0f14" media="(prefers-color-scheme: dark)">
@@ -147,7 +147,7 @@ button{-webkit-tap-highlight-color:transparent}
 .stage{display:flex;justify-content:center;padding-block:6px 12px}
 .art{position:relative;width:min(100%,360px);max-width:100%;aspect-ratio:1/2;background:var(--shot-bg);border-radius:20px;overflow:hidden;box-shadow:0 18px 34px -24px var(--shadow)}
 .art canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
-.art[data-empty="1"]::after{content:"Teken hier je scherm";position:absolute;inset:0;display:grid;place-items:center;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--shot-muted);pointer-events:none}
+.art[data-empty="1"]::after{content:"Draw your screen here";position:absolute;inset:0;display:grid;place-items:center;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--shot-muted);pointer-events:none}
 .art-text{position:absolute;min-width:60px;max-width:90%;border:0;border-bottom:1px dashed var(--shot-accent);background:transparent;padding:0;margin:0;outline:0;font-family:var(--f-body);font-weight:500;line-height:1.2}
 
 /* design source: sketch here, or bring a frame in from Figma */
@@ -171,7 +171,7 @@ button{-webkit-tap-highlight-color:transparent}
 .fg .stage{padding-block:0}
 .fg .art{width:100%}
 .fg .art img{display:block;width:100%;height:100%;object-fit:contain;object-position:top}
-#fg-art[data-empty="1"]::after{content:"Hier komt je Figma-frame"}
+#fg-art[data-empty="1"]::after{content:"Your Figma frame goes here"}
 
 /* reference screens */
 .refs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,2vw,22px)}
@@ -337,8 +337,8 @@ dialog::backdrop{background:var(--scrim)}
 
 <div class="app">
   <header class="top">
-    <button class="mark" id="home" type="button" aria-label="Smaaktraining, naar start">Smaaktraining<i></i></button>
-    <nav class="steps" id="steps" aria-label="Rondes" hidden></nav>
+    <button class="mark" id="home" type="button" aria-label="TasteTest, back to start">TasteTest<i></i></button>
+    <nav class="steps" id="steps" aria-label="Rounds" hidden></nav>
     <span class="streak" id="streak"></span>
   </header>
   <main id="view"></main>
@@ -357,168 +357,168 @@ const V = $('#view');
 
 /* ---------- content ---------- */
 const ROUNDS = [
-  { name: 'Ontwerp', min: 20, d: 'Begin met een leeg canvas. Alleen jij en je instinct.', hint: 'Klaar, of is de tijd om? Je schets blijft bewaard.' },
-  { name: 'Bestudeer', min: 10, d: 'Bekijk sterke schermen. Schrijf op wat je opvalt.', hint: 'Hoe concreter je notities, hoe meer je straks aan de analyse hebt.' },
-  { name: 'Vergelijk', min: 10, d: 'Lees de analyse. Ontdek wat je miste.', hint: 'Wat je niet aanvinkt, neem je mee naar je herontwerp.' },
-  { name: 'Herontwerp', min: 20, d: 'Zelfde scherm, nieuwe blik. Doe het nog een keer.', hint: 'Daarna zet je je twee versies naast elkaar.' },
+  { name: 'Design', min: 20, d: 'Start with a blank canvas. Just you and your instincts.', hint: 'Done, or out of time? Your sketch is saved.' },
+  { name: 'Study', min: 10, d: 'Look at strong screens. Write down what you notice.', hint: 'The more specific your notes, the more you get out of the analysis.' },
+  { name: 'Compare', min: 10, d: 'Read the analysis. Find what you missed.', hint: 'Whatever you leave unticked goes with you into the redesign.' },
+  { name: 'Redesign', min: 20, d: 'Same screen, new eyes. Do it one more time.', hint: 'After this you see your two versions side by side.' },
 ];
 const NOTES = [
-  { k: 'p', label: '3 patronen', own: 'Patronen die je zag', ph: 'Iets wat in meerdere schermen terugkomt' },
-  { k: 'd', label: '3 do’s', own: 'Jouw do’s', ph: 'Iets wat je wilt overnemen' },
-  { k: 'x', label: '3 don’ts', own: 'Jouw don’ts', ph: 'Iets wat je zou vermijden' },
+  { k: 'p', label: '3 patterns', own: 'Patterns you saw', ph: 'Something that shows up in several screens' },
+  { k: 'd', label: '3 do’s', own: 'Your do’s', ph: 'Something worth borrowing' },
+  { k: 'x', label: '3 don’ts', own: 'Your don’ts', ph: 'Something you would avoid' },
 ];
 const BUILTIN = [
-  { id: 'checkout', short: 'Afrekenen', title: 'Ontwerp het afrekenscherm van een maaltijdbezorg-app.',
-    context: 'Het eten is gekozen. De gebruiker heeft honger en wil weten wat het kost, wanneer het er is en waar hij moet tikken.',
-    intro: 'Vier keer afrekenen. Genoeg om op te letten.',
+  { id: 'checkout', short: 'Checkout', title: 'Design the checkout screen for a food delivery app.',
+    context: 'The food is picked. The user is hungry and wants to know what it costs, when it arrives and where to tap.',
+    intro: 'Four checkouts. Plenty to notice.',
     refs: [
-      { name: 'Totaal in de knop', caption: 'Kosten uitgesplitst, bedrag bij de actie', accent: '#1d7a4f', screen: [
-        ['bar', 'Afrekenen', '✕', ''], ['row', 'Keizersgracht 12', 'Bel aan bij nr. 12', '›'], ['row', 'Bezorgtijd', 'Vandaag, 25–35 min', '›'],
-        ['label', 'Je bestelling'], ['row', '2× Pad thai', '', '€ 23,00'],
-        ['sum', [['Subtotaal', '€ 23,00'], ['Bezorgkosten', '€ 1,49'], ['Servicekosten', '€ 0,99']], 'Totaal', '€ 25,48'],
-        ['sp'], ['btn', 'Bestel · € 25,48']] },
-      { name: 'Snel betalen eerst', caption: 'Eén tik bovenaan, formulier eronder', accent: '#2b5fd9', screen: [
-        ['bar', 'Afrekenen', '‹', ''], ['p', 'Snel afrekenen'], ['btn', 'Betaal met Apple Pay', 'dark'], ['or', 'of vul je gegevens in'],
-        ['input', 'E-mailadres', 'sam@voorbeeld.nl', 'ok'], ['input', 'Straat en huisnummer', '', 'focus'], ['input', 'Postcode', ''],
-        ['sp'], ['btn', 'Verder naar betalen', 'off']] },
-      { name: 'Stap voor stap', caption: 'Je ziet waar je bent en wat nog komt', accent: '#5b3fd6', screen: [
-        ['bar', '', '‹', 'Hulp'], ['steps', ['Bezorging', 'Betaling', 'Controle'], 1], ['h', 'Kies hoe je betaalt'], ['p', 'Je betaalt pas na de controle.'],
-        ['radio', 'iDEAL', 'Meest gekozen', true, ''], ['radio', 'Creditcard', 'Visa, Mastercard', false, ''], ['radio', 'Achteraf betalen', 'Kan vanaf € 30', false, '', true],
-        ['sp'], ['btn', 'Verder naar controle']] },
-      { name: 'Keuze met prijskaartje', caption: 'Elke optie laat zien wat hij kost', accent: '#d9480f', screen: [
-        ['bar', 'Afrekenen', '✕', ''], ['seg', ['Bezorgen', 'Afhalen'], 0], ['label', 'Bezorgtijd'],
-        ['radio', 'Standaard', '25–35 min', true, 'Gratis'], ['radio', 'Voorrang', '15–20 min', false, '+ € 1,99'], ['radio', 'Inplannen', 'Kies een tijdvak', false, '›'],
-        ['note', 'Je bespaart € 3,00 met code LENTE', 'good'], ['sp'], ['sum', [], 'Totaal', '€ 22,48'], ['btn', 'Verder · € 22,48']] },
+      { name: 'Total in the button', caption: 'Costs itemised, amount next to the action', accent: '#1d7a4f', screen: [
+        ['bar', 'Checkout', '✕', ''], ['row', '12 Canal Street', 'Ring the bell at no. 12', '›'], ['row', 'Delivery time', 'Today, 25–35 min', '›'],
+        ['label', 'Your order'], ['row', '2× Pad thai', '', '€23.00'],
+        ['sum', [['Subtotal', '€23.00'], ['Delivery fee', '€1.49'], ['Service fee', '€0.99']], 'Total', '€25.48'],
+        ['sp'], ['btn', 'Place order · €25.48']] },
+      { name: 'Express pay first', caption: 'One tap up top, the form below', accent: '#2b5fd9', screen: [
+        ['bar', 'Checkout', '‹', ''], ['p', 'Express checkout'], ['btn', 'Pay with Apple Pay', 'dark'], ['or', 'or enter your details'],
+        ['input', 'Email', 'sam@example.com', 'ok'], ['input', 'Street and number', '', 'focus'], ['input', 'Postcode', ''],
+        ['sp'], ['btn', 'Continue to payment', 'off']] },
+      { name: 'Step by step', caption: 'You see where you are and what is left', accent: '#5b3fd6', screen: [
+        ['bar', '', '‹', 'Help'], ['steps', ['Delivery', 'Payment', 'Review'], 1], ['h', 'Choose how to pay'], ['p', 'You only pay after the review.'],
+        ['radio', 'Debit card', 'Most popular', true, ''], ['radio', 'Credit card', 'Visa, Mastercard', false, ''], ['radio', 'Pay later', 'Available from €30', false, '', true],
+        ['sp'], ['btn', 'Continue to review']] },
+      { name: 'Options with a price tag', caption: 'Every option shows what it costs', accent: '#d9480f', screen: [
+        ['bar', 'Checkout', '✕', ''], ['seg', ['Delivery', 'Pickup'], 0], ['label', 'Delivery time'],
+        ['radio', 'Standard', '25–35 min', true, 'Free'], ['radio', 'Priority', '15–20 min', false, '+ €1.99'], ['radio', 'Schedule', 'Pick a time slot', false, '›'],
+        ['note', 'You save €3.00 with code SPRING', 'good'], ['sp'], ['sum', [], 'Total', '€22.48'], ['btn', 'Continue · €22.48']] },
     ],
     obs: [
-      { t: 'Maak de volgende stap onmiskenbaar', b: 'Elk scherm heeft één gevulde knop, onderaan en over de volle breedte. Al het andere is een rij, een link of een grijze knop.' },
-      { t: 'Zet het bedrag bij de beslissing', b: 'Het totaal staat in of direct boven de knop. De kosten zijn daarvoor al uitgesplitst, dus het bedrag is nooit een verrassing.' },
-      { t: 'Bevestig waar en wanneer', b: 'Adres en bezorgtijd staan bovenaan als rijen met een pijltje. Je ziet ze zonder te zoeken en past ze aan zonder het scherm te verlaten.' },
-      { t: 'Groepeer op de vragen van de gebruiker', b: 'Waar komt het, wat krijg ik, hoe betaal ik. Kleine labels en witruimte scheiden die blokken, zodat je scant in plaats van leest.' },
-      { t: 'Laat de gekozen optie zien', b: 'De gekozen bezorgoptie en betaalmethode hebben een donkere rand en een gevuld rondje. Wat niet kan is vervaagd, met de reden erbij.' },
-      { t: 'Geef de snelste route voorrang', b: 'Apple Pay staat boven het formulier. Wie al een betaalmethode heeft, hoeft geen enkel veld in te vullen.' },
-      { t: 'Laat zien waar je bent', b: 'De stappenbalk toont drie stappen met de huidige gemarkeerd. De knop noemt de volgende stap bij naam: “Verder naar controle”.' },
-      { t: 'Geef elke keuze een prijskaartje', b: 'Naast “Voorrang” staat “+ € 1,99”, naast “Standaard” staat “Gratis”. De korting krijgt een rustige groene regel en geen popup.' },
+      { t: 'Make the next step unmistakable', b: 'Every screen has one filled button, at the bottom and full width. Everything else is a row, a link or a grey button.' },
+      { t: 'Put the amount next to the decision', b: 'The total sits in the button or right above it. Costs are itemised before that, so the amount is never a surprise.' },
+      { t: 'Confirm where and when', b: 'Address and delivery time sit at the top as rows with a chevron. You see them without searching and change them without leaving the screen.' },
+      { t: 'Group by the user’s questions', b: 'Where is it going, what am I getting, how do I pay. Small labels and white space separate those blocks, so you scan rather than read.' },
+      { t: 'Show the selected option', b: 'The chosen delivery option and payment method get a dark border and a filled dot. What is unavailable is faded, with the reason next to it.' },
+      { t: 'Give the fastest route priority', b: 'Apple Pay sits above the form. Anyone with a saved payment method does not fill in a single field.' },
+      { t: 'Show where you are', b: 'The step bar shows three steps with the current one marked. The button names the next step: “Continue to review”.' },
+      { t: 'Give every option a price tag', b: '“Priority” says “+ €1.99”, “Standard” says “Free”. The discount gets a calm green line and no popup.' },
     ] },
-  { id: 'onboarding', short: 'Onboarding', title: 'Ontwerp het eerste scherm van een gewoonte-app, direct na het installeren.',
-    context: 'De gebruiker weet nog niets van de app en heeft nog geen account. Binnen een halve minuut moet duidelijk zijn wat dit oplevert.',
-    intro: 'Vier eerste indrukken. Wat doen ze goed?',
+  { id: 'onboarding', short: 'Onboarding', title: 'Design the first screen of a habit app, right after install.',
+    context: 'The user knows nothing about the app and has no account yet. Within thirty seconds it must be clear what they get out of it.',
+    intro: 'Four first impressions. What do they get right?',
     refs: [
-      { name: 'Eén belofte, één knop', caption: 'Een reden om te beginnen, geen rondleiding', accent: '#5b3fd6', screen: [
-        ['img', 15, ''], ['h', 'Bouw één gewoonte tegelijk'], ['p', 'Twee minuten per dag. Wij onthouden de rest.'], ['dots', 3, 0],
-        ['sp'], ['btn', 'Begin'], ['link', 'Ik heb al een account']] },
-      { name: 'Eerst een keuze', caption: 'De app past zich aan vóór je iets invult', accent: '#1d7a4f', screen: [
-        ['prog', 33, 'Stap 1 van 3'], ['h', 'Waar wil je aan werken?'], ['p', 'Kies er één. Je kunt later meer toevoegen.'],
-        ['radio', 'Meer bewegen', '', false, ''], ['radio', 'Beter slapen', '', true, ''], ['radio', 'Minder schermtijd', '', false, ''], ['radio', 'Meer lezen', '', false, ''],
-        ['sp'], ['btn', 'Verder']] },
-      { name: 'Uitleg vóór de vraag', caption: 'Eerst waarom, dan pas toestemming', accent: '#d9480f', screen: [
-        ['prog', 66, 'Stap 2 van 3'], ['h', 'Wanneer mogen we je herinneren?'], ['seg', ['Ochtend', 'Middag', 'Avond'], 2], ['row', 'Elke dag om', '', '21:30'],
-        ['note', 'Je krijgt één melding per dag. Nooit meer.', ''], ['sp'], ['btn', 'Zet herinnering aan'], ['link', 'Nu niet']] },
-      { name: 'Meteen proberen', caption: 'Account vragen ná het eerste succes', accent: '#2b5fd9', screen: [
-        ['bar', 'Vandaag', '', ''], ['h', 'Je eerste gewoonte staat klaar'], ['check', '10 minuten lezen', true], ['check', 'Telefoon weg om 22:00', false],
-        ['note', 'Dag 1 gelukt. Zo voelt het elke dag.', 'good'], ['sp'], ['btn', 'Bewaar mijn voortgang'], ['p', 'Maak een account aan om niets kwijt te raken.']] },
+      { name: 'One promise, one button', caption: 'A reason to start, not a tour', accent: '#5b3fd6', screen: [
+        ['img', 15, ''], ['h', 'Build one habit at a time'], ['p', 'Two minutes a day. We remember the rest.'], ['dots', 3, 0],
+        ['sp'], ['btn', 'Get started'], ['link', 'I already have an account']] },
+      { name: 'A choice first', caption: 'The app adapts before you fill in anything', accent: '#1d7a4f', screen: [
+        ['prog', 33, 'Step 1 of 3'], ['h', 'What do you want to work on?'], ['p', 'Pick one. You can add more later.'],
+        ['radio', 'Move more', '', false, ''], ['radio', 'Sleep better', '', true, ''], ['radio', 'Less screen time', '', false, ''], ['radio', 'Read more', '', false, ''],
+        ['sp'], ['btn', 'Continue']] },
+      { name: 'Explain before asking', caption: 'First the why, then the permission', accent: '#d9480f', screen: [
+        ['prog', 66, 'Step 2 of 3'], ['h', 'When can we remind you?'], ['seg', ['Morning', 'Midday', 'Evening'], 2], ['row', 'Every day at', '', '21:30'],
+        ['note', 'You get one notification a day. Never more.', ''], ['sp'], ['btn', 'Turn on reminder'], ['link', 'Not now']] },
+      { name: 'Try it right away', caption: 'Ask for an account after the first win', accent: '#2b5fd9', screen: [
+        ['bar', 'Today', '', ''], ['h', 'Your first habit is ready'], ['check', 'Read for 10 minutes', true], ['check', 'Phone away at 22:00', false],
+        ['note', 'Day 1 done. This is how every day feels.', 'good'], ['sp'], ['btn', 'Save my progress'], ['p', 'Create an account so you never lose it.']] },
     ],
     obs: [
-      { t: 'Eén belofte per scherm', b: 'Het welkomstscherm zegt één ding in gewone woorden en heeft één knop. Er is geen opsomming van functies en geen vijf dia’s uitleg.' },
-      { t: 'Geef iets voor je iets vraagt', b: 'Het account komt pas na het eerste afgevinkte doel. Tegen die tijd heeft de gebruiker iets om te bewaren.' },
-      { t: 'Personaliseer met een lichte keuze', b: 'Eén vraag met vier antwoorden kost twee seconden en maakt alles daarna relevanter. Kiezen is makkelijker dan invullen.' },
-      { t: 'Toon hoe ver het nog is', b: '“Stap 2 van 3” met een balk maakt het einde zichtbaar. Mensen haken minder af als ze weten dat het kort is.' },
-      { t: 'Leg uit voor je toestemming vraagt', b: 'Vóór de vraag om meldingen staat wat je krijgt: één melding per dag. De systeemvraag komt pas na een bewuste tik op de knop.' },
-      { t: 'Bied altijd een uitweg', b: '“Nu niet” en “Ik heb al een account” staan als rustige link onder de knop. Wie wil overslaan hoeft niet te zoeken.' },
-      { t: 'Laat het product zelf aanraken', b: 'In het laatste voorbeeld vink je een echte gewoonte af. De app doet voor wat hij is en hoeft het niet uit te leggen.' },
-      { t: 'Houd de hoofdknop op één plek', b: 'Op elk scherm staat de knop onderaan, even breed en in dezelfde kleur. Je duim hoeft niet opnieuw te zoeken.' },
+      { t: 'One promise per screen', b: 'The welcome screen says one thing in plain words and has one button. No feature list and no five slides of explanation.' },
+      { t: 'Give before you ask', b: 'The account comes after the first ticked-off goal. By then the user has something worth saving.' },
+      { t: 'Personalise with a light choice', b: 'One question with four answers takes two seconds and makes everything after it more relevant. Choosing is easier than typing.' },
+      { t: 'Show how far there is to go', b: '“Step 2 of 3” with a bar makes the end visible. People drop off less when they know it is short.' },
+      { t: 'Explain before asking permission', b: 'Before the notification prompt the screen says what you get: one notification a day. The system prompt only comes after a deliberate tap.' },
+      { t: 'Always offer a way out', b: '“Not now” and “I already have an account” sit as quiet links under the button. Skipping takes no searching.' },
+      { t: 'Let them touch the product', b: 'In the last example you tick off a real habit. The app shows what it is and does not need to explain it.' },
+      { t: 'Keep the main button in one place', b: 'On every screen the button is at the bottom, the same width and the same colour. Your thumb never has to look for it.' },
     ] },
-  { id: 'product', short: 'Productpagina', title: 'Ontwerp de productpagina van een sneakerwebshop.',
-    context: 'De gebruiker komt van een advertentie, twijfelt over de maat en heeft de schoen nog nooit vastgehad.',
-    intro: 'Vier productpagina’s. Kijk waar je oog heen gaat.',
+  { id: 'product', short: 'Product page', title: 'Design the product page for a sneaker store.',
+    context: 'The user arrives from an ad, is unsure about the size and has never held the shoe.',
+    intro: 'Four product pages. Watch where your eye goes.',
     refs: [
-      { name: 'Beeld eerst', caption: 'Het product krijgt de ruimte', accent: '#2b5fd9', screen: [
-        ['bar', '', '‹', '♡'], ['img', 17, ''], ['dots', 4, 0], ['h', 'Court Low wit'], ['row', '€ 89,95', 'Gratis verzending', '4,6 ★'],
-        ['sp'], ['btn', 'In winkelmand', 'dark']] },
-      { name: 'Maat zonder twijfel', caption: 'Advies precies waar de twijfel zit', accent: '#5b3fd6', screen: [
-        ['bar', 'Court Low wit', '‹', ''], ['label', 'Kies je maat'], ['chips', ['39', '40', '41', '42', '43', '44'], 2, 4],
-        ['note', 'Valt klein. Kies een halve maat groter.', 'warn'], ['link', 'Bekijk de maattabel'], ['row', 'Maat 43', 'Uitverkocht', 'Mail mij', 'off'],
-        ['sp'], ['btn', 'In winkelmand · maat 41']] },
-      { name: 'Koopbalk die blijft', caption: 'Prijs en knop reizen mee tijdens het scrollen', accent: '#d9480f', screen: [
-        ['label', 'Omschrijving'], ['p', 'Leren bovenwerk, gevoerde hiel en een zool van gerecycled rubber.'], ['label', 'Reviews'],
-        ['row', 'Zit meteen lekker', 'Noor, maat 40', '5 ★'], ['row', 'Mooi maar smal', 'Daan, maat 44', '4 ★'],
-        ['sp'], ['sum', [], 'Court Low wit', '€ 89,95'], ['btn', 'In winkelmand']] },
-      { name: 'Zekerheid onder de knop', caption: 'Antwoord op wat kopen tegenhoudt', accent: '#1d7a4f', screen: [
-        ['img', 9, ''], ['h', 'Court Low wit'], ['big', '€ 89,95', ''], ['btn', 'In winkelmand'],
-        ['row', 'Morgen in huis', 'Besteld voor 22:00', ''], ['row', '30 dagen retour', 'Gratis terugsturen', ''], ['row', '4,6 ★ uit 312 reviews', '', '›']] },
+      { name: 'Image first', caption: 'The product gets the room', accent: '#2b5fd9', screen: [
+        ['bar', '', '‹', '♡'], ['img', 17, ''], ['dots', 4, 0], ['h', 'Court Low white'], ['row', '€89.95', 'Free shipping', '4.6 ★'],
+        ['sp'], ['btn', 'Add to bag', 'dark']] },
+      { name: 'Size without doubt', caption: 'Advice exactly where the doubt is', accent: '#5b3fd6', screen: [
+        ['bar', 'Court Low white', '‹', ''], ['label', 'Choose your size'], ['chips', ['39', '40', '41', '42', '43', '44'], 2, 4],
+        ['note', 'Runs small. Go half a size up.', 'warn'], ['link', 'View the size guide'], ['row', 'Size 43', 'Sold out', 'Notify me', 'off'],
+        ['sp'], ['btn', 'Add to bag · size 41']] },
+      { name: 'A buy bar that stays', caption: 'Price and button travel with the scroll', accent: '#d9480f', screen: [
+        ['label', 'Description'], ['p', 'Leather upper, padded heel and a sole made of recycled rubber.'], ['label', 'Reviews'],
+        ['row', 'Comfortable right away', 'Nora, size 40', '5 ★'], ['row', 'Nice but narrow', 'Dan, size 44', '4 ★'],
+        ['sp'], ['sum', [], 'Court Low white', '€89.95'], ['btn', 'Add to bag']] },
+      { name: 'Reassurance under the button', caption: 'Answers to what holds a purchase back', accent: '#1d7a4f', screen: [
+        ['img', 9, ''], ['h', 'Court Low white'], ['big', '€89.95', ''], ['btn', 'Add to bag'],
+        ['row', 'Delivered tomorrow', 'Order before 22:00', ''], ['row', '30-day returns', 'Free to send back', ''], ['row', '4.6 ★ from 312 reviews', '', '›']] },
     ],
     obs: [
-      { t: 'Laat het product het werk doen', b: 'De foto vult meer dan een derde van het scherm. Knoppen en tekst zijn klein en rustig, zodat niets met de schoen concurreert.' },
-      { t: 'Houd prijs en knop bij elkaar', b: 'De prijs staat nooit meer dan één blok van de koopknop. Je hoeft niet terug te scrollen om te weten wat je uitgeeft.' },
-      { t: 'Maak keuzes zichtbaar als keuzes', b: 'Maten zijn losse knoppen en geen dropdown. Je ziet in één blik wat er is, wat gekozen is en wat op is.' },
-      { t: 'Neem twijfel weg waar hij ontstaat', b: 'Het maatadvies staat direct onder de maten en niet in een tabblad verderop. De maattabel is één tik weg.' },
-      { t: 'Geef uitverkocht een vervolg', b: 'Maat 43 is vervaagd maar niet verdwenen. “Mail mij” maakt van een dood eind een volgende stap.' },
-      { t: 'Houd de koopknop bereikbaar', b: 'Tijdens het lezen van reviews blijft onderaan een balk met prijs en knop staan. De beslissing kan op elk moment vallen.' },
-      { t: 'Zet zekerheden onder de knop', b: 'Levertijd, retour en reviews staan direct na de knop. Dat zijn de drie vragen die iemand stelt vlak voor het kopen.' },
-      { t: 'Bevestig de keuze in de knop', b: '“In winkelmand · maat 41” herhaalt wat je koos. Een vergissing zie je voordat je tikt en niet pas in je winkelmand.' },
+      { t: 'Let the product do the work', b: 'The photo fills more than a third of the screen. Buttons and text are small and calm, so nothing competes with the shoe.' },
+      { t: 'Keep price and button together', b: 'The price is never more than one block away from the buy button. You do not scroll back to know what you spend.' },
+      { t: 'Show choices as choices', b: 'Sizes are separate buttons, not a dropdown. At a glance you see what exists, what is selected and what is gone.' },
+      { t: 'Remove doubt where it starts', b: 'The size advice sits right under the sizes and not in a tab further down. The size guide is one tap away.' },
+      { t: 'Give sold out a next step', b: 'Size 43 is faded but not removed. “Notify me” turns a dead end into a next step.' },
+      { t: 'Keep the buy button in reach', b: 'While you read reviews, a bar with price and button stays at the bottom. The decision can land at any moment.' },
+      { t: 'Put reassurance under the button', b: 'Delivery time, returns and reviews follow straight after the button. Those are the three questions people ask right before buying.' },
+      { t: 'Confirm the choice in the button', b: '“Add to bag · size 41” repeats what you picked. You catch a mistake before you tap, not in your bag.' },
     ] },
-  { id: 'budget', short: 'Dashboard', title: 'Ontwerp het startscherm van een app die je uitgaven bijhoudt.',
-    context: 'De gebruiker opent de app in de rij bij de supermarkt en wil in drie seconden weten of dit nog past.',
-    intro: 'Vier dashboards. Welke beantwoordt de vraag het snelst?',
+  { id: 'budget', short: 'Dashboard', title: 'Design the home screen of an app that tracks your spending.',
+    context: 'The user opens the app in the supermarket queue and wants to know in three seconds whether this still fits.',
+    intro: 'Four dashboards. Which one answers fastest?',
     refs: [
-      { name: 'Eén getal bovenaan', caption: 'Het antwoord vóór de data', accent: '#1d7a4f', screen: [
-        ['bar', 'Oktober', '', '⚙'], ['big', '€ 412', 'nog te besteden deze maand'], ['prog', 64, '€ 738 van € 1.150 uitgegeven'], ['label', 'Vandaag'],
-        ['row', 'Albert Heijn', 'Boodschappen', '− € 23,40'], ['row', 'NS', 'Vervoer', '− € 8,20'], ['link', 'Bekijk alle uitgaven'],
-        ['sp'], ['tabs', ['Overzicht', 'Budgetten', 'Meer'], 0]] },
-      { name: 'Uitzondering eerst', caption: 'Wat aandacht vraagt staat bovenaan', accent: '#2b5fd9', screen: [
-        ['bar', 'Overzicht', '', ''], ['note', 'Boodschappen zit op 92% met nog 9 dagen te gaan.', 'warn'], ['label', 'Budgetten'],
-        ['prog', 92, 'Boodschappen · € 23 over'], ['prog', 48, 'Uit eten · € 62 over'], ['prog', 30, 'Vervoer · € 84 over'],
-        ['sp'], ['btn', 'Uitgave toevoegen']] },
-      { name: 'Getal met context', caption: 'Elk bedrag heeft een vergelijking', accent: '#5b3fd6', screen: [
-        ['bar', 'Deze week', '‹', '›'], ['big', '€ 186', '€ 24 minder dan vorige week'], ['bars', [40, 65, 30, 80, 55, 20, 10]], ['label', 'Grootste posten'],
-        ['row', 'Boodschappen', '4 keer', '€ 92,10'], ['row', 'Uit eten', '2 keer', '€ 54,00'], ['row', 'Vervoer', '5 keer', '€ 39,90']] },
-      { name: 'Invoer binnen duimbereik', caption: 'De meest gebruikte actie zit onderaan', accent: '#d9480f', screen: [
-        ['bar', 'Uitgaven', '', 'Filter'], ['label', 'Vandaag'], ['row', 'Bakker', 'Boodschappen', '− € 4,80'], ['label', 'Gisteren'],
-        ['row', 'Bioscoop', 'Uit', '− € 13,50'], ['row', 'Salaris', 'Inkomen', '+ € 2.140'],
-        ['sp'], ['btn', '+ Nieuwe uitgave'], ['tabs', ['Overzicht', 'Uitgaven', 'Meer'], 1]] },
+      { name: 'One number on top', caption: 'The answer before the data', accent: '#1d7a4f', screen: [
+        ['bar', 'October', '', '⚙'], ['big', '€412', 'left to spend this month'], ['prog', 64, '€738 of €1,150 spent'], ['label', 'Today'],
+        ['row', 'Greenway Market', 'Groceries', '− €23.40'], ['row', 'City Rail', 'Transport', '− €8.20'], ['link', 'View all spending'],
+        ['sp'], ['tabs', ['Overview', 'Budgets', 'More'], 0]] },
+      { name: 'Exception first', caption: 'What needs attention sits on top', accent: '#2b5fd9', screen: [
+        ['bar', 'Overview', '', ''], ['note', 'Groceries is at 92% with 9 days to go.', 'warn'], ['label', 'Budgets'],
+        ['prog', 92, 'Groceries · €23 left'], ['prog', 48, 'Eating out · €62 left'], ['prog', 30, 'Transport · €84 left'],
+        ['sp'], ['btn', 'Add expense']] },
+      { name: 'Number with context', caption: 'Every amount has a comparison', accent: '#5b3fd6', screen: [
+        ['bar', 'This week', '‹', '›'], ['big', '€186', '€24 less than last week'], ['bars', [40, 65, 30, 80, 55, 20, 10]], ['label', 'Biggest items'],
+        ['row', 'Groceries', '4 times', '€92.10'], ['row', 'Eating out', '2 times', '€54.00'], ['row', 'Transport', '5 times', '€39.90']] },
+      { name: 'Input within thumb reach', caption: 'The most used action sits at the bottom', accent: '#d9480f', screen: [
+        ['bar', 'Spending', '', 'Filter'], ['label', 'Today'], ['row', 'Bakery', 'Groceries', '− €4.80'], ['label', 'Yesterday'],
+        ['row', 'Cinema', 'Going out', '− €13.50'], ['row', 'Salary', 'Income', '+ €2,140'],
+        ['sp'], ['btn', '+ New expense'], ['tabs', ['Overview', 'Spending', 'More'], 1]] },
     ],
     obs: [
-      { t: 'Begin met het antwoord', b: '“€ 412 nog te besteden” staat groot bovenaan. De gebruiker vroeg om een ja of nee, de grafiek kan wachten.' },
-      { t: 'Geef elk getal een vergelijking', b: '“€ 738 van € 1.150” en “€ 24 minder dan vorige week” zeggen of een bedrag veel of weinig is. Een los getal zegt niets.' },
-      { t: 'Zet de uitzondering bovenaan', b: 'Het budget dat bijna op is krijgt een melding boven alles. Wat goed gaat hoeft geen aandacht te vragen.' },
-      { t: 'Laat kleur iets betekenen', b: 'Oranje verschijnt alleen bij de waarschuwing. De rest is zwart en grijs, waardoor die ene kleur meteen opvalt.' },
-      { t: 'Groepeer op tijd', b: '“Vandaag” en “Gisteren” als kleine labels breken de lijst op zoals je geheugen dat doet. Je zoekt een uitgave op wanneer.' },
-      { t: 'Lijn bedragen rechts uit', b: 'Alle bedragen staan rechts in de rij, met het minteken ervoor. Je oog loopt in één verticale lijn langs de getallen.' },
-      { t: 'Houd de hoofdactie in duimbereik', b: 'Een uitgave toevoegen doe je het vaakst. Die knop staat dus onderaan en is op elk scherm even groot.' },
-      { t: 'Toon een paar rijen', b: 'Twee of drie posten en de link “Bekijk alle uitgaven” lees je sneller dan een eindeloze lijst. De rest is één tik weg.' },
+      { t: 'Start with the answer', b: '“€412 left to spend” is big and on top. The user asked for a yes or no; the chart can wait.' },
+      { t: 'Give every number a comparison', b: '“€738 of €1,150” and “€24 less than last week” say whether an amount is a lot or a little. A lone number says nothing.' },
+      { t: 'Put the exception on top', b: 'The budget that is nearly gone gets a notice above everything. What is going fine does not need attention.' },
+      { t: 'Make colour mean something', b: 'Orange only appears on the warning. The rest is black and grey, so that one colour stands out at once.' },
+      { t: 'Group by time', b: '“Today” and “Yesterday” as small labels break up the list the way memory does. You look for an expense by when.' },
+      { t: 'Right-align amounts', b: 'All amounts sit on the right of the row, minus sign in front. Your eye runs down the numbers in one vertical line.' },
+      { t: 'Keep the main action in thumb reach', b: 'Adding an expense is what you do most. So that button sits at the bottom and is the same size on every screen.' },
+      { t: 'Show a few rows', b: 'Two or three items and the link “View all spending” read faster than an endless list. The rest is one tap away.' },
     ] },
-  { id: 'login', short: 'Inloggen', title: 'Ontwerp het inlogscherm van een fitness-app.',
-    context: 'De gebruiker staat in de kleedkamer met een nieuwe telefoon en weet het wachtwoord niet meer zeker.',
-    intro: 'Vier manieren om binnen te komen.',
+  { id: 'login', short: 'Sign in', title: 'Design the sign-in screen for a fitness app.',
+    context: 'The user is in the changing room with a new phone and is not sure of the password any more.',
+    intro: 'Four ways to get in.',
     refs: [
-      { name: 'Eén veld tegelijk', caption: 'Eerst e-mail, de rest volgt vanzelf', accent: '#5b3fd6', screen: [
-        ['bar', '', '‹', ''], ['h', 'Wat is je e-mailadres?'], ['p', 'We kijken of je al een account hebt.'], ['input', 'E-mailadres', 'sam@voorbeeld.nl', 'focus'],
-        ['sp'], ['btn', 'Verder']] },
-      { name: 'Snelste route bovenaan', caption: 'Eén tik vóór het typen', accent: '#2b5fd9', screen: [
-        ['h', 'Welkom terug'], ['btn', 'Verder met Apple', 'dark'], ['btn', 'Verder met Google', 'sec'], ['or', 'of met e-mail'],
-        ['input', 'E-mailadres', ''], ['input', 'Wachtwoord', ''], ['btn', 'Log in', 'off'], ['sp'], ['link', 'Nog geen account? Meld je aan']] },
-      { name: 'Fout bij het veld', caption: 'Wat ging mis en hoe los je het op', accent: '#1d7a4f', screen: [
-        ['bar', 'Inloggen', '‹', ''], ['input', 'E-mailadres', 'sam@voorbeeld.nl', 'ok'],
-        ['input', 'Wachtwoord', '••••••••', 'err', 'Dit wachtwoord klopt niet. Probeer het opnieuw.'], ['link', 'Wachtwoord vergeten?'],
-        ['toggle', 'Toon wachtwoord', false], ['sp'], ['btn', 'Log in']] },
-      { name: 'Bevestiging met vervolg', caption: 'Je weet wat er gebeurde en wat nu', accent: '#d9480f', screen: [
-        ['bar', '', '✕', ''], ['empty', 'Check je inbox', 'We stuurden een inloglink naar sam@voorbeeld.nl. Hij werkt 15 minuten.'],
-        ['btn', 'Open mail-app'], ['link', 'Stuur opnieuw over 0:42'], ['sp'], ['p', 'Verkeerd adres? Ga terug en pas het aan.']] },
+      { name: 'One field at a time', caption: 'Email first, the rest follows', accent: '#5b3fd6', screen: [
+        ['bar', '', '‹', ''], ['h', 'What is your email?'], ['p', 'We check whether you already have an account.'], ['input', 'Email', 'sam@example.com', 'focus'],
+        ['sp'], ['btn', 'Continue']] },
+      { name: 'Fastest route on top', caption: 'One tap before any typing', accent: '#2b5fd9', screen: [
+        ['h', 'Welcome back'], ['btn', 'Continue with Apple', 'dark'], ['btn', 'Continue with Google', 'sec'], ['or', 'or with email'],
+        ['input', 'Email', ''], ['input', 'Password', ''], ['btn', 'Sign in', 'off'], ['sp'], ['link', 'No account yet? Sign up']] },
+      { name: 'Error at the field', caption: 'What went wrong and how to fix it', accent: '#1d7a4f', screen: [
+        ['bar', 'Sign in', '‹', ''], ['input', 'Email', 'sam@example.com', 'ok'],
+        ['input', 'Password', '••••••••', 'err', 'That password is not right. Try again.'], ['link', 'Forgot password?'],
+        ['toggle', 'Show password', false], ['sp'], ['btn', 'Sign in']] },
+      { name: 'Confirmation with a next step', caption: 'You know what happened and what is next', accent: '#d9480f', screen: [
+        ['bar', '', '✕', ''], ['empty', 'Check your inbox', 'We sent a sign-in link to sam@example.com. It works for 15 minutes.'],
+        ['btn', 'Open mail app'], ['link', 'Resend in 0:42'], ['sp'], ['p', 'Wrong address? Go back and change it.']] },
     ],
     obs: [
-      { t: 'Vraag zo min mogelijk', b: 'Het eerste voorbeeld vraagt alleen een e-mailadres. Of je inlogt of je aanmeldt zoekt de app zelf uit.' },
-      { t: 'Zet de snelste route bovenaan', b: 'Apple en Google staan boven het formulier. Wie daarmee is aangemeld hoeft geen wachtwoord te onthouden.' },
-      { t: 'Houd het label zichtbaar', b: 'Boven elk veld staat wat erin hoort, ook als het al is ingevuld. Een placeholder verdwijnt zodra je typt, een label blijft.' },
-      { t: 'Zet de fout bij het veld', b: 'De melding staat direct onder het wachtwoordveld, in rood en in gewone taal. Je hoeft geen banner bovenaan aan een veld te koppelen.' },
-      { t: 'Bied herstel aan waar het misgaat', b: '“Wachtwoord vergeten?” staat onder het wachtwoordveld, precies waar je vastloopt. Het e-mailadres blijft ingevuld.' },
-      { t: 'Laat de knop zeggen wat hij doet', b: '“Log in”, “Verder met Apple”, “Open mail-app”. Je weet wat er gebeurt voor je tikt.' },
-      { t: 'Laat zien wat je typt', b: 'De schakelaar “Toon wachtwoord” voorkomt typfouten op een klein toetsenbord. Dat scheelt mislukte pogingen.' },
-      { t: 'Bevestig en wijs de weg', b: 'Na het versturen staat er wat er gebeurde, hoe lang de link werkt en een knop naar de mail-app.' },
+      { t: 'Ask for as little as possible', b: 'The first example only asks for an email address. Whether you sign in or sign up is for the app to work out.' },
+      { t: 'Put the fastest route on top', b: 'Apple and Google sit above the form. Anyone who signed up that way has no password to remember.' },
+      { t: 'Keep the label visible', b: 'Above every field it says what goes in, even once it is filled. A placeholder vanishes as you type; a label stays.' },
+      { t: 'Put the error at the field', b: 'The message sits right under the password field, in red and in plain language. No banner at the top to match to a field.' },
+      { t: 'Offer recovery where it goes wrong', b: '“Forgot password?” sits under the password field, exactly where you get stuck. The email stays filled in.' },
+      { t: 'Let the button say what it does', b: '“Sign in”, “Continue with Apple”, “Open mail app”. You know what happens before you tap.' },
+      { t: 'Show what you type', b: 'The “Show password” switch prevents typos on a small keyboard. That saves failed attempts.' },
+      { t: 'Confirm and point the way', b: 'After sending, the screen says what happened, how long the link works and offers a button to the mail app.' },
     ] },
 ];
 
 /* ---------- state ---------- */
-const KEY = 'smaaktraining.v1';
+const KEY = 'tastetest.v1';
 const readLS = k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
 const writeLS = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
 const S = Object.assign({ session: null, log: [], custom: [], pick: null }, readLS(KEY) || {});
@@ -544,7 +544,7 @@ function streak() {
   while (days.has(dayStr(d))) { n++; d.setDate(d.getDate() - 1); }
   return n;
 }
-const niceDate = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' }); };
+const niceDate = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); };
 
 /* ---------- reference screens ---------- */
 const T = v => esc(typeof v === 'string' || typeof v === 'number' ? v : '');
@@ -584,7 +584,7 @@ function phone(ref) {
     .map(b => (Array.isArray(b) && typeof b[0] === 'string' && Object.hasOwn(BLOCK, b[0]) ? BLOCK[b[0]](...b.slice(1, 7)) : '')).join('');
   return `<div class="ph" style="--shot-accent:${accent}"><div class="ph-s">${body}</div></div>`;
 }
-const refsHTML = c => `<div class="refs">${c.refs.map((r, i) => `<figure class="ref"><button type="button" class="ref-b" data-ref="${i}" aria-label="Vergroot ${esc(r.name)}">${phone(r)}</button><figcaption><b>${esc(r.name)}</b><span>${esc(r.caption)}</span></figcaption></figure>`).join('')}</div>`;
+const refsHTML = c => `<div class="refs">${c.refs.map((r, i) => `<figure class="ref"><button type="button" class="ref-b" data-ref="${i}" aria-label="Enlarge ${esc(r.name)}">${phone(r)}</button><figcaption><b>${esc(r.name)}</b><span>${esc(r.caption)}</span></figcaption></figure>`).join('')}</div>`;
 
 /* ---------- drawing ---------- */
 const AW = 360, AH = 720;
@@ -637,30 +637,30 @@ function hit(ctx, s, x, y) {
   if (s.k === 't' || s.f) return true;
   return x < a + tol || x > c - tol || y < b + tol || y > d - tol; // open shapes: only near the outline
 }
-const TOOLS = [['p', 'Pen'], ['r', 'Rechthoek'], ['e', 'Cirkel'], ['l', 'Lijn'], ['t', 'Tekst'], ['f', 'Vul'], ['m', 'Verplaats'], ['x', 'Gum']];
+const TOOLS = [['p', 'Pen'], ['r', 'Rectangle'], ['e', 'Circle'], ['l', 'Line'], ['t', 'Text'], ['f', 'Fill'], ['m', 'Move'], ['x', 'Eraser']];
 const boardHTML = () => `<div class="board" id="board">
-  <div class="src" role="group" aria-label="Waar ontwerp je"><button type="button" data-src="sketch" aria-pressed="true">Schets hier</button><button type="button" data-src="figma" aria-pressed="false">Ontwerp in Figma</button></div>
+  <div class="src" role="group" aria-label="Where you design"><button type="button" data-src="sketch" aria-pressed="true">Sketch here</button><button type="button" data-src="figma" aria-pressed="false">Design in Figma</button></div>
   <div class="sk">
-  <div class="tools" role="toolbar" aria-label="Tekengereedschap">
+  <div class="tools" role="toolbar" aria-label="Drawing tools">
     <div>${TOOLS.map(([k, l]) => `<button type="button" data-tool="${k}" aria-pressed="${k === 'p'}">${l}</button>`).join('')}</div>
-    <div><button type="button" data-act="undo" disabled>Ongedaan</button><button type="button" data-act="redo" disabled>Opnieuw</button><button type="button" data-act="clear">Wis alles</button><button type="button" data-act="png">Bewaar PNG</button></div>
+    <div><button type="button" data-act="undo" disabled>Undo</button><button type="button" data-act="redo" disabled>Redo</button><button type="button" data-act="clear">Clear all</button><button type="button" data-act="png">Save PNG</button></div>
   </div>
   <div class="opts">
-    <label for="bd-stroke">Lijn <input type="color" id="bd-stroke" value="#16161d"></label>
-    <label for="bd-fill">Vulling <input type="color" id="bd-fill" value="#ffe55a"></label>
-    <label for="bd-fillon"><input type="checkbox" id="bd-fillon"> Vul nieuwe vormen</label>
-    <label for="bd-weight">Dikte <select id="bd-weight"><option value="1">1 px</option><option value="2" selected>2 px</option><option value="4">4 px</option><option value="8">8 px</option></select></label>
+    <label for="bd-stroke">Stroke <input type="color" id="bd-stroke" value="#16161d"></label>
+    <label for="bd-fill">Fill <input type="color" id="bd-fill" value="#ffe55a"></label>
+    <label for="bd-fillon"><input type="checkbox" id="bd-fillon"> Fill new shapes</label>
+    <label for="bd-weight">Weight <select id="bd-weight"><option value="1">1 px</option><option value="2" selected>2 px</option><option value="4">4 px</option><option value="8">8 px</option></select></label>
   </div>
-  <div class="stage"><div class="art"><canvas aria-label="Tekenvlak voor een telefoonscherm"></canvas></div></div>
+  <div class="stage"><div class="art"><canvas aria-label="Drawing area for a phone screen"></canvas></div></div>
   </div>
   <div class="fg" hidden>
     <div class="fg-how">
-      <h3>Ontwerp in Figma, haal je frame hierheen.</h3>
-      <ol><li>Maak in Figma een frame op telefoonformaat, bijvoorbeeld 360 × 720.</li><li>Ontwerp je scherm terwijl de klok hier doorloopt.</li><li>Selecteer het frame, kopieer het als afbeelding met <kbd>⇧⌘C</kbd> en plak het op deze pagina met <kbd>⌘V</kbd>.</li></ol>
-      <div class="fg-row"><a class="btn ghost" href="https://figma.new" target="_blank" rel="noopener">Open een nieuw Figma-bestand</a><input class="vh" type="file" id="fg-file" accept="image/png,image/jpeg,image/webp"><label class="btn ghost" for="fg-file">Kies een afbeelding</label><button type="button" class="btn quiet" data-act="fig-clear" hidden>Verwijder</button></div>
+      <h3>Design in Figma, bring your frame here.</h3>
+      <ol><li>Create a phone-sized frame in Figma, for example 360 × 720.</li><li>Design your screen while the clock keeps running here.</li><li>Select the frame, copy it as an image with <kbd>⇧⌘C</kbd> and paste it on this page with <kbd>⌘V</kbd>.</li></ol>
+      <div class="fg-row"><a class="btn ghost" href="https://figma.new" target="_blank" rel="noopener">Open a new Figma file</a><input class="vh" type="file" id="fg-file" accept="image/png,image/jpeg,image/webp"><label class="btn ghost" for="fg-file">Choose an image</label><button type="button" class="btn quiet" data-act="fig-clear" hidden>Remove</button></div>
       <p class="status" id="fg-status" role="status"></p>
     </div>
-    <div class="stage"><div class="art" id="fg-art" data-empty="1"><img id="fg-img" alt="Je ontwerp uit Figma" hidden></div></div>
+    <div class="stage"><div class="art" id="fg-art" data-empty="1"><img id="fg-img" alt="Your design from Figma" hidden></div></div>
   </div>
 </div>`;
 let activeBoard = null;
@@ -690,7 +690,7 @@ function mountBoard(root, shapes, onChange) {
   }
   function openText(x, y) {
     const r = cv.getBoundingClientRect(), s = { 1: 12, 2: 14, 4: 18, 8: 26 }[weight()] || 14, c = stroke();
-    tin = document.createElement('input'); tin.id = 'bd-text'; tin.className = 'art-text'; tin.setAttribute('aria-label', 'Tekst op het tekenvlak');
+    tin = document.createElement('input'); tin.id = 'bd-text'; tin.className = 'art-text'; tin.setAttribute('aria-label', 'Text on the drawing area');
     tin.style.cssText = `left:${x / AW * 100}%;top:${y / AH * 100}%;font-size:${s * r.width / AW}px;color:${c}`;
     tin._d = { x, y, s, c, at: Date.now() };
     const el = tin, refocus = () => { if (el.isConnected && document.activeElement !== el) el.focus(); };
@@ -746,7 +746,7 @@ function mountBoard(root, shapes, onChange) {
     const a = ab.dataset.act;
     if (a === 'undo') api.undo(); else if (a === 'redo') api.redo();
     else if (a === 'clear') { if (shapes.length) { snap(); shapes.length = 0; changed(); } }
-    else if (a === 'png') { commitText(); shotBlob(shapes).then(b => b && saveFile('smaaktraining-schets.png', b)); }
+    else if (a === 'png') { commitText(); shotBlob(shapes).then(b => b && saveFile('tastetest-sketch.png', b)); }
   });
   draw(); sync();
   return api;
@@ -794,16 +794,16 @@ function mountSource(root, s, idx) {
     $('[data-act="fig-clear"]', root).hidden = !has;
   };
   async function take(src, revoke) {
-    status('Bezig met inladen…');
-    try { s.fig[idx] = await fitImage(src); setSrc('figma'); show(); status(save() ? 'Frame ingeladen. Plak opnieuw om het te vervangen.' : 'Frame ingeladen, maar te groot om tussentijds te bewaren. Laat deze pagina open tot je afrondt.'); }
-    catch { status('Dit kon niet als afbeelding worden gelezen. Gebruik een PNG of JPG.'); }
+    status('Loading…');
+    try { s.fig[idx] = await fitImage(src); setSrc('figma'); show(); status(save() ? 'Frame loaded. Paste again to replace it.' : 'Frame loaded, but too large to save along the way. Keep this page open until you finish.'); }
+    catch { status('That could not be read as an image. Use a PNG or JPG.'); }
     finally { if (revoke) URL.revokeObjectURL(src); }
   }
-  const takeFile = f => { if (!f || !/^image\/(png|jpeg|webp)$/.test(f.type)) { setSrc('figma'); return status('Kies een PNG-, JPG- of WebP-afbeelding.'); } take(URL.createObjectURL(f), true); };
+  const takeFile = f => { if (!f || !/^image\/(png|jpeg|webp)$/.test(f.type)) { setSrc('figma'); return status('Choose a PNG, JPG or WebP image.'); } take(URL.createObjectURL(f), true); };
   root.addEventListener('click', e => {
     const sb = e.target.closest('.src [data-src]'); if (sb) { setSrc(sb.dataset.src); saveSoon(); return; }
     const ab = e.target.closest('[data-act]'); if (!ab) return;
-    if (ab.dataset.act === 'fig-clear') { s.fig[idx] = null; show(); save(); status('Verwijderd.'); }
+    if (ab.dataset.act === 'fig-clear') { s.fig[idx] = null; show(); save(); status('Removed.'); }
   });
   $('#fg-file', root).addEventListener('change', e => { takeFile(e.target.files && e.target.files[0]); e.target.value = ''; });
   const hasFiles = e => e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
@@ -833,7 +833,7 @@ function paintTimer() {
   if (el.dataset.v !== txt) { el.dataset.v = txt; el.innerHTML = [...txt].map(ch => `<span${ch === ':' ? ' class="c"' : ''}>${ch}</span>`).join(''); }
   el.closest('.round').dataset.up = up ? '1' : '0';
   const b = $('#pause'), m = $('#more');
-  if (b) { b.textContent = up ? 'Tijd is om' : running ? 'Pauze' : 'Hervat'; b.disabled = up; }
+  if (b) { b.textContent = up ? 'Time is up' : running ? 'Pause' : 'Resume'; b.disabled = up; }
   if (m) m.hidden = !up;
 }
 function stopTimer() { running = false; clearInterval(tick); tick = 0; save(); paintTimer(); }
@@ -856,40 +856,40 @@ function paintTop() {
   nav.hidden = !on;
   nav.innerHTML = on ? ROUNDS.map((r, i) => `<button type="button" data-step="${i}"${i === s.step ? ' aria-current="step"' : ''}${i > s.max ? ' disabled' : ''}><span>${i + 1}</span><b>${r.name}</b></button>`).join('') : '';
   const n = streak();
-  $('#streak').textContent = on ? '' : n > 1 ? `${n} dagen op rij` : n === 1 ? '1 dag op rij' : '';
+  $('#streak').textContent = on ? '' : n > 1 ? `${n}-day streak` : n === 1 ? '1-day streak' : '';
 }
 function logHTML() {
   const n = S.log.length, seen = S.log.reduce((a, l) => a + (l.seen || 0), 0), tot = S.log.reduce((a, l) => a + (l.total || 0), 0);
-  const line = n ? `${n} ${n === 1 ? 'sessie' : 'sessies'} · ${seen} van ${tot} observaties zelf gezien` : '';
-  return `<div class="sec-h"><h2>Logboek</h2><p id="log-where">${esc(whereText())}</p></div>
-    ${n ? `<p class="status">${line}</p><ul class="log-l">${S.log.slice(0, 40).map(l => `<li><button type="button" data-log="${esc(l.id)}"><time>${esc(niceDate(l.finishedAt))}</time><b>${esc(l.short || l.title)}</b><span>${Number(l.seen) || 0} van ${Number(l.total) || 0} gezien</span><em>${esc(l.takeaway || '')}</em></button></li>`).join('')}</ul>`
-      : '<p class="log-empty">Nog geen sessies. Na je eerste herontwerp staan je twee schetsen hier naast elkaar, met wat je zag en wat je miste.</p>'}`;
+  const line = n ? `${n} ${n === 1 ? 'session' : 'sessions'} · ${seen} of ${tot} observations spotted on your own` : '';
+  return `<div class="sec-h"><h2>Log</h2><p id="log-where">${esc(whereText())}</p></div>
+    ${n ? `<p class="status">${line}</p><ul class="log-l">${S.log.slice(0, 40).map(l => `<li><button type="button" data-log="${esc(l.id)}"><time>${esc(niceDate(l.finishedAt))}</time><b>${esc(l.short || l.title)}</b><span>${Number(l.seen) || 0} of ${Number(l.total) || 0} spotted</span><em>${esc(l.takeaway || '')}</em></button></li>`).join('')}</ul>`
+      : '<p class="log-empty">No sessions yet. After your first redesign your two versions show up here side by side, with what you spotted and what you missed.</p>'}`;
 }
 function renderHome() {
   view = 'home'; activeBoard = null; activeSource = null; stopTimer();
   const s = S.session, c = s ? byId(s.cid) : todays(), n = s ? s.n : S.log.length + 1;
-  const resume = s ? (s.step > 3 ? 'Bekijk je voor en na' : `Ga verder met ${ROUNDS[s.step].name}`) : '';
+  const resume = s ? (s.step > 3 ? 'View your before and after' : `Continue with ${ROUNDS[s.step].name}`) : '';
   V.innerHTML = `<section class="hero">
     <div>
-      <span class="eyebrow">Een uur per dag · vier rondes</span>
-      <h1>Train je <mark>oog</mark> voor design.</h1>
-      <p class="lead">AI maakt in een minuut honderd schermen. Jij moet zien welke goed is. Dat leer je door zelf te ontwerpen, goed te kijken en het daarna nog een keer te doen.</p>
+      <span class="eyebrow">One hour a day · four rounds</span>
+      <h1>Train your <mark>eye</mark> for design.</h1>
+      <p class="lead">AI makes a hundred screens in a minute. You have to see which one is good. You learn that by designing it yourself, looking closely and then doing it again.</p>
     </div>
     <div class="today">
-      <span class="eyebrow">${s ? 'Bezig' : 'Challenge van vandaag'} · ${pad(n, 3)}</span>
+      <span class="eyebrow">${s ? 'In progress' : 'Today’s challenge'} · ${pad(n, 3)}</span>
       <h2>${esc(c.title)}</h2>
       <p>${esc(c.context)}</p>
       <div class="acts">${s
-        ? `<button type="button" class="btn" id="go">${resume}</button><button type="button" class="btn quiet" id="drop">Stop deze sessie</button>`
-        : '<button type="button" class="btn" id="go">Start de challenge</button><button type="button" class="btn ghost" id="other">Andere challenge</button>'}</div>
+        ? `<button type="button" class="btn" id="go">${resume}</button><button type="button" class="btn quiet" id="drop">Stop this session</button>`
+        : '<button type="button" class="btn" id="go">Start the challenge</button><button type="button" class="btn ghost" id="other">Another challenge</button>'}</div>
     </div>
   </section>
-  <section class="track" aria-label="De routine">
-    <div class="sec-h"><h2>De routine</h2><p>60 minuten, op schaal</p></div>
+  <section class="track" aria-label="The routine">
+    <div class="sec-h"><h2>The routine</h2><p>60 minutes, to scale</p></div>
     <div class="ruler" aria-hidden="true"><span style="left:0">0</span><span style="left:33.333%">20</span><span style="left:50%">30</span><span style="left:66.667%">40</span><span style="left:100%">60 min</span></div>
     <ol>${ROUNDS.map((r, i) => `<li style="flex-grow:${r.min}"><span class="k">${pad(i + 1)} · ${r.min} min</span><b>${r.name}</b><p>${r.d}</p></li>`).join('')}</ol>
   </section>
-  <section class="log" id="logboek">${logHTML()}</section>`;
+  <section class="log" id="log">${logHTML()}</section>`;
   paintTop();
 }
 function newSession(c) {
@@ -904,36 +904,36 @@ function go(step) {
   if (step > 3) finish(); else { view = 'round'; renderRound(); startTimer(); }
   window.scrollTo(0, 0);
 }
-const briefHTML = (s, c, sub2) => `<div class="brief"><span class="eyebrow">Jouw challenge · ${pad(s.n, 3)}</span><h2>${esc(c.title)}</h2><p>${sub2}</p></div>`;
-const ownNotes = (s, tag = 'h4') => NOTES.map(g => { const v = s.notes[g.k].filter(x => x.trim()); return `<div><${tag}>${g.own}</${tag}><ul>${v.length ? v.map(x => `<li>${esc(x)}</li>`).join('') : '<li>Nog geen notities. Vul ze in bij Bestudeer.</li>'}</ul></div>`; }).join('');
-const seenText = (s, c) => `${s.seen.filter(Boolean).length} van ${c.obs.length} gezien`;
+const briefHTML = (s, c, sub2) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)}</span><h2>${esc(c.title)}</h2><p>${sub2}</p></div>`;
+const ownNotes = (s, tag = 'h4') => NOTES.map(g => { const v = s.notes[g.k].filter(x => x.trim()); return `<div><${tag}>${g.own}</${tag}><ul>${v.length ? v.map(x => `<li>${esc(x)}</li>`).join('') : '<li>No notes yet. Add them in Study.</li>'}</ul></div>`; }).join('');
+const seenText = (s, c) => `${s.seen.filter(Boolean).length} of ${c.obs.length} spotted`;
 const ROUND_BODY = [
-  (s, c) => briefHTML(s, c, `${esc(c.context)} Geen voorbeelden, geen AI. Schets het hier of ontwerp het in Figma, zoals jij denkt dat het moet.`) + boardHTML(),
-  (s, c) => `<div class="brief"><span class="eyebrow">Jouw challenge · ${pad(s.n, 3)}</span><h2>${esc(c.intro)}</h2><p>Geschetste voorbeelden van patronen die sterke apps hiervoor gebruiken. Tik op een scherm om het groot te zien.</p></div>
+  (s, c) => briefHTML(s, c, `${esc(c.context)} No references, no AI. Sketch it here or design it in Figma, the way you think it should be.`) + boardHTML(),
+  (s, c) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)}</span><h2>${esc(c.intro)}</h2><p>Sketched examples of patterns strong apps use for this. Tap a screen to see it large.</p></div>
     ${refsHTML(c)}
-    <div class="notes"><div class="sec-h"><h3>Wat valt je op?</h3><p>Eerst jouw observaties. De analyse komt daarna.</p></div>
+    <div class="notes"><div class="sec-h"><h3>What do you notice?</h3><p>Your observations first. The analysis comes next.</p></div>
       <div class="notes-g">${NOTES.map(g => `<div><h4>${g.label}</h4>${[0, 1, 2].map(i => `<label for="n-${g.k}-${i}"><span>${pad(i + 1)}</span><input id="n-${g.k}-${i}" data-n="${g.k}" data-i="${i}" maxlength="160" autocomplete="off" value="${esc(s.notes[g.k][i])}" placeholder="${g.ph}"></label>`).join('')}</div>`).join('')}</div>
     </div>`,
   (s, c) => `<div class="cmp">
     <div class="obs">
-      <div class="brief"><span class="eyebrow">${c.refs.length} voorbeeldschermen · ${c.obs.length} observaties</span><h2>${esc(c.short || 'Dit scherm')} van dichtbij.</h2></div>
-      <details class="again"><summary>Bekijk de voorbeelden nog eens</summary>${refsHTML(c)}</details>
-      <ol>${c.obs.map((o, i) => `<li class="${s.seen[i] ? 'seen' : ''}"><span class="num">${pad(i + 1)}</span><div><h3><span>${esc(o.t)}</span></h3><p>${esc(o.b)}</p></div><button type="button" class="tick" data-seen="${i}" aria-pressed="${!!s.seen[i]}">${s.seen[i] ? 'Gezien' : 'Had ik gezien'}</button></li>`).join('')}</ol>
+      <div class="brief"><span class="eyebrow">${c.refs.length} reference screens · ${c.obs.length} observations</span><h2>A closer look at ${esc((c.short || 'this screen').toLowerCase())}.</h2></div>
+      <details class="again"><summary>Look at the references again</summary>${refsHTML(c)}</details>
+      <ol>${c.obs.map((o, i) => `<li class="${s.seen[i] ? 'seen' : ''}"><span class="num">${pad(i + 1)}</span><div><h3><span>${esc(o.t)}</span></h3><p>${esc(o.b)}</p></div><button type="button" class="tick" data-seen="${i}" aria-pressed="${!!s.seen[i]}">${s.seen[i] ? 'Spotted' : 'I spotted this'}</button></li>`).join('')}</ol>
     </div>
     <aside class="eye">
-      <h3>Jouw oog naast de analyse</h3>
-      <p>Vink aan wat je zelf ook had opgemerkt. Welke details neem je mee naar je herontwerp?</p>
+      <h3>Your eye vs. the analysis</h3>
+      <p>Tick what you had noticed yourself. Which details will you carry into your redesign?</p>
       ${ownNotes(s)}
-      <div class="count"><b id="seen-n">${seenText(s, c)}</b><p>Dit is geen score. Het gaat om wat je nu ziet en een uur geleden nog niet.</p></div>
+      <div class="count"><b id="seen-n">${seenText(s, c)}</b><p>This is not a score. It is about what you can see now and could not an hour ago.</p></div>
     </aside>
   </div>`,
   (s, c) => {
     const missed = c.obs.filter((o, i) => !s.seen[i]), dos = s.notes.d.filter(x => x.trim());
-    return briefHTML(s, c, `Zelfde scherm, zelfde jij. Alleen weet je nu ${c.obs.length} dingen meer om op te letten.`) + `<div class="re">${boardHTML()}
-    <aside class="take"><h3>Neem mee</h3>
-      ${missed.length ? `<p>Dit zag je eerst niet:</p><ul>${missed.map(o => `<li>${esc(o.t)}</li>`).join('')}</ul>` : '<p>Je had alle observaties al gezien. Kijk of ze ook in je schets zitten.</p>'}
-      ${dos.length ? `<p>Jouw do’s:</p><ul>${dos.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
-      ${s.src[0] === 'sketch' && s.before.length ? '<button type="button" class="btn ghost" id="copy-first">Begin met mijn eerste schets</button>' : ''}
+    return briefHTML(s, c, `Same screen, same you. Except you now know ${c.obs.length} more things to look for.`) + `<div class="re">${boardHTML()}
+    <aside class="take"><h3>Take with you</h3>
+      ${missed.length ? `<p>You missed these the first time:</p><ul>${missed.map(o => `<li>${esc(o.t)}</li>`).join('')}</ul>` : '<p>You had spotted every observation. Check that they are in your design too.</p>'}
+      ${dos.length ? `<p>Your do’s:</p><ul>${dos.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      ${s.src[0] === 'sketch' && s.before.length ? '<button type="button" class="btn ghost" id="copy-first">Start from my first sketch</button>' : ''}
     </aside></div>`;
   },
 ];
@@ -943,11 +943,11 @@ function renderRound() {
   V.innerHTML = `<section class="round" data-step="${s.step}">
     <header class="clock">
       <div class="clock-t" id="timer" role="timer"></div>
-      <div class="clock-n"><span class="eyebrow">Ronde ${s.step + 1} van 4</span><h1>${r.name}</h1></div>
-      <div class="clock-c"><button type="button" class="btn ghost" id="more" hidden>+ 5 min</button><button type="button" class="btn ghost" id="pause">Pauze</button></div>
+      <div class="clock-n"><span class="eyebrow">Round ${s.step + 1} of 4</span><h1>${r.name}</h1></div>
+      <div class="clock-c"><button type="button" class="btn ghost" id="more" hidden>+ 5 min</button><button type="button" class="btn ghost" id="pause">Pause</button></div>
     </header>
     ${ROUND_BODY[s.step](s, c)}
-    <footer class="next"><p>${r.hint}</p><button type="button" class="btn" id="next">${s.step < 3 ? `Door naar ${ROUNDS[s.step + 1].name}` : 'Rond af'}</button></footer>
+    <footer class="next"><p>${r.hint}</p><button type="button" class="btn" id="next">${s.step < 3 ? `On to ${ROUNDS[s.step + 1].name}` : 'Finish'}</button></footer>
   </section>`;
   const bd = $('#board'); activeSource = null;
   if (bd) {
@@ -970,17 +970,17 @@ function renderResult() {
   const s = S.session, c = byId(s.cid); activeBoard = null; activeSource = null;
   const notes = NOTES.reduce((a, g) => a + s.notes[g.k].filter(x => x.trim()).length, 0);
   V.innerHTML = `<section class="result">
-    <div class="brief"><span class="eyebrow">Challenge ${pad(s.n, 3)} afgerond</span><h1>Voor en na</h1><p>${esc(c.title)}</p></div>
+    <div class="brief"><span class="eyebrow">Challenge ${pad(s.n, 3)} complete</span><h1>Before and after</h1><p>${esc(c.title)}</p></div>
     <div class="res">
       <div class="ba">
-        <figure><img alt="Je eerste versie" src="${imgOf(s, 0)}"><figcaption>Eerste versie</figcaption></figure>
-        <figure><img alt="Je herontwerp" src="${imgOf(s, 1)}"><figcaption>Herontwerp</figcaption></figure>
+        <figure><img alt="Your first version" src="${imgOf(s, 0)}"><figcaption>First version</figcaption></figure>
+        <figure><img alt="Your redesign" src="${imgOf(s, 1)}"><figcaption>Redesign</figcaption></figure>
       </div>
       <div class="sumup">
-        <p class="facts">${seenText(s, c).replace(' gezien', '')} observaties zelf gezien, ${notes} ${notes === 1 ? 'notitie' : 'notities'}, ${minsSpent(s)} minuten geoefend.</p>
-        <label class="field" for="takeaway">Wat neem je mee naar morgen?<input id="takeaway" maxlength="200" autocomplete="off" value="${esc(s.takeaway)}" placeholder="Eén zin is genoeg"></label>
-        <div class="acts"><button type="button" class="btn" id="done">Klaar voor vandaag</button><button type="button" class="btn ghost" id="png">Bewaar voor en na als PNG</button></div>
-        <p class="status" id="res-status">Morgen staat er een nieuwe challenge klaar.</p>
+        <p class="facts">${seenText(s, c).replace(' spotted', '')} observations spotted on your own, ${notes} ${notes === 1 ? 'note' : 'notes'}, ${minsSpent(s)} ${minsSpent(s) === 1 ? 'minute' : 'minutes'} of practice.</p>
+        <label class="field" for="takeaway">What will you take into tomorrow?<input id="takeaway" maxlength="200" autocomplete="off" value="${esc(s.takeaway)}" placeholder="One sentence is enough"></label>
+        <div class="acts"><button type="button" class="btn" id="done">Done for today</button><button type="button" class="btn ghost" id="png">Save before and after as PNG</button></div>
+        <p class="status" id="res-status">A new challenge is waiting tomorrow.</p>
       </div>
     </div>
   </section>`;
@@ -995,16 +995,16 @@ const okImg = v => (typeof v === 'string' && v.startsWith('data:image/') ? v : '
 async function openLog(id) {
   const l = S.log.find(x => x.id === id); if (!l) return;
   const groups = NOTES.map(g => { const v = ((l.notes || {})[g.k] || []).filter(x => String(x).trim()); return v.length ? `<div><h4>${g.own}</h4><ul>${v.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; }).join('');
-  openDlg(`<div class="lg"><div class="brief"><span class="eyebrow">${esc(niceDate(l.finishedAt))} · challenge ${pad(Number(l.n) || 0, 3)}</span><h3>${esc(l.title)}</h3><p>${Number(l.seen) || 0} van ${Number(l.total) || 0} observaties zelf gezien${l.takeaway ? '. ' + esc(l.takeaway) : ''}</p></div>
-    <div class="ba" id="lg-ba"><p class="status">Schetsen laden…</p></div>${groups ? `<div class="lg-n">${groups}</div>` : ''}<div><button type="button" class="btn ghost" data-close>Sluiten</button></div></div>`);
+  openDlg(`<div class="lg"><div class="brief"><span class="eyebrow">${esc(niceDate(l.finishedAt))} · challenge ${pad(Number(l.n) || 0, 3)}</span><h3>${esc(l.title)}</h3><p>${Number(l.seen) || 0} of ${Number(l.total) || 0} observations spotted on your own${l.takeaway ? '. ' + esc(l.takeaway) : ''}</p></div>
+    <div class="ba" id="lg-ba"><p class="status">Loading sketches…</p></div>${groups ? `<div class="lg-n">${groups}</div>` : ''}<div><button type="button" class="btn ghost" data-close>Close</button></div></div>`);
   let sh = readLS(KEY + '.shot.' + id);
   const el = $('#lg-ba'); if (!el) return;
   const a = okImg(sh && sh.before), b = okImg(sh && sh.after);
-  el.innerHTML = a && b ? `<figure><img alt="Eerste versie" src="${esc(a)}"><figcaption>Eerste versie</figcaption></figure><figure><img alt="Herontwerp" src="${esc(b)}"><figcaption>Herontwerp</figcaption></figure>` : '<p class="status">De schetsen van deze sessie zijn niet bewaard.</p>';
+  el.innerHTML = a && b ? `<figure><img alt="First version" src="${esc(a)}"><figcaption>First version</figcaption></figure><figure><img alt="Redesign" src="${esc(b)}"><figcaption>Redesign</figcaption></figure>` : '<p class="status">The sketches from this session were not saved.</p>';
 }
 
 /* ---------- logbook storage: this browser ---------- */
-const whereText = () => 'Bewaard in deze browser';
+const whereText = () => 'Saved in this browser';
 function pruneShots() {
   const keep = new Set(S.log.slice(0, 30).map(l => l.id));
   try { for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && k.startsWith(KEY + '.shot.') && !keep.has(k.slice(KEY.length + 6))) localStorage.removeItem(k); } } catch {}
@@ -1025,7 +1025,7 @@ async function comparePNG(s, c) {
   for (const w of words) { if (x.measureText(line + w).width > W - P * 2 && line) { x.fillText(line.trim(), P, y); y += 32; line = ''; } line += w + ' '; }
   x.fillText(line.trim(), P, y);
   x.font = '500 12px "DM Mono", ui-monospace, monospace'; x.fillStyle = '#5f5f6d';
-  ['EERSTE VERSIE', 'HERONTWERP'].forEach((label, i) => {
+  ['FIRST VERSION', 'REDESIGN'].forEach((label, i) => {
     const ox = P + i * (AW + G); x.fillStyle = '#5f5f6d'; x.fillText(label, ox, 118); x.drawImage(layers[i], ox, 140, AW, AH); x.strokeStyle = '#dadae4'; x.lineWidth = 1; x.strokeRect(ox + .5, 140.5, AW - 1, AH - 1);
   });
   return new Promise(res => cv.toBlob(res, 'image/png'));
@@ -1042,22 +1042,22 @@ V.addEventListener('click', e => {
   else if (t.id === 'other') { const list = allCh(), i = list.indexOf(todays()); S.pick = { id: list[(i + 1) % list.length].id, day: dayStr() }; save(); renderHome(); }
   else if (t.id === 'drop') {
     if (t.dataset.sure) { clearTimeout(dropT); S.session = null; save(); renderHome(); }
-    else { t.dataset.sure = '1'; t.textContent = 'Zeker weten? Je schetsen verdwijnen'; dropT = setTimeout(() => { if (t.isConnected) { delete t.dataset.sure; t.textContent = 'Stop deze sessie'; } }, 4000); }
+    else { t.dataset.sure = '1'; t.textContent = 'Are you sure? Your sketches will be lost'; dropT = setTimeout(() => { if (t.isConnected) { delete t.dataset.sure; t.textContent = 'Stop this session'; } }, 4000); }
   }
   else if (t.dataset.log) openLog(t.dataset.log);
   else if (!s) return;
   else if (t.id === 'pause') { if (running) stopTimer(); else startTimer(); }
   else if (t.id === 'more') { s.t[s.step] = 300; s.extra = (s.extra || 0) + 300; startTimer(); }
   else if (t.id === 'next') go(s.step + 1);
-  else if (t.dataset.ref) { const r = c.refs[Number(t.dataset.ref)]; if (r) openDlg(`<div class="zoom">${phone(r)}<div><h3>${esc(r.name)}</h3><p>${esc(r.caption)}</p><button type="button" class="btn ghost" data-close>Sluiten</button></div></div>`); }
+  else if (t.dataset.ref) { const r = c.refs[Number(t.dataset.ref)]; if (r) openDlg(`<div class="zoom">${phone(r)}<div><h3>${esc(r.name)}</h3><p>${esc(r.caption)}</p><button type="button" class="btn ghost" data-close>Close</button></div></div>`); }
   else if (t.dataset.seen) {
     const i = Number(t.dataset.seen); s.seen[i] = !s.seen[i]; save();
-    t.setAttribute('aria-pressed', String(s.seen[i])); t.textContent = s.seen[i] ? 'Gezien' : 'Had ik gezien'; t.closest('li').classList.toggle('seen', s.seen[i]);
+    t.setAttribute('aria-pressed', String(s.seen[i])); t.textContent = s.seen[i] ? 'Spotted' : 'I spotted this'; t.closest('li').classList.toggle('seen', s.seen[i]);
     $('#seen-n').textContent = seenText(s, c);
   }
   else if (t.id === 'copy-first') { if (activeBoard) activeBoard.replace(s.before); }
   else if (t.id === 'done') { S.session = null; save(); renderHome(); window.scrollTo(0, 0); }
-  else if (t.id === 'png') comparePNG(s, c).then(b => b && saveFile('smaaktraining-voor-en-na.png', b)).catch(() => {});
+  else if (t.id === 'png') comparePNG(s, c).then(b => b && saveFile('tastetest-before-and-after.png', b)).catch(() => {});
 });
 V.addEventListener('input', e => {
   const t = e.target, s = S.session; if (!s) return;
