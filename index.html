@@ -4,44 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TasteTest</title>
-<meta name="description" content="Train your eye for design. One challenge a day in four rounds: design, study references, compare with the analysis and redesign.">
+<meta name="description" content="Train your eye for design. Two hundred UI challenges: design in Figma against the clock, study comparable screens, redesign, and review what you kept, gained and still miss.">
 <meta property="og:title" content="TasteTest">
-<meta property="og:description" content="Train your eye for design. One challenge a day in four rounds: design, study references, compare with the analysis and redesign.">
+<meta property="og:description" content="Train your eye for design. Two hundred UI challenges: design in Figma against the clock, study comparable screens, redesign, and review what you kept, gained and still miss.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#f1f1f5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f0f14" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316161d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ffe55a'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%2316161d'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#000223">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
 /* Layout: one calm column, max 1120px. The 60-minute routine drawn to scale is the recurring motif;
-   on a round screen the stopwatch is the loudest thing. Reference screens and the artboard are "paper":
-   they keep their own light palette in both themes, like screenshots would. */
+   on a round screen the stopwatch is the loudest thing, because the designing itself happens in Figma.
+   Handed-in frames and search results are "paper": they keep a light palette on the navy ground, like screenshots. */
 :root{
-  --paper:#f1f1f5; --surface:#ffffff; --sunk:#e7e7ee; --ink:#16161d; --muted:#5f5f6d; --line:#dadae4;
-  --accent:#3a36e0; --accent-ink:#ffffff; --accent-soft:#e7e6fb;
-  --mark:#ffe55a; --mark-ink:#16161d; --scrim:rgb(12 12 20 / .62); --shadow:rgb(20 20 40 / .35);
-  --shot-bg:#ffffff; --shot-ink:#1a1a21; --shot-muted:#868693; --shot-line:#e3e3ea; --shot-fill:#f2f2f6; --shot-on:#ffffff;
-  --shot-ok:#1c7a4c; --shot-err:#c9362b; --shot-warn:#9a4a12; --shot-good-bg:#e4f4ea; --shot-warn-bg:#fbeedd; --shot-accent:#2b5fd9;
-  --f-display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
-  --f-body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --f-mono:'DM Mono',ui-monospace,'SF Mono',Menlo,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#0f0f14; --surface:#18181f; --sunk:#202029; --ink:#ececf2; --muted:#a0a0af; --line:#2f2f3b;
-    --accent:#918eff; --accent-ink:#0f0f14; --accent-soft:#232247;
-    --mark:#6b5c00; --mark-ink:#fff3b0; --scrim:rgb(0 0 0 / .7); --shadow:rgb(0 0 0 / .6); color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0f0f14; --surface:#18181f; --sunk:#202029; --ink:#ececf2; --muted:#a0a0af; --line:#2f2f3b;
-  --accent:#918eff; --accent-ink:#0f0f14; --accent-soft:#232247;
-  --mark:#6b5c00; --mark-ink:#fff3b0; --scrim:rgb(0 0 0 / .7); --shadow:rgb(0 0 0 / .6); color-scheme:dark;
+  /* Brand palette, used 60/25/10/5: navy ground, white type, pink for actions, cream for highlights. */
+  --prussian-blue:#000223; --white:#ffffff; --deep-pink:#ff44b4; --banana-cream:#ffee71;
+  --paper:var(--prussian-blue); --surface:#0a0d36; --sunk:#14174a; --ink:var(--white); --muted:#b5b7d1; --line:#2a2e63;
+  --accent:var(--deep-pink); --accent-ink:var(--prussian-blue); --accent-soft:#2a0d3e;
+  --mark:var(--banana-cream); --mark-ink:var(--prussian-blue); --scrim:rgb(0 0 12 / .78); --shadow:rgb(0 0 0 / .6);
+  --shot-bg:#ffffff; --shot-ink:#1a1a21; --shot-muted:#6c6c7a; --shot-line:#e3e3ea; --shot-fill:#f2f2f6;
+  --f-display:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --f-body:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --f-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{color-scheme:light}
+html{color-scheme:dark}
 body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
@@ -51,19 +41,25 @@ ol,ul{padding:0;list-style:none}
 h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance}
 button,input,select{font:inherit;color:inherit}
 button{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+kbd{font:500 12px var(--f-mono);border:1px solid var(--line);border-radius:6px;padding:1px 5px;background:var(--surface);color:var(--ink);white-space:nowrap}
+img[data-gone]{visibility:hidden}
 
 .app{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px);padding-block:18px 72px;display:flex;flex-direction:column;gap:26px}
 #view{display:flex;flex-direction:column;gap:clamp(26px,4vw,44px)}
 #view>section{display:flex;flex-direction:column;gap:clamp(18px,2.6vw,28px)}
 .eyebrow{font:500 11px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .status{font-size:13px;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0}
+.vh:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid transparent;background:var(--accent);color:var(--accent-ink);padding:10px 18px;font-weight:600;font-size:14.5px;cursor:pointer;text-align:center;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.quiet{background:transparent;color:var(--muted);padding-inline:8px;font-weight:500}
 .btn:disabled{opacity:.5;cursor:default}
-@media (prefers-reduced-motion:no-preference){.btn,.tick,.tools button,.steps button{transition:background-color .15s,color .15s,border-color .15s}}
+@media (prefers-reduced-motion:no-preference){.btn,.tick,.chip,.seg button,.steps button{transition:background-color .15s,color .15s,border-color .15s}}
 
 /* top bar */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;min-height:44px}
@@ -81,16 +77,18 @@ button{-webkit-tap-highlight-color:transparent}
 /* home */
 .hero{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(22px,4vw,52px)!important;align-items:end;padding-top:clamp(8px,3vw,36px)}
 .hero h1{font-size:clamp(42px,7.4vw,88px);letter-spacing:-.04em;line-height:.94;margin-block:16px 20px}
-.hero h1 mark{background:linear-gradient(transparent 60%,var(--mark) 60%);color:inherit;padding-inline:.04em}
+.hero h1 mark{background:var(--mark);color:var(--mark-ink);padding-inline:.08em;border-radius:.06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .lead{font-size:17px;max-width:46ch;color:var(--muted)}
 .today{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px}
 .today h2{font-size:clamp(22px,2.5vw,29px)}
 .today>p{color:var(--muted)}
+.meta{font:500 12px var(--f-mono);color:var(--muted)}
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 @media (max-width:840px){.hero{grid-template-columns:minmax(0,1fr)}}
 
 .sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap}
 .sec-h h2{font-size:24px}
+.sec-h h3{font-size:21px}
 .sec-h p{font:500 12px var(--f-mono);color:var(--muted)}
 .track{gap:10px!important}
 .ruler{position:relative;height:16px;font:500 11px/1 var(--f-mono);color:var(--muted)}
@@ -103,17 +101,78 @@ button{-webkit-tap-highlight-color:transparent}
 .track li b{font:600 20px/1.1 var(--f-display);letter-spacing:-.02em}
 .track li p{font-size:13.5px;color:var(--muted)}
 .track .k{font:500 11px var(--f-mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.at{align-self:flex-start;margin-top:auto;font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--muted)}
+.at.on{background:var(--mark);color:var(--mark-ink);border-color:transparent}
+.track>p{font-size:13.5px;color:var(--muted);max-width:80ch}
 @media (max-width:720px){.ruler{display:none}.track ol{flex-direction:column}.track li{border-left:0;border-top:1px solid var(--line)}.track li:first-child{border-top:0}}
 
-.log{gap:14px!important}
-.log-l li{border-top:1px solid var(--line)}
-.log-l li:last-child{border-bottom:1px solid var(--line)}
-.log-l button{width:100%;display:grid;grid-template-columns:72px minmax(0,1.3fr) 124px minmax(0,1.6fr);gap:2px 16px;align-items:baseline;padding:13px 4px;background:none;border:0;text-align:left;cursor:pointer}
-.log-l time,.log-l span{font:500 12px var(--f-mono);color:var(--muted)}
-.log-l b{font-weight:600;overflow-wrap:anywhere}
-.log-l em{font-style:normal;color:var(--muted);overflow-wrap:anywhere}
-@media (max-width:720px){.log-l button{grid-template-columns:64px minmax(0,1fr)}.log-l span,.log-l em{grid-column:2}}
+/* lists: library and log */
+.rows li{border-top:1px solid var(--line)}
+.rows li:last-child{border-bottom:1px solid var(--line)}
+.rows button{width:100%;display:grid;gap:2px 16px;align-items:baseline;padding:13px 4px;background:none;border:0;text-align:left;cursor:pointer}
+.rows time,.rows .k,.rows .st{font:500 12px var(--f-mono);color:var(--muted)}
+.rows b{font-weight:600;overflow-wrap:anywhere}
+.rows em{font-style:normal;color:var(--muted);overflow-wrap:anywhere}
+.lib,.log,.prog{gap:14px!important}
+.lib-f{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between}
+.seg{display:flex;flex-wrap:wrap;gap:2px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:100%}
+.seg button{border:0;background:none;border-radius:10px;padding:7px 12px;font-size:13px;cursor:pointer;color:var(--muted);display:flex;gap:7px;align-items:baseline}
+.seg button span{font:500 11px var(--f-mono)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.lib-q{flex:1 1 220px;max-width:340px;min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 14px}
+.lib-q::placeholder,.find-bar input::placeholder{color:var(--muted);opacity:.75}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:none;border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+.lib-l button{grid-template-columns:104px minmax(0,1.25fr) minmax(0,1.5fr) 84px}
+.lib-l .st{text-align:right}
+.lib-l .st.done{color:var(--ink)}
+@media (max-width:720px){.lib-l button{grid-template-columns:minmax(0,1fr) auto}.lib-l b,.lib-l em{grid-column:1/-1}.lib-l .st{grid-row:1;grid-column:2}}
+.log-l button{grid-template-columns:72px minmax(0,1.3fr) 150px minmax(0,1.5fr)}
+@media (max-width:720px){.log-l button{grid-template-columns:64px minmax(0,1fr)}.log-l .st,.log-l em{grid-column:2}}
 .log-empty{border:1px dashed var(--line);border-radius:16px;padding:20px 22px;color:var(--muted)}
+
+/* progress: cream is what was there from the first version, pink what the redesign added */
+.prog-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.prog-g{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card h3{font-size:18px}
+.card>p{font-size:13px;color:var(--muted)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key i,.trio h3 i{width:10px;height:10px;border-radius:3px;flex:none}
+.sw-a{background:var(--mark)}
+.sw-b{background:var(--accent)}
+.sw-c{box-shadow:inset 0 0 0 1.5px var(--muted)}
+.plot{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 8px;margin-top:auto}
+.plot-y{display:flex;flex-direction:column;justify-content:space-between;font:500 11px/1 var(--f-mono);color:var(--muted);text-align:right;height:112px}
+.cols{display:flex;align-items:flex-end;gap:6px;height:112px;border-block:1px solid var(--line);position:relative}
+.col{flex:0 1 22px;min-width:5px;height:100%;display:flex;flex-direction:column-reverse;gap:2px;padding:0;border:0;background:none;cursor:pointer}
+.col i{display:block;flex:none;min-height:3px}
+.col i.a{background:var(--mark)}
+.col i.b{background:var(--accent)}
+.col i.z{background:var(--line)}
+.col i:last-of-type{border-radius:4px 4px 0 0}
+.col:hover,.col:focus-visible{background:var(--sunk)}
+/* the readout sits in one fixed spot above the plot, so it can never run off the card */
+.tip{display:none;position:absolute;bottom:calc(100% + 8px);left:0;max-width:100%;z-index:2;text-align:left;background:var(--ink);color:var(--paper);padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.4;pointer-events:none}
+.col:hover .tip,.col:focus-visible .tip{display:block}
+.meters{display:flex;flex-direction:column;gap:11px}
+.meter{display:grid;grid-template-columns:112px minmax(0,1fr) 86px;gap:10px;align-items:center;font-size:13px}
+.meter .bar{display:flex;gap:2px;height:10px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.meter .bar i{display:block;height:100%}
+.meter .bar .a{background:var(--mark)}
+.meter .bar .b{background:var(--accent)}
+.meter>span:last-child{font:500 12px var(--f-mono);color:var(--muted);text-align:right;white-space:nowrap}
+@media (max-width:480px){.meter{grid-template-columns:92px minmax(0,1fr) 74px}}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.trio{grid-template-columns:minmax(0,1fr)}}
+.trio>div{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.trio h3{font-size:18px;display:flex;align-items:center;gap:9px}
+.trio h3 span{margin-left:auto;font:500 12px var(--f-mono);letter-spacing:0;color:var(--muted)}
+.trio ul{display:flex;flex-direction:column;gap:10px;font-size:14px;overflow-wrap:anywhere}
+.trio li small{display:block;color:var(--muted);font-size:12.5px}
+.trio .none{color:var(--muted);font-size:14px}
 
 /* round */
 .clock{display:flex;align-items:center;gap:14px clamp(14px,3vw,30px);flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line)}
@@ -123,7 +182,7 @@ button{-webkit-tap-highlight-color:transparent}
 .round[data-up="1"] .clock-t{color:var(--accent)}
 .clock-n{display:flex;flex-direction:column;gap:8px;padding-left:clamp(14px,3vw,30px);border-left:1px solid var(--line)}
 .clock-n h1{font-size:clamp(32px,6vw,64px);font-weight:500;letter-spacing:-.03em}
-.clock-c{margin-left:auto;display:flex;gap:8px}
+.clock-c{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}
 .brief{display:flex;flex-direction:column;gap:10px;max-width:72ch}
 .brief h1{font-size:clamp(36px,6vw,64px);letter-spacing:-.03em}
 .brief h2{font-size:clamp(24px,3.3vw,36px)}
@@ -132,138 +191,55 @@ button{-webkit-tap-highlight-color:transparent}
 .next{display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line)}
 .next p{color:var(--muted);max-width:60ch}
 
-/* drawing board */
-.board{background:var(--sunk);border-radius:22px;padding:clamp(10px,1.8vw,16px);display:flex;flex-direction:column;gap:12px;min-width:0}
-.tools{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:flex;flex-wrap:wrap;gap:6px 10px;padding:6px;justify-content:space-between}
-.tools>div{display:flex;flex-wrap:wrap;gap:2px}
-.tools button{border:0;background:none;border-radius:9px;padding:7px 10px;font-size:13px;cursor:pointer;color:var(--muted)}
-.tools button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.tools button:disabled{opacity:.38;cursor:default}
-.opts{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:13px;color:var(--muted);padding-inline:6px}
-.opts label{display:flex;align-items:center;gap:8px;cursor:pointer}
-.opts input[type=color]{width:30px;height:30px;border:1px solid var(--line);border-radius:9px;padding:3px;background:var(--surface);cursor:pointer}
-.opts input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);margin:0}
-.opts select{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:5px 8px}
-.stage{display:flex;justify-content:center;padding-block:6px 12px}
-.art{position:relative;width:min(100%,360px);max-width:100%;aspect-ratio:1/2;background:var(--shot-bg);border-radius:20px;overflow:hidden;box-shadow:0 18px 34px -24px var(--shadow)}
-.art canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
-.art[data-empty="1"]::after{content:"Draw your screen here";position:absolute;inset:0;display:grid;place-items:center;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--shot-muted);pointer-events:none}
-.art-text{position:absolute;min-width:60px;max-width:90%;border:0;border-bottom:1px dashed var(--shot-accent);background:transparent;padding:0;margin:0;outline:0;font-family:var(--f-body);font-weight:500;line-height:1.2}
+/* design rounds: the work happens in Figma, this page explains and receives the frame */
+.fig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,var(--art-w,320px));gap:22px clamp(18px,4vw,48px);align-items:start;background:var(--sunk);border-radius:22px;padding:clamp(16px,2.8vw,28px)}
+.fig:not([data-type="mobile"]){--art-w:500px}
+@media (max-width:860px){.fig{grid-template-columns:minmax(0,1fr)}}
+[data-drop="1"]{outline:2px dashed var(--accent);outline-offset:-6px}
+.how{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:56ch}
+.how h3{font-size:clamp(22px,2.6vw,28px)}
+.how ol{counter-reset:s;display:flex;flex-direction:column;gap:14px}
+.how li{counter-increment:s;display:grid;grid-template-columns:26px minmax(0,1fr);gap:2px 12px}
+.how li::before{content:counter(s,decimal-leading-zero);font:500 11px var(--f-mono);color:var(--muted);padding-top:4px}
+.how li b{font-weight:600}
+.how li p{grid-column:2;color:var(--muted);font-size:14px}
+.how a{color:var(--ink)}
+.hand{display:flex;flex-direction:column;gap:12px;min-width:0;max-width:var(--art-w,320px)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.art{position:relative;background:var(--shot-bg);color:var(--shot-muted);border-radius:18px;overflow:auto;max-height:min(80vh,780px);box-shadow:0 18px 34px -24px var(--shadow)}
+.art[data-empty="1"]{aspect-ratio:var(--ar);display:grid;place-items:center;text-align:center;padding:16px;font:500 12px/1.9 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.art kbd{background:var(--shot-fill);border-color:var(--shot-line);color:var(--shot-ink)}
+.art img{display:block;width:100%;height:auto}
 
-/* design source: sketch here, or bring a frame in from Figma */
-.src{display:flex;gap:2px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:13px;align-self:flex-start;max-width:100%}
-.src button{border:0;background:none;border-radius:9px;padding:7px 12px;font-size:13px;cursor:pointer;color:var(--muted)}
-.src button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.sk{display:flex;flex-direction:column;gap:12px;min-width:0}
-.fg{display:grid;grid-template-columns:minmax(0,1fr) min(360px,46%);gap:18px clamp(16px,3vw,36px);align-items:start;padding:8px 6px 4px}
-@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
-.board[data-drop="1"]{outline:2px dashed var(--accent);outline-offset:-6px}
-.fg-how{display:flex;flex-direction:column;gap:16px;max-width:50ch;font-size:14px;min-width:0}
-.fg-how h3{font-size:21px}
-.fg-how ol{list-style:decimal;padding-left:19px;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
-.fg-how kbd{font:500 12px var(--f-mono);border:1px solid var(--line);border-radius:6px;padding:1px 5px;background:var(--surface);color:var(--ink);white-space:nowrap}
-.fg-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.fg-url{display:flex;flex-direction:column;gap:6px}
-.fg-url label{font-weight:600;font-size:13px}
-.fg-url input{flex:1 1 200px;min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 14px}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0}
-.vh:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
-.fg .stage{padding-block:0}
-.fg .art{width:100%}
-.fg .art img{display:block;width:100%;height:100%;object-fit:contain;object-position:top}
-#fg-art[data-empty="1"]::after{content:"Your Figma frame goes here"}
-
-/* reference screens */
-.refs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,2vw,22px)}
-@media (max-width:720px){.refs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.ref{display:flex;flex-direction:column;gap:10px;min-width:0}
-.ref-b{border:0;padding:0;background:none;cursor:zoom-in;border-radius:16px;display:block;width:100%;text-align:left}
-.ref figcaption b{display:block;font-weight:600}
-.ref figcaption span{display:block;color:var(--muted);font-size:13px}
-.ph{container-type:inline-size;width:100%;max-width:100%;aspect-ratio:9/18;background:var(--shot-bg);color:var(--shot-ink);border-radius:16px;border:1px solid var(--line);overflow:hidden;box-shadow:0 16px 30px -26px var(--shadow)}
-.ph-s{font:400 9px/1.3 var(--f-body);font-size:4.3cqw;height:100%;display:flex;flex-direction:column;gap:.75em;padding:1.5em 1.15em 1.3em;overflow:hidden}
-.ph-s::before{content:"9:41";font-size:.8em;font-weight:600;margin-bottom:.2em}
-.ph-s>*{flex:none;min-width:0}
-.ph-s>.b-sp{flex:1 1 0;min-height:.2em}
-.b-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-.b-bar b{font-weight:600}
-.b-bar span:first-child{font-size:1.25em;line-height:1}
-.b-bar span:last-child{text-align:right;color:var(--shot-accent);font-size:.88em}
-.b-steps{display:flex;gap:.4em;font-size:.7em;color:var(--shot-muted)}
-.b-steps span{flex:1;border-top:.3em solid var(--shot-line);padding-top:.5em}
-.b-steps .done{border-color:var(--shot-ink);color:var(--shot-ink)}
-.b-steps .on{border-color:var(--shot-accent);color:var(--shot-ink);font-weight:600}
-.b-h{font:600 1.5em/1.12 var(--f-display);letter-spacing:-.02em}
-.b-p{font-size:.82em;color:var(--shot-muted)}
-.b-l{font-size:.64em;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--shot-muted);margin-top:.3em}
-.b-row{display:flex;align-items:center;gap:.7em;padding:.68em .85em;border:1px solid var(--shot-line);border-radius:.85em;font-size:.84em}
-.b-row>div{flex:1;min-width:0}
-.b-row b{display:block;font-weight:600}
-.b-row small{display:block;font-size:.88em;color:var(--shot-muted)}
-.b-row>span{flex:none;color:var(--shot-muted);font-variant-numeric:tabular-nums}
-.b-row.sel{border-color:var(--shot-ink);box-shadow:inset 0 0 0 1px var(--shot-ink)}
-.b-row.off{opacity:.42}
-.b-row>i{flex:none;width:1.25em;height:1.25em;border-radius:50%;border:.12em solid var(--shot-muted);font-style:normal}
-.b-radio.sel>i{border:.38em solid var(--shot-accent)}
-.b-check>i{border-radius:.35em;display:grid;place-items:center;font-size:.9em;color:var(--shot-on)}
-.b-check.on>i{background:var(--shot-accent);border-color:var(--shot-accent)}
-.b-check.on b{text-decoration:line-through;color:var(--shot-muted)}
-.b-tog{display:flex;justify-content:space-between;align-items:center;font-size:.84em}
-.b-tog i{width:2.5em;height:1.45em;border-radius:1em;background:var(--shot-line);position:relative}
-.b-tog i::after{content:"";position:absolute;top:.15em;left:.15em;width:1.15em;height:1.15em;border-radius:50%;background:var(--shot-bg)}
-.b-tog.on i{background:var(--shot-accent)}
-.b-tog.on i::after{left:1.2em}
-.b-in{display:flex;flex-direction:column;gap:.3em;font-size:.84em}
-.b-in label{font-size:.82em;color:var(--shot-muted)}
-.b-in div{display:flex;justify-content:space-between;align-items:center;min-height:2.7em;padding:.55em .8em;border:1px solid var(--shot-line);border-radius:.75em}
-.b-in.focus div{border-color:var(--shot-accent);box-shadow:0 0 0 .2em color-mix(in srgb,var(--shot-accent) 22%,transparent)}
-.b-in.ok div::after{content:"✓";color:var(--shot-ok)}
-.b-in.err div{border-color:var(--shot-err)}
-.b-in.err small{color:var(--shot-err);font-size:.82em}
-.b-btn{text-align:center;padding:.9em .6em;border-radius:.9em;font-weight:600;font-size:.9em;background:var(--shot-accent);color:var(--shot-on)}
-.b-btn.sec{background:var(--shot-fill);color:var(--shot-ink)}
-.b-btn.dark{background:var(--shot-ink);color:var(--shot-on)}
-.b-btn.off{background:var(--shot-fill);color:var(--shot-muted)}
-.b-link{text-align:center;font-size:.8em;font-weight:600;color:var(--shot-accent)}
-.b-or{display:flex;align-items:center;gap:.7em;font-size:.72em;color:var(--shot-muted)}
-.b-or::before,.b-or::after{content:"";flex:1;height:1px;background:var(--shot-line)}
-.b-sum{display:flex;flex-direction:column;gap:.35em;font-size:.82em;color:var(--shot-muted);font-variant-numeric:tabular-nums}
-.b-sum div{display:flex;justify-content:space-between;gap:1em}
-.b-sum .tot{color:var(--shot-ink);font-weight:600;font-size:1.08em;padding-top:.5em;border-top:1px solid var(--shot-line)}
-.b-chips{display:flex;flex-wrap:wrap;gap:.45em;font-size:.84em}
-.b-chips span{min-width:2.9em;text-align:center;padding:.58em .7em;border:1px solid var(--shot-line);border-radius:.7em;font-weight:600}
-.b-chips .on{background:var(--shot-ink);color:var(--shot-on);border-color:var(--shot-ink)}
-.b-chips .off{color:var(--shot-muted);text-decoration:line-through;background:var(--shot-fill)}
-.b-seg{display:flex;padding:.2em;background:var(--shot-fill);border-radius:.8em;font-size:.82em;text-align:center}
-.b-seg span{flex:1;padding:.5em;border-radius:.65em;color:var(--shot-muted)}
-.b-seg .on{background:var(--shot-bg);color:var(--shot-ink);font-weight:600;box-shadow:0 .05em .25em var(--shot-line)}
-.b-img{border-radius:1em;border:1px solid var(--shot-line);background:repeating-linear-gradient(135deg,var(--shot-fill) 0 .7em,var(--shot-bg) .7em 1.4em);display:grid;place-items:center}
-.b-img span{font-size:.72em;color:var(--shot-muted)}
-.b-note{font-size:.78em;padding:.7em .85em;border-radius:.8em;background:var(--shot-fill)}
-.b-note.good{background:var(--shot-good-bg);color:var(--shot-ok)}
-.b-note.warn{background:var(--shot-warn-bg);color:var(--shot-warn)}
-.b-big{display:flex;flex-direction:column;gap:.15em}
-.b-big b{font:600 2.7em/1 var(--f-display);letter-spacing:-.03em}
-.b-big small{font-size:.8em;color:var(--shot-muted)}
-.b-prog{display:flex;flex-direction:column;gap:.4em}
-.b-prog small{font-size:.76em;color:var(--shot-muted)}
-.b-prog div{height:.5em;border-radius:.3em;background:var(--shot-fill);overflow:hidden}
-.b-prog i{display:block;height:100%;border-radius:.3em;background:var(--shot-accent)}
-.b-bars{display:flex;align-items:flex-end;gap:.5em;height:6.5em;border-bottom:1px solid var(--shot-line)}
-.b-bars i{flex:1;border-radius:.3em .3em 0 0;background:var(--shot-accent)}
-.b-dots{display:flex;justify-content:center;gap:.4em}
-.b-dots i{width:.45em;height:.45em;border-radius:.3em;background:var(--shot-line)}
-.b-dots .on{background:var(--shot-ink);width:1.2em}
-.b-tabs{display:flex;justify-content:space-around;font-size:.7em;color:var(--shot-muted);border-top:1px solid var(--shot-line);padding:.9em 1.2em 0;margin-inline:-1.2em}
-.b-tabs .on{color:var(--shot-ink);font-weight:600}
-.b-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5em;padding-block:2.2em 1em}
-.b-empty i{width:4.2em;height:4.2em;border-radius:50%;background:var(--shot-fill);border:1px solid var(--shot-line)}
-.b-empty b{font:600 1.4em/1.15 var(--f-display)}
-.b-empty small{font-size:.82em;color:var(--shot-muted);max-width:19em}
-
-/* study notes */
+/* study: search results are paper */
+.find{display:flex;flex-direction:column;gap:12px;min-width:0}
+.find-bar{display:flex;gap:8px;flex-wrap:wrap}
+.find-bar input{flex:1 1 160px;min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:11px 16px}
+.paper{background:var(--shot-bg);color:var(--shot-ink);border-radius:18px;padding:clamp(10px,1.6vw,16px);min-height:96px;color-scheme:light;overflow:hidden}
+.paper[data-off="1"]{background:none;color:var(--muted);border:1px dashed var(--line);color-scheme:dark;min-height:0}
+.hits-msg{padding:10px 8px;font-size:14px;max-width:76ch}
+/* Google's results element on the paper: full width, no second frame. Its result count, paging and branding stay untouched. */
+#gcse .gsc-wrapper{max-width:none}
+#gcse .gsc-control-cse{padding:0;border:0;background:transparent}
+.hits{columns:5 150px;column-gap:12px}
+.hit{break-inside:avoid;margin:0 0 14px;display:flex;flex-direction:column;gap:6px;position:relative}
+.hit-b{border:1px solid var(--shot-line);border-radius:10px;overflow:hidden;padding:0;background:var(--shot-fill);cursor:zoom-in;display:block;width:100%;min-height:60px}
+.hit-b img{display:block;width:100%;height:auto}
+.hit figcaption{font-size:12px;line-height:1.35;display:flex;flex-direction:column;overflow-wrap:anywhere;color:var(--shot-ink)}
+.hit figcaption b{font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hit figcaption span{color:var(--shot-muted)}
+.hit-pin{position:absolute;top:6px;right:6px;border:0;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;background:var(--paper);color:var(--ink);cursor:pointer}
+.hit-pin[aria-pressed="true"]{background:var(--mark);color:var(--mark-ink)}
+.hits-none{padding:10px 8px;font-size:14px;color:var(--shot-muted)}
+.else{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.pins{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pins-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.pin{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pin-b{border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;background:var(--shot-bg);cursor:zoom-in;aspect-ratio:3/4;display:block;width:100%}
+.pin-b img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.pin figcaption{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pin-x{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:var(--paper);color:var(--ink);cursor:pointer;font-size:15px;line-height:1}
 .notes{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(16px,2.6vw,26px);display:flex;flex-direction:column;gap:18px}
-.notes h3{font-size:22px}
 .notes-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 26px}
 @media (max-width:720px){.notes-g{grid-template-columns:minmax(0,1fr);gap:20px}}
 .notes-g h4{font:600 14px var(--f-body);margin:0 0 4px}
@@ -273,64 +249,67 @@ button{-webkit-tap-highlight-color:transparent}
 .notes-g input{flex:1;min-width:0;border:0;background:none;padding:11px 0;outline:0}
 .notes-g input::placeholder{color:var(--muted);opacity:.75}
 
-/* compare */
-.cmp{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:start}
-@media (max-width:880px){.cmp{grid-template-columns:minmax(0,1fr)}}
-.obs{display:flex;flex-direction:column;gap:16px;min-width:0}
-.obs ol li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:6px 12px;padding-block:16px;border-top:1px solid var(--line);align-items:start}
-.obs ol li:last-child{border-bottom:1px solid var(--line)}
-.obs .num{font:500 11px var(--f-mono);color:var(--muted);padding-top:5px}
-.obs li h3{font:600 16px/1.35 var(--f-body);letter-spacing:0}
-.obs li p{color:var(--muted);margin-top:4px;max-width:62ch}
-.obs li.seen h3 span{background:linear-gradient(transparent 55%,var(--mark) 55%)}
+/* redesign: what you take with you */
+.take{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(16px,2.6vw,26px);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px clamp(18px,3vw,32px);align-items:start}
+.take h3{font-size:21px;grid-column:1/-1}
+.take h4{font:600 13px var(--f-body);margin:0 0 8px}
+.take ul{color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:3px;padding-left:17px;list-style:disc;overflow-wrap:anywhere}
+.take .pins-l{grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.take-first{border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;background:var(--shot-bg);cursor:zoom-in;display:block;width:100%;max-width:200px;max-height:260px}
+.take-first img{display:block;width:100%;height:auto}
+
+/* review + result */
+.rev{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:start}
+.rev[data-type="mobile"]{grid-template-columns:minmax(0,400px) minmax(0,1fr)}
+.rev[data-type="mobile"]>.ba{position:sticky;top:16px}
+@media (max-width:880px){.rev[data-type="mobile"]{grid-template-columns:minmax(0,1fr)}.rev[data-type="mobile"]>.ba{position:static}}
+.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2.4vw,24px);align-items:start}
+.ba figure{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ba-b{border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:0;background:var(--shot-bg);cursor:zoom-in;display:block;width:100%;max-height:74vh}
+.ba-b img{display:block;width:100%;height:auto}
+.ba-none{aspect-ratio:var(--ar,3/4);border:1px dashed var(--line);border-radius:14px;display:grid;place-items:center;text-align:center;padding:12px;font-size:13px;color:var(--muted)}
+.ba figcaption{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chk li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:6px 12px;padding-block:16px;border-top:1px solid var(--line);align-items:start}
+.chk li:last-child{border-bottom:1px solid var(--line)}
+.chk .num{font:500 11px var(--f-mono);color:var(--muted);padding-top:5px}
+.chk h3{font:600 16px/1.35 var(--f-body);letter-spacing:0}
+.chk p{color:var(--muted);margin-top:4px;max-width:62ch}
+.tag{display:block;margin-top:6px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chk li[data-st="held"] h3 span{background:var(--mark);color:var(--mark-ink);padding-inline:.2em;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.chk li[data-st="gain"] h3 span{box-shadow:inset 0 -3px 0 var(--accent)}
+.vv{display:flex;gap:6px}
 .tick{border:1px solid var(--line);background:none;border-radius:999px;padding:6px 12px;font-size:12.5px;cursor:pointer;white-space:nowrap}
 .tick[aria-pressed="true"]{background:var(--mark);color:var(--mark-ink);border-color:transparent;font-weight:600}
-@media (max-width:520px){.obs ol li{grid-template-columns:26px minmax(0,1fr)}.tick{grid-column:2;justify-self:start}}
-.again summary{cursor:pointer;font-weight:600;padding-block:4px}
-.again .refs{margin-top:14px}
-.eye,.take{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.eye h3,.take h3{font-size:21px}
-.eye>p,.take>p{font-size:13.5px;color:var(--muted)}
-.eye h4{font:600 13px var(--f-body);margin:0 0 4px}
-.eye ul{color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:3px;padding-left:17px;list-style:disc;overflow-wrap:anywhere}
-.count{background:var(--accent-soft);border-radius:14px;padding:14px 16px}
-.count b{font:600 18px var(--f-display);letter-spacing:-.01em}
-.count p{font-size:13px;color:var(--muted);margin-top:4px}
-
-/* redesign + result */
-.re{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:clamp(16px,3vw,28px);align-items:start}
-@media (max-width:880px){.re{grid-template-columns:minmax(0,1fr)}}
-.take ul{display:flex;flex-direction:column;gap:7px;font-size:14px;overflow-wrap:anywhere}
-.take li{padding-left:15px;position:relative}
-.take li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.res{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(18px,4vw,48px);align-items:start}
-@media (max-width:880px){.res{grid-template-columns:minmax(0,1fr)}}
-.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2.4vw,24px)}
-.ba figure{display:flex;flex-direction:column;gap:8px;min-width:0}
-.ba img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1/2;border-radius:16px;border:1px solid var(--line);background:var(--shot-bg)}
-.ba figcaption{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.ba .status{grid-column:1/-1}
+.tick[data-v="1"][aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:520px){.chk li{grid-template-columns:26px minmax(0,1fr)}.vv{grid-column:2}}
+.res{display:flex;flex-direction:column;gap:clamp(18px,3vw,28px)}
+.res[data-type="mobile"]>.ba{max-width:520px}
 .sumup{display:flex;flex-direction:column;gap:16px;min-width:0}
-.facts{font-size:17px}
-.field{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
+.facts{font-size:17px;max-width:70ch}
+.field{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px;max-width:72ch}
 .field input{font-weight:400;font-size:15px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 13px;min-width:0}
 
 /* dialog */
 dialog{border:0;padding:0;background:transparent;color:var(--ink);width:min(92vw,720px);max-width:92vw;max-height:90vh}
+dialog.wide{width:min(94vw,1000px);max-width:94vw}
 dialog::backdrop{background:var(--scrim)}
 .dlg{background:var(--surface);border-radius:24px;padding:clamp(16px,3vw,26px);max-height:90vh;overflow:auto}
-.zoom{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:22px;align-items:end}
-.zoom>div:last-child{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
-.zoom h3{font-size:24px}
-.zoom p{color:var(--muted)}
-.zoom .ph{border-radius:26px}
-@media (max-width:600px){.zoom{grid-template-columns:minmax(0,1fr)}}
 .lg{display:flex;flex-direction:column;gap:18px}
 .lg-n{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.lg-n h4{font:600 13px var(--f-body);margin:0 0 4px}
-.lg-n ul{font-size:14px;color:var(--muted);padding-left:17px;list-style:disc;overflow-wrap:anywhere}
+.lg h4{font:600 13px var(--f-body);margin:0 0 4px}
+.lg-n ul,.lg-r ul{font-size:14px;color:var(--muted);padding-left:17px;list-style:disc;overflow-wrap:anywhere}
 @media (max-width:600px){.lg-n{grid-template-columns:minmax(0,1fr)}}
-.lg .ba{max-width:460px}
+.lg .ba[data-type="mobile"]{max-width:460px}
+.lg .trio>div{background:var(--sunk)}
+.facts-l{display:flex;flex-direction:column;font-size:14px}
+.facts-l li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding-block:9px;border-top:1px solid var(--line);color:var(--muted)}
+.facts-l b{font:500 11px/1.9 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.zoom{display:flex;flex-direction:column;gap:14px}
+.zoom-i{background:var(--shot-bg);border-radius:14px;overflow:auto;max-height:68vh;min-height:80px}
+.zoom-i img{display:block;width:100%;height:auto}
+.zoom[data-type="mobile"] .zoom-i{max-width:420px;align-self:center;width:100%}
+.zoom h3{font-size:20px;overflow-wrap:anywhere}
+.zoom p{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -352,191 +331,504 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pad = (n, w = 2) => String(n).padStart(w, '0');
-const rootEl = document.documentElement;
 const V = $('#view');
+
+/* ---------- config ---------- */
+// The in-page reference search runs on a Google Programmable Search Engine: free, limited to the sites you list, image search on.
+// Paste its "Search engine ID" here (it is public by design, see README). Left empty, Study offers the same searches as links.
+const SEARCH_CX = '33ed77a7a44d84bd6';
 
 /* ---------- content ---------- */
 const ROUNDS = [
-  { name: 'Design', min: 20, d: 'Start with a blank canvas. Just you and your instincts.', hint: 'Done, or out of time? Your sketch is saved.' },
-  { name: 'Study', min: 10, d: 'Look at strong screens. Write down what you notice.', hint: 'The more specific your notes, the more you get out of the analysis.' },
-  { name: 'Compare', min: 10, d: 'Read the analysis. Find what you missed.', hint: 'Whatever you leave unticked goes with you into the redesign.' },
-  { name: 'Redesign', min: 20, d: 'Same screen, new eyes. Do it one more time.', hint: 'After this you see your two versions side by side.' },
+  { name: 'Design', min: 20, at: 'In Figma', d: 'A brief and an empty frame. No references, no AI.', hint: 'Done, or out of time? Hand in your frame before you move on.' },
+  { name: 'Study', min: 10, at: 'On this page', d: 'Search screens that solve the same problem. Pin the strong ones.', hint: 'The more specific your notes, the more your redesign will change.' },
+  { name: 'Redesign', min: 20, at: 'In Figma', d: 'Same brief, new eyes. Do it one more time.', hint: 'Hand in the new frame. Next you put both versions next to a checklist.' },
+  { name: 'Review', min: 10, at: 'On this page', d: 'Check both versions. See what you kept, gained and still miss.', hint: 'Be strict. An honest “not yet” is what moves the next session.' },
 ];
 const NOTES = [
   { k: 'p', label: '3 patterns', own: 'Patterns you saw', ph: 'Something that shows up in several screens' },
   { k: 'd', label: '3 do’s', own: 'Your do’s', ph: 'Something worth borrowing' },
   { k: 'x', label: '3 don’ts', own: 'Your don’ts', ph: 'Something you would avoid' },
 ];
-const BUILTIN = [
-  { id: 'checkout', short: 'Checkout', title: 'Design the checkout screen for a food delivery app.',
-    context: 'The food is picked. The user is hungry and wants to know what it costs, when it arrives and where to tap.',
-    intro: 'Four checkouts. Plenty to notice.',
-    refs: [
-      { name: 'Total in the button', caption: 'Costs itemised, amount next to the action', accent: '#1d7a4f', screen: [
-        ['bar', 'Checkout', '✕', ''], ['row', '12 Canal Street', 'Ring the bell at no. 12', '›'], ['row', 'Delivery time', 'Today, 25–35 min', '›'],
-        ['label', 'Your order'], ['row', '2× Pad thai', '', '€23.00'],
-        ['sum', [['Subtotal', '€23.00'], ['Delivery fee', '€1.49'], ['Service fee', '€0.99']], 'Total', '€25.48'],
-        ['sp'], ['btn', 'Place order · €25.48']] },
-      { name: 'Express pay first', caption: 'One tap up top, the form below', accent: '#2b5fd9', screen: [
-        ['bar', 'Checkout', '‹', ''], ['p', 'Express checkout'], ['btn', 'Pay with Apple Pay', 'dark'], ['or', 'or enter your details'],
-        ['input', 'Email', 'sam@example.com', 'ok'], ['input', 'Street and number', '', 'focus'], ['input', 'Postcode', ''],
-        ['sp'], ['btn', 'Continue to payment', 'off']] },
-      { name: 'Step by step', caption: 'You see where you are and what is left', accent: '#5b3fd6', screen: [
-        ['bar', '', '‹', 'Help'], ['steps', ['Delivery', 'Payment', 'Review'], 1], ['h', 'Choose how to pay'], ['p', 'You only pay after the review.'],
-        ['radio', 'Debit card', 'Most popular', true, ''], ['radio', 'Credit card', 'Visa, Mastercard', false, ''], ['radio', 'Pay later', 'Available from €30', false, '', true],
-        ['sp'], ['btn', 'Continue to review']] },
-      { name: 'Options with a price tag', caption: 'Every option shows what it costs', accent: '#d9480f', screen: [
-        ['bar', 'Checkout', '✕', ''], ['seg', ['Delivery', 'Pickup'], 0], ['label', 'Delivery time'],
-        ['radio', 'Standard', '25–35 min', true, 'Free'], ['radio', 'Priority', '15–20 min', false, '+ €1.99'], ['radio', 'Schedule', 'Pick a time slot', false, '›'],
-        ['note', 'You save €3.00 with code SPRING', 'good'], ['sp'], ['sum', [], 'Total', '€22.48'], ['btn', 'Continue · €22.48']] },
-    ],
-    obs: [
-      { t: 'Make the next step unmistakable', b: 'Every screen has one filled button, at the bottom and full width. Everything else is a row, a link or a grey button.' },
-      { t: 'Put the amount next to the decision', b: 'The total sits in the button or right above it. Costs are itemised before that, so the amount is never a surprise.' },
-      { t: 'Confirm where and when', b: 'Address and delivery time sit at the top as rows with a chevron. You see them without searching and change them without leaving the screen.' },
-      { t: 'Group by the user’s questions', b: 'Where is it going, what am I getting, how do I pay. Small labels and white space separate those blocks, so you scan rather than read.' },
-      { t: 'Show the selected option', b: 'The chosen delivery option and payment method get a dark border and a filled dot. What is unavailable is faded, with the reason next to it.' },
-      { t: 'Give the fastest route priority', b: 'Apple Pay sits above the form. Anyone with a saved payment method does not fill in a single field.' },
-      { t: 'Show where you are', b: 'The step bar shows three steps with the current one marked. The button names the next step: “Continue to review”.' },
-      { t: 'Give every option a price tag', b: '“Priority” says “+ €1.99”, “Standard” says “Free”. The discount gets a calm green line and no popup.' },
-    ] },
-  { id: 'onboarding', short: 'Onboarding', title: 'Design the first screen of a habit app, right after install.',
-    context: 'The user knows nothing about the app and has no account yet. Within thirty seconds it must be clear what they get out of it.',
-    intro: 'Four first impressions. What do they get right?',
-    refs: [
-      { name: 'One promise, one button', caption: 'A reason to start, not a tour', accent: '#5b3fd6', screen: [
-        ['img', 15, ''], ['h', 'Build one habit at a time'], ['p', 'Two minutes a day. We remember the rest.'], ['dots', 3, 0],
-        ['sp'], ['btn', 'Get started'], ['link', 'I already have an account']] },
-      { name: 'A choice first', caption: 'The app adapts before you fill in anything', accent: '#1d7a4f', screen: [
-        ['prog', 33, 'Step 1 of 3'], ['h', 'What do you want to work on?'], ['p', 'Pick one. You can add more later.'],
-        ['radio', 'Move more', '', false, ''], ['radio', 'Sleep better', '', true, ''], ['radio', 'Less screen time', '', false, ''], ['radio', 'Read more', '', false, ''],
-        ['sp'], ['btn', 'Continue']] },
-      { name: 'Explain before asking', caption: 'First the why, then the permission', accent: '#d9480f', screen: [
-        ['prog', 66, 'Step 2 of 3'], ['h', 'When can we remind you?'], ['seg', ['Morning', 'Midday', 'Evening'], 2], ['row', 'Every day at', '', '21:30'],
-        ['note', 'You get one notification a day. Never more.', ''], ['sp'], ['btn', 'Turn on reminder'], ['link', 'Not now']] },
-      { name: 'Try it right away', caption: 'Ask for an account after the first win', accent: '#2b5fd9', screen: [
-        ['bar', 'Today', '', ''], ['h', 'Your first habit is ready'], ['check', 'Read for 10 minutes', true], ['check', 'Phone away at 22:00', false],
-        ['note', 'Day 1 done. This is how every day feels.', 'good'], ['sp'], ['btn', 'Save my progress'], ['p', 'Create an account so you never lose it.']] },
-    ],
-    obs: [
-      { t: 'One promise per screen', b: 'The welcome screen says one thing in plain words and has one button. No feature list and no five slides of explanation.' },
-      { t: 'Give before you ask', b: 'The account comes after the first ticked-off goal. By then the user has something worth saving.' },
-      { t: 'Personalise with a light choice', b: 'One question with four answers takes two seconds and makes everything after it more relevant. Choosing is easier than typing.' },
-      { t: 'Show how far there is to go', b: '“Step 2 of 3” with a bar makes the end visible. People drop off less when they know it is short.' },
-      { t: 'Explain before asking permission', b: 'Before the notification prompt the screen says what you get: one notification a day. The system prompt only comes after a deliberate tap.' },
-      { t: 'Always offer a way out', b: '“Not now” and “I already have an account” sit as quiet links under the button. Skipping takes no searching.' },
-      { t: 'Let them touch the product', b: 'In the last example you tick off a real habit. The app shows what it is and does not need to explain it.' },
-      { t: 'Keep the main button in one place', b: 'On every screen the button is at the bottom, the same width and the same colour. Your thumb never has to look for it.' },
-    ] },
-  { id: 'product', short: 'Product page', title: 'Design the product page for a sneaker store.',
-    context: 'The user arrives from an ad, is unsure about the size and has never held the shoe.',
-    intro: 'Four product pages. Watch where your eye goes.',
-    refs: [
-      { name: 'Image first', caption: 'The product gets the room', accent: '#2b5fd9', screen: [
-        ['bar', '', '‹', '♡'], ['img', 17, ''], ['dots', 4, 0], ['h', 'Court Low white'], ['row', '€89.95', 'Free shipping', '4.6 ★'],
-        ['sp'], ['btn', 'Add to bag', 'dark']] },
-      { name: 'Size without doubt', caption: 'Advice exactly where the doubt is', accent: '#5b3fd6', screen: [
-        ['bar', 'Court Low white', '‹', ''], ['label', 'Choose your size'], ['chips', ['39', '40', '41', '42', '43', '44'], 2, 4],
-        ['note', 'Runs small. Go half a size up.', 'warn'], ['link', 'View the size guide'], ['row', 'Size 43', 'Sold out', 'Notify me', 'off'],
-        ['sp'], ['btn', 'Add to bag · size 41']] },
-      { name: 'A buy bar that stays', caption: 'Price and button travel with the scroll', accent: '#d9480f', screen: [
-        ['label', 'Description'], ['p', 'Leather upper, padded heel and a sole made of recycled rubber.'], ['label', 'Reviews'],
-        ['row', 'Comfortable right away', 'Nora, size 40', '5 ★'], ['row', 'Nice but narrow', 'Dan, size 44', '4 ★'],
-        ['sp'], ['sum', [], 'Court Low white', '€89.95'], ['btn', 'Add to bag']] },
-      { name: 'Reassurance under the button', caption: 'Answers to what holds a purchase back', accent: '#1d7a4f', screen: [
-        ['img', 9, ''], ['h', 'Court Low white'], ['big', '€89.95', ''], ['btn', 'Add to bag'],
-        ['row', 'Delivered tomorrow', 'Order before 22:00', ''], ['row', '30-day returns', 'Free to send back', ''], ['row', '4.6 ★ from 312 reviews', '', '›']] },
-    ],
-    obs: [
-      { t: 'Let the product do the work', b: 'The photo fills more than a third of the screen. Buttons and text are small and calm, so nothing competes with the shoe.' },
-      { t: 'Keep price and button together', b: 'The price is never more than one block away from the buy button. You do not scroll back to know what you spend.' },
-      { t: 'Show choices as choices', b: 'Sizes are separate buttons, not a dropdown. At a glance you see what exists, what is selected and what is gone.' },
-      { t: 'Remove doubt where it starts', b: 'The size advice sits right under the sizes and not in a tab further down. The size guide is one tap away.' },
-      { t: 'Give sold out a next step', b: 'Size 43 is faded but not removed. “Notify me” turns a dead end into a next step.' },
-      { t: 'Keep the buy button in reach', b: 'While you read reviews, a bar with price and button stays at the bottom. The decision can land at any moment.' },
-      { t: 'Put reassurance under the button', b: 'Delivery time, returns and reviews follow straight after the button. Those are the three questions people ask right before buying.' },
-      { t: 'Confirm the choice in the button', b: '“Add to bag · size 41” repeats what you picked. You catch a mistake before you tap, not in your bag.' },
-    ] },
-  { id: 'budget', short: 'Dashboard', title: 'Design the home screen of an app that tracks your spending.',
-    context: 'The user opens the app in the supermarket queue and wants to know in three seconds whether this still fits.',
-    intro: 'Four dashboards. Which one answers fastest?',
-    refs: [
-      { name: 'One number on top', caption: 'The answer before the data', accent: '#1d7a4f', screen: [
-        ['bar', 'October', '', '⚙'], ['big', '€412', 'left to spend this month'], ['prog', 64, '€738 of €1,150 spent'], ['label', 'Today'],
-        ['row', 'Greenway Market', 'Groceries', '− €23.40'], ['row', 'City Rail', 'Transport', '− €8.20'], ['link', 'View all spending'],
-        ['sp'], ['tabs', ['Overview', 'Budgets', 'More'], 0]] },
-      { name: 'Exception first', caption: 'What needs attention sits on top', accent: '#2b5fd9', screen: [
-        ['bar', 'Overview', '', ''], ['note', 'Groceries is at 92% with 9 days to go.', 'warn'], ['label', 'Budgets'],
-        ['prog', 92, 'Groceries · €23 left'], ['prog', 48, 'Eating out · €62 left'], ['prog', 30, 'Transport · €84 left'],
-        ['sp'], ['btn', 'Add expense']] },
-      { name: 'Number with context', caption: 'Every amount has a comparison', accent: '#5b3fd6', screen: [
-        ['bar', 'This week', '‹', '›'], ['big', '€186', '€24 less than last week'], ['bars', [40, 65, 30, 80, 55, 20, 10]], ['label', 'Biggest items'],
-        ['row', 'Groceries', '4 times', '€92.10'], ['row', 'Eating out', '2 times', '€54.00'], ['row', 'Transport', '5 times', '€39.90']] },
-      { name: 'Input within thumb reach', caption: 'The most used action sits at the bottom', accent: '#d9480f', screen: [
-        ['bar', 'Spending', '', 'Filter'], ['label', 'Today'], ['row', 'Bakery', 'Groceries', '− €4.80'], ['label', 'Yesterday'],
-        ['row', 'Cinema', 'Going out', '− €13.50'], ['row', 'Salary', 'Income', '+ €2,140'],
-        ['sp'], ['btn', '+ New expense'], ['tabs', ['Overview', 'Spending', 'More'], 1]] },
-    ],
-    obs: [
-      { t: 'Start with the answer', b: '“€412 left to spend” is big and on top. The user asked for a yes or no; the chart can wait.' },
-      { t: 'Give every number a comparison', b: '“€738 of €1,150” and “€24 less than last week” say whether an amount is a lot or a little. A lone number says nothing.' },
-      { t: 'Put the exception on top', b: 'The budget that is nearly gone gets a notice above everything. What is going fine does not need attention.' },
-      { t: 'Make colour mean something', b: 'Orange only appears on the warning. The rest is black and grey, so that one colour stands out at once.' },
-      { t: 'Group by time', b: '“Today” and “Yesterday” as small labels break up the list the way memory does. You look for an expense by when.' },
-      { t: 'Right-align amounts', b: 'All amounts sit on the right of the row, minus sign in front. Your eye runs down the numbers in one vertical line.' },
-      { t: 'Keep the main action in thumb reach', b: 'Adding an expense is what you do most. So that button sits at the bottom and is the same size on every screen.' },
-      { t: 'Show a few rows', b: 'Two or three items and the link “View all spending” read faster than an endless list. The rest is one tap away.' },
-    ] },
-  { id: 'login', short: 'Sign in', title: 'Design the sign-in screen for a fitness app.',
-    context: 'The user is in the changing room with a new phone and is not sure of the password any more.',
-    intro: 'Four ways to get in.',
-    refs: [
-      { name: 'One field at a time', caption: 'Email first, the rest follows', accent: '#5b3fd6', screen: [
-        ['bar', '', '‹', ''], ['h', 'What is your email?'], ['p', 'We check whether you already have an account.'], ['input', 'Email', 'sam@example.com', 'focus'],
-        ['sp'], ['btn', 'Continue']] },
-      { name: 'Fastest route on top', caption: 'One tap before any typing', accent: '#2b5fd9', screen: [
-        ['h', 'Welcome back'], ['btn', 'Continue with Apple', 'dark'], ['btn', 'Continue with Google', 'sec'], ['or', 'or with email'],
-        ['input', 'Email', ''], ['input', 'Password', ''], ['btn', 'Sign in', 'off'], ['sp'], ['link', 'No account yet? Sign up']] },
-      { name: 'Error at the field', caption: 'What went wrong and how to fix it', accent: '#1d7a4f', screen: [
-        ['bar', 'Sign in', '‹', ''], ['input', 'Email', 'sam@example.com', 'ok'],
-        ['input', 'Password', '••••••••', 'err', 'That password is not right. Try again.'], ['link', 'Forgot password?'],
-        ['toggle', 'Show password', false], ['sp'], ['btn', 'Sign in']] },
-      { name: 'Confirmation with a next step', caption: 'You know what happened and what is next', accent: '#d9480f', screen: [
-        ['bar', '', '✕', ''], ['empty', 'Check your inbox', 'We sent a sign-in link to sam@example.com. It works for 15 minutes.'],
-        ['btn', 'Open mail app'], ['link', 'Resend in 0:42'], ['sp'], ['p', 'Wrong address? Go back and change it.']] },
-    ],
-    obs: [
-      { t: 'Ask for as little as possible', b: 'The first example only asks for an email address. Whether you sign in or sign up is for the app to work out.' },
-      { t: 'Put the fastest route on top', b: 'Apple and Google sit above the form. Anyone who signed up that way has no password to remember.' },
-      { t: 'Keep the label visible', b: 'Above every field it says what goes in, even once it is filled. A placeholder vanishes as you type; a label stays.' },
-      { t: 'Put the error at the field', b: 'The message sits right under the password field, in red and in plain language. No banner at the top to match to a field.' },
-      { t: 'Offer recovery where it goes wrong', b: '“Forgot password?” sits under the password field, exactly where you get stuck. The email stays filled in.' },
-      { t: 'Let the button say what it does', b: '“Sign in”, “Continue with Apple”, “Open mail app”. You know what happens before you tap.' },
-      { t: 'Show what you type', b: 'The “Show password” switch prevents typos on a small keyboard. That saves failed attempts.' },
-      { t: 'Confirm and point the way', b: 'After sending, the screen says what happened, how long the link works and offers a button to the mail app.' },
-    ] },
-];
+const SKILLS = { hier: 'Hierarchy', layout: 'Layout', type: 'Typography', color: 'Colour', copy: 'Copy', state: 'States', flow: 'Interaction', a11y: 'Accessibility' };
+const TYPES = {
+  mobile: { name: 'Mobile app', frame: '393 × 852', preset: 'the iPhone 16 preset', ar: '393 / 852', note: 'One frame per screen. Use real text, no lorem ipsum.' },
+  web: { name: 'Website', frame: '1440 wide', preset: 'the Desktop preset', ar: '1440 / 1024', note: 'Let the frame grow as tall as the page needs. Use real text.' },
+  dash: { name: 'Web app', frame: '1440 × 1024', preset: 'the Desktop preset', ar: '1440 / 1024', note: 'One view, filled with believable data.' },
+  comp: { name: 'Component', frame: 'about 800 × 600', preset: 'any plain frame', ar: '4 / 3', note: 'Put the component and all of its states on that one frame.' },
+};
+// A kind is a family of screens. It carries the search suggestions for Study and the eight principles for Review: [skill, principle, how to check it in your own frame].
+const KINDS = {
+  checkout: { type: 'mobile', name: 'Checkout', q: ['mobile checkout screen UI', 'payment screen app design', 'order summary mobile UI'], checks: [
+    ['hier', 'Total next to the action', 'The full amount sits in or right above the pay button. Nobody has to scroll back to know what they spend.'],
+    ['layout', 'One decision per block', 'Address, time and payment are separate, clearly bounded blocks that can be scanned in order.'],
+    ['copy', 'The button says what happens', 'The main button names the action and the amount, not “Continue” or “Next”.'],
+    ['flow', 'Fastest route first', 'A saved method or express pay comes before any form field.'],
+    ['state', 'No surprise costs', 'Every fee is itemised above the total. Nothing shows up for the first time after tapping pay.'],
+    ['flow', 'Main action in thumb reach', 'The pay button sits in the bottom third of the screen and is the largest target on it.'],
+    ['type', 'Amounts line up', 'Prices are right-aligned in one column with matching decimals, so the eye runs straight down.'],
+    ['a11y', 'Targets you can hit', 'Every tappable row and button is at least 44 points high, with space between neighbours.'],
+  ] },
+  onboard: { type: 'mobile', name: 'Onboarding', q: ['mobile app onboarding screens', 'app walkthrough UI design', 'permission request screen UI'], checks: [
+    ['hier', 'One idea per screen', 'Each step has a single headline and a single action. Nothing else competes for attention.'],
+    ['flow', 'Value before questions', 'The user sees what they get before being asked for an account, a permission or money.'],
+    ['state', 'Progress is visible', 'It is clear how many steps there are and which one this is.'],
+    ['flow', 'A way out', 'Skip or “Later” is offered wherever a step is not strictly needed.'],
+    ['copy', 'Ask with a reason', 'Every permission or personal question says in one line why it is asked.'],
+    ['layout', 'The action stays put', 'The primary button keeps the same position and size from step to step.'],
+    ['type', 'Headlines carry the story', 'Reading only the headlines still tells the whole story. Body text is short and optional.'],
+    ['color', 'One accent, one meaning', 'The accent colour marks the next step and is not spent on decoration.'],
+  ] },
+  signin: { type: 'mobile', name: 'Sign in', q: ['mobile login screen UI', 'sign in screen app design', 'password reset screen UI'], checks: [
+    ['flow', 'Ask as little as possible', 'The first screen asks for one thing. The rest follows only when it is needed.'],
+    ['hier', 'Fastest route on top', 'One-tap options such as a passkey or a provider sit above the form, not under it.'],
+    ['a11y', 'Labels stay visible', 'Every field keeps its label once it is filled. No field relies on a placeholder alone.'],
+    ['state', 'Error at the field', 'The error is drawn, sits right under the field that caused it and says in plain words what to do.'],
+    ['flow', 'Recovery where you get stuck', '“Forgot password?” sits at the password field and keeps the email filled in.'],
+    ['copy', 'Buttons say what they do', '“Sign in”, “Send me a link”, “Open mail app”. It is clear what happens before the tap.'],
+    ['flow', 'Less typing, fewer typos', 'The password can be shown, and the right keyboard and autofill are accounted for.'],
+    ['state', 'Confirm and point the way', 'After submitting, the screen says what happened and what the next step is.'],
+  ] },
+  empty: { type: 'mobile', name: 'Empty & error', q: ['empty state mobile UI', 'error screen app design', 'no results screen UI'], checks: [
+    ['copy', 'Say what this place is for', 'One sentence explains what will appear here once there is something to show.'],
+    ['flow', 'Offer the first step', 'There is one clear action that fills the screen or fixes the problem.'],
+    ['copy', 'Plain words, no blame', 'The message says what happened and what to do. No codes, no jargon, no fault put on the user.'],
+    ['hier', 'Message before illustration', 'Headline and action win. The illustration is small and supports them.'],
+    ['layout', 'The structure stays', 'Navigation and page title stay where they are. Only the content area changes.'],
+    ['state', 'Different causes look different', 'First use, no results, offline and error do not share one generic screen.'],
+    ['color', 'Calm, not alarming', 'Red is kept for real errors. An empty list is neutral.'],
+    ['a11y', 'Not by picture alone', 'The state is understandable from the text, without the illustration or the colour.'],
+  ] },
+  detail: { type: 'mobile', name: 'Detail screen', q: ['product detail screen mobile UI', 'detail page app design', 'listing detail screen UI'], checks: [
+    ['hier', 'Let the subject lead', 'The image or the key content takes the top third. Controls stay quiet around it.'],
+    ['layout', 'Price near the button', 'The price and the primary action are never more than one block apart.'],
+    ['flow', 'Choices shown as choices', 'Options are visible buttons or chips, not hidden in a dropdown.'],
+    ['state', 'Unavailable has a next step', 'Sold out or unavailable options look different and offer an alternative.'],
+    ['flow', 'Action always in reach', 'The primary action stays visible while scrolling.'],
+    ['copy', 'Reassurance at the decision', 'Delivery, returns or conditions sit right by the button, not in a tab further down.'],
+    ['type', 'Three text levels, no more', 'Title, key facts and supporting text are clearly different. There is no fourth or fifth style.'],
+    ['a11y', 'Readable on top of images', 'Text or icons over a photo sit on a scrim or a solid surface.'],
+  ] },
+  home: { type: 'mobile', name: 'Home screen', q: ['mobile app home screen UI', 'mobile dashboard app design', 'overview screen app UI'], checks: [
+    ['hier', 'Start with the answer', 'The one number or status the user came for is the biggest thing and sits on top.'],
+    ['copy', 'Every number has a comparison', 'Amounts come with a target, a previous period or a unit that tells whether it is a lot.'],
+    ['hier', 'The exception on top', 'What needs attention is surfaced above what is going fine.'],
+    ['color', 'Colour means something', 'A colour appears only where it signals a status. Everything else stays neutral.'],
+    ['layout', 'Grouped the way memory works', 'Items are grouped by time or by task under small labels, not in one endless list.'],
+    ['type', 'Numbers align', 'Figures are right-aligned and share one style, so they can be compared at a glance.'],
+    ['flow', 'Most-used action in thumb reach', 'The thing people do most sits at the bottom and looks the same on every screen.'],
+    ['layout', 'A few rows, then a link', 'Each section shows a handful of items and a way to see all of them.'],
+  ] },
+  list: { type: 'mobile', name: 'Search & lists', q: ['search results mobile UI', 'list screen with filters app design', 'filter screen mobile UI'], checks: [
+    ['hier', 'Rows you can scan', 'Each row leads with the one thing people look for. Secondary facts are quieter.'],
+    ['flow', 'Filters you can see', 'Active filters are visible as chips and can be removed with one tap.'],
+    ['state', 'Count and order are stated', 'The screen says how many results there are and how they are sorted.'],
+    ['state', 'No results still helps', 'A zero-result state is drawn and suggests a fix: drop a filter, check the spelling, widen the area.'],
+    ['layout', 'Every row built the same', 'Image, title, meta and action sit in the same place in every row.'],
+    ['flow', 'Search remembers', 'Recent or suggested searches appear before the user types.'],
+    ['type', 'Meta is quieter, still readable', 'Secondary details are smaller or lighter than the title, but not below 12 points.'],
+    ['a11y', 'The whole row is the target', 'A row is tappable over its full width and at least 44 points high.'],
+  ] },
+  settings: { type: 'mobile', name: 'Settings', q: ['settings screen mobile UI', 'profile screen app design', 'notification settings UI'], checks: [
+    ['layout', 'Grouped by subject', 'Settings sit in labelled groups of about seven at most, with the most used first.'],
+    ['copy', 'Labels describe the on state', 'Each switch says what happens when it is on. No double negatives.'],
+    ['state', 'The current value shows', 'Rows that lead to a choice show the current choice on the row itself.'],
+    ['flow', 'The right control for the choice', 'A switch for on or off, a list for one of many. No switch that needs a save button.'],
+    ['color', 'Destructive stands apart', 'Delete or sign out is separated from the rest and is the only place the warning colour appears.'],
+    ['state', 'Changes confirm themselves', 'After a change it is visible that it was saved, or what it will do.'],
+    ['type', 'Explanation under the row', 'Helper text sits under the setting it explains, in a quieter style.'],
+    ['a11y', 'On and off without colour', 'The state of a switch is clear from position, shape or label, not from colour alone.'],
+  ] },
+  hero: { type: 'web', name: 'Landing hero', q: ['landing page hero section design', 'SaaS landing page hero', 'website hero UI design'], checks: [
+    ['copy', 'The headline says what it is', 'A stranger knows what this is and who it is for from the headline alone.'],
+    ['hier', 'One primary action', 'There is one filled button. A second action is clearly secondary.'],
+    ['hier', 'Show the real thing', 'The visual shows the actual product or result, not an abstract illustration.'],
+    ['copy', 'Proof next to the claim', 'A number, a row of logos or a quote backs the headline within the first screen.'],
+    ['type', 'A readable measure', 'The headline runs three lines at most. Body text stays between 45 and 75 characters per line.'],
+    ['layout', 'It works above the fold', 'Headline, action and a hint of what follows fit in 1440 × 800 without scrolling.'],
+    ['color', 'The accent is on the action', 'The strongest colour is on the primary button, not spread over decoration.'],
+    ['a11y', 'Contrast holds everywhere', 'All text, including text on images and gradients, has at least 4.5 : 1 contrast.'],
+  ] },
+  pricing: { type: 'web', name: 'Pricing', q: ['pricing page design', 'pricing table UI', 'subscription plans page web design'], checks: [
+    ['hier', 'One plan is recommended', 'One plan is visibly the default choice.'],
+    ['layout', 'Plans compare across', 'The same facts appear in the same order in every column.'],
+    ['copy', 'Plans say who they are for', 'Each plan has one line about who it suits, not just a name.'],
+    ['type', 'The price is the biggest number', 'Price and billing period can be read at a glance, with the period right next to the amount.'],
+    ['flow', 'The toggle shows the saving', 'A monthly or yearly switch states what you save, in money or in percent.'],
+    ['copy', 'Differences, not everything', 'Feature lists lead with what a plan adds over the one before.'],
+    ['state', 'The doubt is answered', 'Trial, cancelling and what happens afterwards are answered next to the button or in a short FAQ.'],
+    ['a11y', 'Included is not colour-only', 'Included and not included are shown with an icon or text, not just green and grey.'],
+  ] },
+  store: { type: 'web', name: 'Shop & listing', q: ['ecommerce product listing page design', 'online shop category page UI', 'product grid web design'], checks: [
+    ['layout', 'A grid with rhythm', 'Cards share one image ratio, align on a clear grid and have equal gutters.'],
+    ['hier', 'Image, name, price', 'Each card shows these three in a fixed order. The price is never hidden behind hover.'],
+    ['flow', 'Filters beside the results', 'Filters stay visible next to the results and show what is applied.'],
+    ['state', 'Count and sorting are stated', 'The page says how many items there are and how they are ordered.'],
+    ['state', 'Hover adds, never hides', 'Hover may reveal extras, but nothing essential depends on it.'],
+    ['copy', 'Badges earn their place', 'Labels such as New or Sale are few, and each means one thing.'],
+    ['type', 'Prices in one style', 'Current price, old price and unit look the same on every card.'],
+    ['a11y', 'Sold out without colour', 'Unavailable items are marked with text, not only by fading them.'],
+  ] },
+  form: { type: 'web', name: 'Web form', q: ['web form design UI', 'sign up form web design', 'multi step form UI'], checks: [
+    ['layout', 'One column', 'Fields stack in a single column, so the eye moves straight down.'],
+    ['a11y', 'A label above every field', 'Every field has a visible label above it that stays while typing.'],
+    ['layout', 'Grouped under headings', 'Related fields sit together under a short heading, with more space between groups than inside them.'],
+    ['flow', 'Field size hints at the answer', 'The width of a field matches the expected input: short for a postcode, long for an email.'],
+    ['state', 'Errors at the field', 'An error state is drawn at the field itself and says how to fix it.'],
+    ['copy', 'Optional is marked', 'The few optional fields are marked as optional, instead of a star on every required one.'],
+    ['flow', 'One button that names the outcome', 'The submit button lines up with the fields and says what happens, not “Submit”.'],
+    ['state', 'Long forms show progress', 'Steps are visible, going back is possible and nothing entered is lost.'],
+  ] },
+  table: { type: 'dash', name: 'Data table', q: ['data table UI design', 'admin table dashboard design', 'table with filters web app UI'], checks: [
+    ['type', 'Numbers right, text left', 'Numeric columns are right-aligned with matching decimals. Text is left-aligned.'],
+    ['hier', 'Headers quieter than data', 'Column headers are small and muted. The data has the contrast.'],
+    ['layout', 'Row height fits the job', 'Enough rows fit on the screen, and each row is still easy to follow across.'],
+    ['flow', 'Sort and filter are visible', 'The sorted column and the active filters are marked.'],
+    ['flow', 'Row actions without clutter', 'The main action per row is obvious. The rest sit in one menu, not in five icons.'],
+    ['state', 'Selecting shows what you can do', 'Selected rows bring up a bar with the count and the bulk actions.'],
+    ['state', 'Empty, loading and overflow', 'There is a designed state for no rows, for loading and for text that does not fit.'],
+    ['color', 'Status as a label', 'Statuses carry a text label, with colour as support and not the other way round.'],
+  ] },
+  dash: { type: 'dash', name: 'Dashboard', q: ['analytics dashboard UI design', 'dashboard web app design', 'KPI dashboard UI'], checks: [
+    ['hier', 'Headline numbers first', 'Three to five key figures sit on top, each with its change against the previous period.'],
+    ['layout', 'A grid you can feel', 'Cards align to one grid and related charts are neighbours.'],
+    ['color', 'Colour encodes, it does not decorate', 'Each colour stands for one series or status everywhere on the page.'],
+    ['flow', 'One time range for everything', 'A single date control governs all charts and is always visible.'],
+    ['type', 'Axes and labels are quiet', 'Gridlines, axes and legends are lighter than the data they describe.'],
+    ['copy', 'Titles name the measure', 'Every card says what is measured and in which unit.'],
+    ['state', 'No data is designed', 'It is clear what a card looks like with no data or incomplete data.'],
+    ['a11y', 'Readable without colour', 'Series can be told apart by a direct label or a shape as well as by colour.'],
+  ] },
+  sched: { type: 'dash', name: 'Calendar & booking', q: ['calendar UI design web app', 'booking time slot picker UI', 'scheduling app design'], checks: [
+    ['hier', 'Today is obvious', 'The current day or time is marked and found at a glance.'],
+    ['state', 'Free and taken differ', 'Available, taken and unavailable slots can be told apart without reading a legend.'],
+    ['flow', 'Few steps to a choice', 'Date and time are picked in as few clicks as possible, without a dialog inside a dialog.'],
+    ['copy', 'Time is unambiguous', 'Times show a time zone or duration where confusion is possible. Dates are written out.'],
+    ['layout', 'Full days stay readable', 'Events remain readable when a day is full. Overflow gets a “+3 more”.'],
+    ['state', 'The choice is repeated', 'The chosen slot is restated in words before it is confirmed.'],
+    ['type', 'Weekday, date and time differ', 'Weekdays, date numbers and times each have their own consistent style.'],
+    ['a11y', 'Colour is not the only code', 'Categories carry a label or an icon besides their colour.'],
+  ] },
+  inbox: { type: 'dash', name: 'Inbox & detail', q: ['inbox UI design web app', 'master detail layout UI', 'messaging web app design'], checks: [
+    ['layout', 'List and detail side by side', 'The list keeps its place while the detail opens. You never lose your position.'],
+    ['hier', 'Unread stands out', 'New or unread items differ in weight, not only by a small dot.'],
+    ['layout', 'Who, what, when', 'Each row shows the sender or title, a one-line preview and the time in fixed positions.'],
+    ['state', 'The open item is marked', 'The selected row is clearly highlighted in the list.'],
+    ['flow', 'Frequent actions at hand', 'The two or three most used actions are one click away. Rare ones sit in a menu.'],
+    ['state', 'Nothing selected, nothing there', 'There is a designed state for no selection and for an empty list.'],
+    ['type', 'A comfortable reading width', 'Long text in the detail is limited to a readable line length, even on a wide screen.'],
+    ['a11y', 'Focus is visible', 'It is drawn what the focused row and the focused action look like for keyboard users.'],
+  ] },
+  card: { type: 'comp', name: 'Card', q: ['card UI component design', 'product card UI', 'card design system component'], checks: [
+    ['hier', 'One clear entry point', 'It is obvious what the eye should land on first: the image, the title or the number.'],
+    ['layout', 'Padding is consistent', 'Inner spacing is the same on all sides and comes from one spacing scale.'],
+    ['flow', 'The clickable area is obvious', 'It is clear whether the whole card or only the button can be clicked.'],
+    ['state', 'All states are drawn', 'Default, hover or pressed, selected, disabled and loading are all on the frame.'],
+    ['type', 'Survives long and short text', 'The design holds with a two-word title and with a title of two lines.'],
+    ['color', 'One way to separate', 'The card stands off the background by a surface, a border or a shadow, not all three.'],
+    ['layout', 'Aligns in a row', 'Three cards with different content still align their actions and baselines.'],
+    ['a11y', 'Small text stays readable', 'Meta text keeps at least 4.5 : 1 contrast and is no smaller than 12 pixels.'],
+  ] },
+  nav: { type: 'comp', name: 'Navigation', q: ['navigation UI design', 'sidebar navigation web app', 'mobile tab bar design'], checks: [
+    ['state', 'You are here', 'The current location is marked by more than colour alone.'],
+    ['hier', 'Few top-level items', 'Primary destinations are limited to about five. The rest are grouped or moved.'],
+    ['copy', 'Labels are words people use', 'Each item has a short text label. Icons do not stand alone unless they are universal.'],
+    ['layout', 'Stable positions', 'Items keep their place and order on every page.'],
+    ['flow', 'The primary action is separate', 'A create or compose action looks different from the destinations.'],
+    ['state', 'Collapsed is designed too', 'The small-screen or collapsed state is drawn, not left to chance.'],
+    ['a11y', 'Targets and focus', 'Each item is at least 44 pixels high and has a visible focus state.'],
+    ['color', 'Badges are rare', 'Counters and dots are used sparingly, so one that appears means something.'],
+  ] },
+  modal: { type: 'comp', name: 'Dialog', q: ['modal dialog UI design', 'confirmation dialog design', 'bottom sheet UI'], checks: [
+    ['copy', 'The title is the question', 'The title states the decision. The body adds only the consequence.'],
+    ['copy', 'Buttons name the outcome', '“Delete project” and “Keep it”, not “Yes” and “No”.'],
+    ['hier', 'One primary button', 'The safe or expected action is primary. The layout does not present two equal buttons.'],
+    ['color', 'Destructive looks destructive', 'An irreversible action has a warning colour and is not the default.'],
+    ['flow', 'Easy to leave', 'There is a visible way to close or cancel that costs nothing.'],
+    ['layout', 'As small as its content', 'The dialog is only as wide as the text needs. Long content scrolls inside with the actions pinned.'],
+    ['state', 'It says what is affected', 'The dialog names the thing and the number of things it applies to.'],
+    ['a11y', 'Readable over the page', 'The backdrop dims the page enough and the dialog text has full contrast.'],
+  ] },
+  input: { type: 'comp', name: 'Form control', q: ['form input states UI', 'text field design system', 'date picker UI design'], checks: [
+    ['state', 'Every state is drawn', 'Default, hover, focus, filled, disabled and error are all on the frame.'],
+    ['a11y', 'Label and hint are attached', 'The label sits above, the hint below, and both stay visible while typing.'],
+    ['a11y', 'Focus is unmistakable', 'The focus state differs by a clear ring or border, not by a subtle colour shift.'],
+    ['copy', 'The error says how to fix it', 'Error text explains the fix and sits where the hint was.'],
+    ['flow', 'It looks like what it does', 'A chevron for a menu, a calendar for a date picker. The control hints at its behaviour.'],
+    ['layout', 'One height, one radius', 'The control shares its height and corner radius with the buttons and inputs beside it.'],
+    ['type', 'The value outweighs the placeholder', 'Entered text is clearly stronger than placeholder or hint text.'],
+    ['color', 'Status is more than colour', 'Error and success carry an icon or text, not just red and green.'],
+  ] },
+};
+// Ten briefs per kind: [what to design, the situation of the person using it]. Ids are kind + position, so only ever add at the end of a list.
+const BRIEFS = {
+  checkout: [
+    ['Design the checkout screen for a food delivery app.', 'The food is picked. The user is hungry and wants to know what it costs, when it arrives and where to tap.'],
+    ['Design the payment step for a train ticket app.', 'The train leaves in six minutes. The traveller is walking to the platform with a coffee in one hand.'],
+    ['Design the checkout for a second-hand marketplace app.', 'The buyer has never bought from this seller and wonders what happens if the item never shows up.'],
+    ['Design the final booking step for a hotel app.', 'Two nights, one room. The user compares three hotels and wants the real total including tax before committing.'],
+    ['Design the cart screen for a grocery delivery app.', 'Forty items, a delivery slot that expires in ten minutes and one product that just went out of stock.'],
+    ['Design the tip and pay screen for a ride-hailing app.', 'The ride just ended. The passenger is getting out of the car and has five seconds of attention left.'],
+    ['Design the subscription checkout for a meditation app.', 'The free trial ends today. The user likes the app but is wary of yearly plans that renew quietly.'],
+    ['Design the split-the-bill screen for a restaurant payment app.', 'Six friends, one bill and two people who only had drinks. The waiter is standing at the table.'],
+    ['Design the checkout for a concert ticket app.', 'The tickets are held for eight minutes. The user is buying four seats and one friend still has to confirm.'],
+    ['Design the donation checkout for a charity app.', 'The user was moved by a story and wants to give once, quickly, before the feeling fades.'],
+  ],
+  onboard: [
+    ['Design the first screen of a habit app, right after install.', 'The user knows nothing about the app and has no account yet. Within thirty seconds it must be clear what they get out of it.'],
+    ['Design the first three onboarding screens of a language learning app.', 'Downloaded on a whim on the bus. The user leaves at the first long form.'],
+    ['Design the permission request flow for a running tracker.', 'The app needs location and motion access. The user has denied both in other apps before.'],
+    ['Design the sign-up flow for a mobile bank.', 'It has to collect an ID photo and an address, and the user is doing it on the couch at eleven at night.'],
+    ['Design the welcome flow for a recipe app.', 'The app works better when it knows diet and household size, but nobody wants a questionnaire before dinner.'],
+    ['Design the first-run experience of a plant care app.', 'The user should leave onboarding with their first plant added, not with an empty app.'],
+    ['Design the onboarding of a team chat app joined by invite.', 'A colleague sent a link. The new user wants to read that one message, not tour the product.'],
+    ['Design the setup flow for a smart thermostat app.', 'The user is standing on a chair next to the device, phone in one hand, and the Wi-Fi password is downstairs.'],
+    ['Design the paywall that follows onboarding in a photo editor.', 'The user has just edited one photo for free and now meets the price for the first time.'],
+    ['Design the onboarding of a podcast app for someone switching from another app.', 'They follow forty shows elsewhere and will not add them again one by one.'],
+  ],
+  signin: [
+    ['Design the sign-in screen for a fitness app.', 'The user is in the changing room with a new phone and is not sure of the password any more.'],
+    ['Design the two-factor code screen for a banking app.', 'The code arrives by text on the same phone. The user is paying at a till with a queue behind them.'],
+    ['Design the password reset flow for a shopping app.', 'The user signs in twice a year and has three email addresses it could be.'],
+    ['Design the sign-in screen for a work app with company login.', 'Most people sign in through their employer. A few freelancers use an email and a password.'],
+    ['Design the “create a new password” screen for a health app.', 'The rules are strict: twelve characters, a number, a symbol. The user is typing with two thumbs.'],
+    ['Design the magic-link sign-in for a note-taking app.', 'The mail app is on this phone, but the link may just as well be opened on a laptop.'],
+    ['Design the account-locked screen for an email app.', 'Too many wrong attempts. The user is the real owner and is getting anxious.'],
+    ['Design the passkey sign-in prompt for a travel app.', 'Most users have never heard the word passkey and just want to get in with their face.'],
+    ['Design the profile picker of a kids’ learning app on a shared tablet.', 'A parent set it up once. Now a seven-year-old has to find their own profile and get in.'],
+    ['Design the session-expired screen for an insurance app.', 'The user was halfway through a claim form when the app signed them out for security.'],
+  ],
+  empty: [
+    ['Design the empty state of a to-do app on first launch.', 'No tasks yet. The user has tried five to-do apps and abandoned all of them.'],
+    ['Design the “no results” screen for a flight search.', 'No flights on that date. The user is flexible by a day or two but never said so.'],
+    ['Design the offline screen for a music streaming app.', 'The user is in a tunnel with a few downloaded albums and does not know which ones.'],
+    ['Design the empty inbox of a messaging app.', 'All caught up. That is good news and should feel like it.'],
+    ['Design the failed-payment screen of a ticket app.', 'The card was declined. The tickets are still reserved for four more minutes.'],
+    ['Design the empty favourites screen of a housing app.', 'The user has browsed thirty homes and saved none, because they never noticed the heart.'],
+    ['Design the “article not found” screen of a news app.', 'The article was removed. The reader came from a group chat and still wants to know what happened.'],
+    ['Design the permission-denied state of a photo backup app.', 'Photo access was refused, so the main screen has nothing to show.'],
+    ['Design the empty activity feed of a fitness app during a rest week.', 'No workouts for nine days. The user feels guilty before even opening the app.'],
+    ['Design the “location unavailable” state of a weather app.', 'GPS is off. The app can still show a city if the user picks one.'],
+  ],
+  detail: [
+    ['Design the product page for a sneaker store.', 'The user arrives from an ad, is unsure about the size and has never held the shoe.'],
+    ['Design the restaurant page in a table booking app.', 'It is Friday at six. The user wants to know if there is a table for four tonight and what the place feels like.'],
+    ['Design the listing page of a holiday home rental app.', 'A family of five compares three houses. The cleaning fee and the walk to the beach decide it.'],
+    ['Design the event page in a ticketing app.', 'A friend shared the link. The user wants date, place and price before reading a word about the artist.'],
+    ['Design the recipe screen for a cooking app.', 'The phone leans against a jar on the counter and the cook has flour on both hands.'],
+    ['Design the detail screen for a used car in a marketplace app.', 'The buyer distrusts every listing and looks for mileage, service history and what is wrong with it.'],
+    ['Design the course page in an online learning app.', 'The user has started and dropped three courses before and wonders how much time this one really takes.'],
+    ['Design the doctor profile in a health booking app.', 'The patient is worried, needs an appointment this week and wants to know if this doctor is any good.'],
+    ['Design the album screen for a music app.', 'The listener wants to press play right away, but also save the album for tomorrow’s train ride.'],
+    ['Design the job posting screen in a job search app.', 'The candidate scans twenty postings on the tram and decides in ten seconds whether to save or skip.'],
+  ],
+  home: [
+    ['Design the home screen of an app that tracks your spending.', 'The user opens the app in the supermarket queue and wants to know in three seconds whether this still fits.'],
+    ['Design the home screen of a banking app.', 'Payday was yesterday. The user checks whether the salary arrived and the rent went out.'],
+    ['Design the today screen of a fitness tracker.', 'It is nine in the evening and the user wonders if a short walk is enough to close the day.'],
+    ['Design the home screen of a smart home app.', 'The user is already in bed and wants to know if the front door is locked and the lights are off.'],
+    ['Design the home screen of a public transport app.', 'Same commute every day. The only question is whether the usual train runs on time.'],
+    ['Design the overview screen of a parcel tracking app.', 'Three parcels are on their way and one of them needs a signature today.'],
+    ['Design the home screen of a student planner app.', 'Monday morning, two deadlines this week and a timetable change nobody mentioned.'],
+    ['Design the overview screen of a home energy app.', 'The bill went up last month and the user wants to know what is using all that power.'],
+    ['Design the home screen of a medication reminder app.', 'An older user takes five pills at different times and is unsure whether the morning ones are done.'],
+    ['Design the home screen of a weather app.', 'The user is at the door, deciding between a coat and an umbrella. Nothing else matters right now.'],
+  ],
+  list: [
+    ['Design the search results screen for a flat rental app.', 'A tight budget, two neighbourhoods and listings that are gone within a day.'],
+    ['Design the restaurant list in a food delivery app.', 'The user is hungry, undecided and filters on delivery time before cuisine.'],
+    ['Design the search screen of a film streaming app.', 'The user half remembers a title and types it wrong.'],
+    ['Design the product list with filters for a fashion app.', 'Looking for a black jacket in size M under a hundred euros, and nothing else.'],
+    ['Design the transaction list of a banking app.', 'The user is hunting for one payment from three weeks ago and only remembers the amount.'],
+    ['Design the contact list of a messaging app.', 'Four hundred contacts, ten of which get nearly every message.'],
+    ['Design the search results of a hotel booking app.', 'Two nights in an unknown city. Price matters, but so does being near the station.'],
+    ['Design the results list of a job search app.', 'Remote and part-time only. Most results fit neither and waste the user’s time.'],
+    ['Design the notes list of a note-taking app.', 'Three hundred notes, half of them untitled. The user needs the one from yesterday’s meeting.'],
+    ['Design the exercise library of a workout app.', 'In the gym, between sets, looking for a shoulder exercise that needs no machine.'],
+  ],
+  settings: [
+    ['Design the notification settings of a social app.', 'The user gets forty pings a day and wants to keep only messages from real people.'],
+    ['Design the profile screen of a ride-sharing app.', 'The user wants to change the payment card and cannot find where.'],
+    ['Design the privacy settings of a health app.', 'The data is sensitive, the wording is legal and the user just wants to know who sees what.'],
+    ['Design the subscription screen of a streaming app.', 'The user wants to cancel. The business would rather they pause. Be fair to both.'],
+    ['Design the settings screen of a camera app.', 'A hobby photographer changes two settings all the time and never touches the other thirty.'],
+    ['Design the card settings of a banking app.', 'Limits, contactless, online payments and the option to block a card that was just lost.'],
+    ['Design the appearance settings of a reading app.', 'Font, size, spacing and theme. The reader wants to see the effect while choosing.'],
+    ['Design the family sharing settings of a cloud storage app.', 'One parent pays, four people share and the storage is 96% full.'],
+    ['Design the “delete my account” flow of a shopping app.', 'The user is sure. The app has to explain what gets lost without guilt-tripping.'],
+    ['Design the language and region settings of a travel app.', 'The traveller reads English, pays in euros and is in Japan this week.'],
+  ],
+  hero: [
+    ['Design the landing page hero for a project management tool.', 'The visitor has seen ten of these this week and gives this one five seconds.'],
+    ['Design the hero for a local bakery’s website.', 'Most visitors only want the opening hours, the address and whether there is sourdough today.'],
+    ['Design the hero for a freelance designer’s portfolio.', 'A busy creative director opens it between meetings and decides whether to scroll.'],
+    ['Design the landing page hero for a budgeting app.', 'The visitor distrusts anything that wants to connect to a bank account.'],
+    ['Design the hero for an online photography course.', 'The visitor wants to know what they can make after six weeks, not what the curriculum is.'],
+    ['Design the landing page hero for an electric bike brand.', 'The bike costs 2,800 euros. The visitor needs desire first and reasons right after.'],
+    ['Design the hero for a non-profit that plants trees.', 'The visitor wants proof that money becomes trees before giving a cent.'],
+    ['Design the landing page hero for a developer API.', 'The visitor is an engineer who wants to see code and scrolls past marketing lines.'],
+    ['Design the hero for a music festival website.', 'Line-up, dates and tickets. Fans look for one specific name on the bill.'],
+    ['Design the landing page hero for a mental health app.', 'The visitor may be having a hard night. The tone matters more than the features.'],
+  ],
+  pricing: [
+    ['Design the pricing page for a team chat tool.', 'A team lead of twelve has to explain the price to a manager who has never used it.'],
+    ['Design the pricing page for a design tool with a free plan.', 'Most visitors should start for free. A few need to see right away that the paid plan fits a team.'],
+    ['Design the membership page for a climbing gym.', 'Day pass, ten-visit card or monthly. The visitor climbs about once a week.'],
+    ['Design the pricing page for a web hosting company.', 'The visitor does not know what a vCPU is and is afraid to pick too small.'],
+    ['Design the plans page for a meal kit service.', 'The price depends on people and meals per week. The visitor wants one number per meal.'],
+    ['Design the pricing page for an email marketing tool.', 'The price scales with subscribers. The visitor has 3,400 and expects to grow.'],
+    ['Design the packages section for a wedding photographer.', 'Three packages. Couples compare the hours and what they receive afterwards.'],
+    ['Design the pricing page for a language learning subscription.', 'Monthly, yearly or lifetime. The visitor has quit two other apps after a month.'],
+    ['Design the pricing page for accounting software.', 'A sole trader and a firm of twenty land on the same page.'],
+    ['Design the ticket options page for a conference.', 'Early bird ends in three days. Student, regular and a workshop add-on.'],
+  ],
+  store: [
+    ['Design the category page for an online furniture store.', 'The visitor is looking for a sofa under 900 euros that fits a wall of 2.2 metres.'],
+    ['Design the listing page for an online bookshop.', 'The visitor browses without a title in mind and wants to be surprised a little.'],
+    ['Design the search results page for an electronics store.', 'Forty laptops that look identical. The differences are in the specs.'],
+    ['Design the shop page for a small ceramics studio.', 'Fourteen handmade items, several one of a kind and half of them sold.'],
+    ['Design the listing page for a plant shop.', 'The buyer has a dark flat and a cat, and has killed every plant so far.'],
+    ['Design the menu page for a pizzeria that takes online orders.', 'A family orders four pizzas with changes while the kids are getting loud.'],
+    ['Design the catalogue page for a bike shop.', 'City, road or gravel. The visitor does not know the terms and searches by use.'],
+    ['Design the sale page for a clothing store.', 'Everything is discounted, sizes are running out and nobody wants to click on what is gone.'],
+    ['Design the listing page for a ticket resale site.', 'Same concert, sixty offers. The visitor wants two seats next to each other.'],
+    ['Design the product grid for a skincare brand.', 'Twenty products with similar names. The visitor shops by skin concern, not by product type.'],
+  ],
+  form: [
+    ['Design the sign-up form for a co-working space.', 'The visitor wants a trial day next week and is not ready for a contract.'],
+    ['Design the checkout page of an online shop on desktop.', 'Guest checkout, a discount code and a delivery address that differs from the billing address.'],
+    ['Design the job application form for a design agency.', 'CV, portfolio link and one open question. The applicant fills it in at eleven at night.'],
+    ['Design the contact form for a renovation contractor.', 'The visitor has a leaking roof and wants to describe it, add photos and get a call back.'],
+    ['Design the booking form for a hair salon.', 'Treatment, stylist and time. Regulars always pick the same three things.'],
+    ['Design the address step of an insurance quote.', 'Step two of five. The visitor already doubts whether this is worth finishing.'],
+    ['Design the registration form for a workshop.', 'One person signs up three colleagues, each with their own dietary wishes.'],
+    ['Design the “report a problem” form for a city website.', 'A broken street light, to be reported with a location and a photo.'],
+    ['Design the newsletter preferences page for a magazine.', 'The reader wants less email, not none. Unsubscribing from everything is one click away.'],
+    ['Design the tax details form for a freelancer platform.', 'Required by law, dull by nature and full of terms the user has to look up.'],
+  ],
+  table: [
+    ['Design the orders table for a webshop admin.', 'Two hundred orders a day. Staff look for the ones that are paid but not shipped.'],
+    ['Design the user management table for an admin panel.', 'An admin has to find one person, change their role and not break anything else.'],
+    ['Design the invoice overview for accounting software.', 'End of the month. Which invoices are overdue, by how much, and who has to be chased?'],
+    ['Design the inventory table for a warehouse tool.', 'Four thousand items. The buyer only cares about what runs out this week.'],
+    ['Design the applicant table for a recruiting tool.', 'Eighty candidates for one role, in five stages, reviewed by three people.'],
+    ['Design the transactions table for a finance tool.', 'An analyst checks for odd amounts and exports what looks wrong.'],
+    ['Design the content list of a publishing system.', 'Drafts, scheduled and published articles from six authors, all in one place.'],
+    ['Design the ticket table for a helpdesk.', 'The team lead looks for tickets that have waited too long and have no owner.'],
+    ['Design the grades table for a teacher tool.', 'Thirty students, eight assignments. The teacher looks for who is slipping.'],
+    ['Design the device list for an IT management tool.', 'Three hundred laptops. Which ones are missing the security update?'],
+  ],
+  dash: [
+    ['Design the sales dashboard for a small webshop.', 'The owner looks at it every morning with a coffee and wants to know if yesterday was good.'],
+    ['Design the results overview for a newsletter tool.', 'An issue went out an hour ago. Opens, clicks and unsubscribes are trickling in.'],
+    ['Design the dashboard for a gym owner.', 'Memberships, visits per hour and who is about to cancel.'],
+    ['Design the marketing dashboard for a campaign manager.', 'Four channels, one budget. Which channel earns its money?'],
+    ['Design the uptime dashboard for a web service.', 'It hangs on a wall screen. Everything is green until it is not.'],
+    ['Design the energy dashboard for an office building.', 'A facility manager compares floors and looks for waste outside office hours.'],
+    ['Design the progress dashboard for a learning platform.', 'A teacher with ninety students wants to see who has not logged in this week.'],
+    ['Design the finance dashboard for a freelancer.', 'Income is irregular. The question is whether the tax reserve is big enough.'],
+    ['Design the product analytics dashboard for an app team.', 'A new feature launched on Tuesday. Did anyone use it twice?'],
+    ['Design the fleet dashboard for a delivery company.', 'Forty vans. The dispatcher needs to know which ones are late right now.'],
+  ],
+  sched: [
+    ['Design the week view of a team calendar.', 'Eight colleagues, overlapping meetings and one person who works in another time zone.'],
+    ['Design the appointment picker for a dentist’s website.', 'The patient can only come before nine or after five.'],
+    ['Design the room booking screen for an office tool.', 'A meeting starts in ten minutes and needs a room for six with a screen.'],
+    ['Design the shift planner for a café manager.', 'Twelve part-timers, their availability and a Saturday nobody wants.'],
+    ['Design the class schedule page for a yoga studio.', 'Members book a week ahead and the popular classes have a waiting list.'],
+    ['Design the page where clients book a call with a consultant.', 'The client is abroad and unsure which time zone the times are in.'],
+    ['Design the content calendar for a social media team.', 'Three channels, daily posts and a campaign that must not clash with a holiday.'],
+    ['Design the date range picker for a holiday rental site.', 'A minimum stay of three nights, changeover on Saturdays and prices that vary per night.'],
+    ['Design the timetable view for a university student.', 'Lectures move rooms every week and two of them overlap.'],
+    ['Design the delivery slot picker for an online supermarket.', 'Slots cost different amounts and the cheap ones go first.'],
+  ],
+  inbox: [
+    ['Design the inbox of a customer support tool.', 'An agent handles sixty conversations a day and switches between them constantly.'],
+    ['Design the main view of a desktop email client.', 'Two hundred unread. Five of them matter today.'],
+    ['Design the notification centre of a project tool.', 'Mentions, assignments and comments pile up. The user wants to clear them fast.'],
+    ['Design the review queue of a content moderation tool.', 'Each item needs a decision within seconds, and a wrong one has consequences.'],
+    ['Design the messages view of a marketplace on desktop.', 'A seller talks to nine buyers about three different items.'],
+    ['Design the document library of a team wiki.', 'A newcomer looks for the onboarding page somebody mentioned once.'],
+    ['Design the task detail view of a project tool.', 'A task with a description, sub-tasks, comments and attachments, opened from a long list.'],
+    ['Design the feedback inbox of a product team.', 'Three hundred user comments have to be read, tagged and linked to plans.'],
+    ['Design the patient list with a detail panel for a clinic.', 'A nurse prepares the day and checks who comes in and why.'],
+    ['Design the file browser of a cloud storage web app.', 'The user looks for the latest version of a contract and wants a preview before opening it.'],
+  ],
+  card: [
+    ['Design a product card for a webshop.', 'It appears forty times on a page, with long and short names and sometimes a discount.'],
+    ['Design a profile card for a team page.', 'Name, role, photo and a way to get in touch. Some people have no photo.'],
+    ['Design an article card for a news site.', 'With and without an image, in a wide and in a narrow column.'],
+    ['Design an event card for a city guide.', 'Date, place and price have to be scannable in a list of thirty.'],
+    ['Design a statistics card for a dashboard.', 'One number, its change since last week and room for a small chart.'],
+    ['Design a pricing plan card.', 'It stands next to two siblings, and one of the three is the recommended one.'],
+    ['Design a testimonial card for a landing page.', 'Quotes range from eight words to eighty.'],
+    ['Design a file card for a document app.', 'Preview, name, owner and last edit, in grid view and in list view.'],
+    ['Design a recipe card for a food site.', 'Cooking time and difficulty decide the click. The photo sells it.'],
+    ['Design a notification for a phone lock screen.', 'Read in a glance, with one action that can be taken without opening the app.'],
+  ],
+  nav: [
+    ['Design the tab bar for a food delivery app.', 'Five destinations, and one of them holds an order that is on its way.'],
+    ['Design the sidebar navigation for a project management web app.', 'Workspaces, projects and favourites. It also has to collapse.'],
+    ['Design the header of an online store.', 'Search, account, cart and eight categories on a 1440 screen.'],
+    ['Design the mobile menu for a museum website.', 'Tickets and opening hours are what nine out of ten visitors come for.'],
+    ['Design breadcrumbs and page tabs for a settings area.', 'Three levels deep, and the user got here through search.'],
+    ['Design the top bar of a mobile banking app.', 'Account switcher, notifications and help in one small strip.'],
+    ['Design a command menu for a web app.', 'Power users open it with a shortcut and type two letters.'],
+    ['Design the footer of a university website.', 'Sixty links nobody reads, until they need exactly one of them.'],
+    ['Design a stepper for a five-step checkout.', 'On desktop and on mobile, with steps you can go back to.'],
+    ['Design the pagination and filter bar of a results page.', 'Two thousand results, twenty per page and three active filters.'],
+  ],
+  modal: [
+    ['Design the confirmation dialog for deleting a project.', 'It cannot be undone and takes the files of five colleagues with it.'],
+    ['Design the “unsaved changes” dialog of an editor.', 'The user clicked away by accident after ten minutes of writing.'],
+    ['Design a cookie consent banner.', 'Legally complete, honest about the choice and gone in one click either way.'],
+    ['Design the share dialog of a document app.', 'Invite by email, set what people can do and copy a link.'],
+    ['Design an upgrade prompt for a free plan that hit its limit.', 'The user was in the middle of something and did not ask for a sales pitch.'],
+    ['Design a dialog that asks for notification access.', 'Asked at the right moment, with a reason and with a real way to say no.'],
+    ['Design the sign-out confirmation on a shared computer.', 'A library PC. The next visitor is already waiting behind the chair.'],
+    ['Design a toast that confirms an action and offers undo.', 'An email was archived by a slip of the thumb.'],
+    ['Design the dialog for cancelling a subscription.', 'Clear about what ends and when, without tricks to keep the user.'],
+    ['Design a bottom sheet for choosing a payment method.', 'Three saved cards, one of them expired, and the option to add a new one.'],
+  ],
+  input: [
+    ['Design a text field in all its states.', 'Empty, focused, filled, wrong, disabled and with helper text.'],
+    ['Design a date picker for a booking form.', 'Most people pick a date in the next two weeks. A few need next year.'],
+    ['Design a search field with suggestions.', 'Recent searches, suggestions while typing and nothing found.'],
+    ['Design a file upload area.', 'Drag and drop, progress, a failed file and a list of what is already uploaded.'],
+    ['Design a dropdown for choosing a country.', 'Two hundred options. Most users come from five of them.'],
+    ['Design a quantity stepper for a cart.', 'Zero means remove, the maximum is six and thumbs are big.'],
+    ['Design a password field with strength feedback.', 'The rules are strict and the feedback should help rather than scold.'],
+    ['Design a segmented control and a switch for a settings panel.', 'When is it one and when the other? Show both with their states.'],
+    ['Design a tag input for adding people to a project.', 'Typing a name, picking from a list, removing one and pasting ten emails at once.'],
+    ['Design a slider for a price range filter.', 'Two handles, real prices and a way to type an exact amount.'],
+  ],
+};
 
 /* ---------- state ---------- */
-const KEY = 'tastetest.v1';
+const KEY = 'tastetest.v2';
 const readLS = k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
 const writeLS = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
-const S = Object.assign({ session: null, log: [], custom: [], pick: null }, readLS(KEY) || {});
+const S = Object.assign({ session: null, log: [], pick: null, sound: true }, readLS(KEY) || {});
 if (!Array.isArray(S.log)) S.log = [];
-if (!Array.isArray(S.custom)) S.custom = [];
 const save = () => writeLS(KEY, S);
 let saveT = 0;
 const saveSoon = () => { clearTimeout(saveT); saveT = setTimeout(save, 600); };
-const allCh = () => BUILTIN.concat(S.custom);
-const byId = id => allCh().find(c => c.id === id);
+const CH = Object.entries(BRIEFS).flatMap(([kind, list]) => list.map(([title, context], i) => ({ id: `${kind}-${i + 1}`, kind, type: KINDS[kind].type, title, context })));
+const CH_BY = new Map(CH.map(c => [c.id, c]));
+const byId = id => CH_BY.get(id);
+const ORDER = (() => { // one fixed shuffle: everybody gets the same challenge on the same day, and the kinds alternate
+  let x = 20261008; const rnd = () => (x = (x * 1664525 + 1013904223) >>> 0) / 4294967296, a = CH.map((_, i) => i);
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+})();
 const dayStr = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const dayNo = () => { const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset() * 6e4) / 864e5); };
 if (S.session && !byId(S.session.cid)) S.session = null;
-if (S.session) { if (!Array.isArray(S.session.src)) S.session.src = ['sketch', 'sketch']; if (!Array.isArray(S.session.fig)) S.session.fig = [null, null]; }
 let view = 'home';
 
 function todays() {
   if (S.pick && S.pick.day === dayStr()) { const c = byId(S.pick.id); if (c) return c; }
-  return BUILTIN[Math.floor(Date.now() / 864e5) % BUILTIN.length];
+  return CH[ORDER[dayNo() % CH.length]];
 }
 function streak() {
   const days = new Set(S.log.map(l => l.day)); const d = new Date(); let n = 0;
@@ -544,311 +836,163 @@ function streak() {
   while (days.has(dayStr(d))) { n++; d.setDate(d.getDate() - 1); }
   return n;
 }
+const doneMap = () => S.log.reduce((m, l) => m.set(l.cid, (m.get(l.cid) || 0) + 1), new Map());
 const niceDate = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); };
+const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
-/* ---------- reference screens ---------- */
-const T = v => esc(typeof v === 'string' || typeof v === 'number' ? v : '');
-const L = v => (Array.isArray(v) ? v.slice(0, 8) : []);
-const clamp = (v, a, b) => Math.min(b, Math.max(a, Number(v) || 0));
-const sub = s => (s ? `<small>${T(s)}</small>` : '');
-const BLOCK = {
-  bar: (t, l, r) => `<div class="b-bar"><span>${T(l)}</span><b>${T(t)}</b><span>${T(r)}</span></div>`,
-  steps: (a, i) => `<div class="b-steps">${L(a).map((s, k) => `<span class="${k < i ? 'done' : k === i ? 'on' : ''}">${T(s)}</span>`).join('')}</div>`,
-  h: t => `<div class="b-h">${T(t)}</div>`,
-  p: t => `<div class="b-p">${T(t)}</div>`,
-  label: t => `<div class="b-l">${T(t)}</div>`,
-  row: (t, s, r, f) => `<div class="b-row ${f === 'sel' || f === 'off' ? f : ''}"><div><b>${T(t)}</b>${sub(s)}</div>${r ? `<span>${T(r)}</span>` : ''}</div>`,
-  radio: (t, s, on, r, off) => `<div class="b-row b-radio ${on === true ? 'sel' : ''} ${off === true ? 'off' : ''}"><i></i><div><b>${T(t)}</b>${sub(s)}</div>${r ? `<span>${T(r)}</span>` : ''}</div>`,
-  check: (t, on) => `<div class="b-row b-check ${on === true ? 'on' : ''}"><i>${on === true ? '✓' : ''}</i><div><b>${T(t)}</b></div></div>`,
-  toggle: (t, on) => `<div class="b-tog ${on === true ? 'on' : ''}"><span>${T(t)}</span><i></i></div>`,
-  input: (l, v, st, msg) => `<div class="b-in ${['focus', 'ok', 'err'].includes(st) ? st : ''}"><label>${T(l)}</label><div>${T(v)}</div>${sub(msg)}</div>`,
-  btn: (t, k) => `<div class="b-btn ${['sec', 'dark', 'off'].includes(k) ? k : ''}">${T(t)}</div>`,
-  link: t => `<div class="b-link">${T(t)}</div>`,
-  or: t => `<div class="b-or"><span>${T(t)}</span></div>`,
-  sum: (rows, tl, tv) => `<div class="b-sum">${L(rows).map(r => `<div><span>${T(L(r)[0])}</span><span>${T(L(r)[1])}</span></div>`).join('')}<div class="tot"><span>${T(tl)}</span><span>${T(tv)}</span></div></div>`,
-  chips: (a, i, off) => `<div class="b-chips">${L(a).map((s, k) => `<span class="${k === i ? 'on' : k === off ? 'off' : ''}">${T(s)}</span>`).join('')}</div>`,
-  seg: (a, i) => `<div class="b-seg">${L(a).map((s, k) => `<span class="${k === i ? 'on' : ''}">${T(s)}</span>`).join('')}</div>`,
-  img: (h, t) => `<div class="b-img" style="height:${clamp(h, 4, 18)}em"><span>${T(t)}</span></div>`,
-  note: (t, k) => `<div class="b-note ${k === 'good' || k === 'warn' ? k : ''}">${T(t)}</div>`,
-  big: (t, s) => `<div class="b-big"><b>${T(t)}</b>${sub(s)}</div>`,
-  prog: (p, t) => `<div class="b-prog">${sub(t)}<div><i style="width:${clamp(p, 0, 100)}%"></i></div></div>`,
-  bars: a => `<div class="b-bars">${L(a).map(v => `<i style="height:${clamp(v, 4, 100)}%"></i>`).join('')}</div>`,
-  dots: (n, i) => `<div class="b-dots">${Array.from({ length: clamp(n, 1, 6) }, (_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div>`,
-  tabs: (a, i) => `<div class="b-tabs">${L(a).map((s, k) => `<span class="${k === i ? 'on' : ''}">${T(s)}</span>`).join('')}</div>`,
-  empty: (t, s) => `<div class="b-empty"><i></i><b>${T(t)}</b>${sub(s)}</div>`,
-  sp: () => '<div class="b-sp"></div>',
-};
-function phone(ref) {
-  const accent = /^#[0-9a-f]{6}$/i.test(ref.accent || '') ? ref.accent : '#2b5fd9';
-  const body = (Array.isArray(ref.screen) ? ref.screen : []).slice(0, 12)
-    .map(b => (Array.isArray(b) && typeof b[0] === 'string' && Object.hasOwn(BLOCK, b[0]) ? BLOCK[b[0]](...b.slice(1, 7)) : '')).join('');
-  return `<div class="ph" style="--shot-accent:${accent}"><div class="ph-s">${body}</div></div>`;
-}
-const refsHTML = c => `<div class="refs">${c.refs.map((r, i) => `<figure class="ref"><button type="button" class="ref-b" data-ref="${i}" aria-label="Enlarge ${esc(r.name)}">${phone(r)}</button><figcaption><b>${esc(r.name)}</b><span>${esc(r.caption)}</span></figcaption></figure>`).join('')}</div>`;
-
-/* ---------- drawing ---------- */
-const AW = 360, AH = 720;
-const r1 = v => Math.round(v * 10) / 10;
-const sn = v => Math.round(v / 4) * 4;
-const fontOf = s => `500 ${s.s}px "Instrument Sans", system-ui, sans-serif`;
-function drawShape(ctx, s) {
-  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = s.w || 2; ctx.strokeStyle = s.c || '#16161d';
-  if (s.k === 'p') {
-    const p = s.pts; ctx.beginPath(); ctx.moveTo(p[0], p[1]);
-    if (p.length < 6) ctx.lineTo(p.length > 2 ? p[2] : p[0] + .01, p.length > 2 ? p[3] : p[1]);
-    else { for (let i = 2; i < p.length - 2; i += 2) ctx.quadraticCurveTo(p[i], p[i + 1], (p[i] + p[i + 2]) / 2, (p[i + 1] + p[i + 3]) / 2); ctx.lineTo(p[p.length - 2], p[p.length - 1]); }
-    ctx.stroke();
-  } else if (s.k === 'r') {
-    ctx.beginPath();
-    if (ctx.roundRect) ctx.roundRect(s.x, s.y, s.a, s.b, Math.min(4, s.a / 2, s.b / 2)); else ctx.rect(s.x, s.y, s.a, s.b);
-    if (s.f) { ctx.fillStyle = s.f; ctx.fill(); } ctx.stroke();
-  } else if (s.k === 'e') {
-    ctx.beginPath(); ctx.ellipse(s.x + s.a / 2, s.y + s.b / 2, s.a / 2, s.b / 2, 0, 0, Math.PI * 2);
-    if (s.f) { ctx.fillStyle = s.f; ctx.fill(); } ctx.stroke();
-  } else if (s.k === 'l') {
-    ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x + s.a, s.y + s.b); ctx.stroke();
-  } else if (s.k === 't') {
-    ctx.fillStyle = s.c || '#16161d'; ctx.font = fontOf(s); ctx.textBaseline = 'top'; ctx.fillText(s.v, s.x, s.y);
-  }
-}
-function paint(ctx, shapes) { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, AW, AH); for (const s of shapes) drawShape(ctx, s); }
-function shotCanvas(shapes, scale = 1) {
-  const c = document.createElement('canvas'); c.width = AW * scale; c.height = AH * scale;
-  const x = c.getContext('2d'); x.scale(scale, scale); paint(x, shapes || []); return c;
-}
-const shot = shapes => shotCanvas(shapes).toDataURL('image/jpeg', .85);
-const shotBlob = shapes => new Promise(res => shotCanvas(shapes, 2).toBlob(res, 'image/png'));
-function segDist(px, py, x1, y1, x2, y2) {
-  const dx = x2 - x1, dy = y2 - y1, l = dx * dx + dy * dy;
-  const t = l ? Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / l)) : 0;
-  return Math.hypot(px - x1 - t * dx, py - y1 - t * dy);
-}
-function box(ctx, s) {
-  if (s.k === 'p') { let a = 1e9, b = 1e9, c = -1e9, d = -1e9; for (let i = 0; i < s.pts.length; i += 2) { a = Math.min(a, s.pts[i]); c = Math.max(c, s.pts[i]); b = Math.min(b, s.pts[i + 1]); d = Math.max(d, s.pts[i + 1]); } return [a, b, c, d]; }
-  if (s.k === 't') { ctx.font = fontOf(s); return [s.x, s.y, s.x + ctx.measureText(s.v).width, s.y + s.s * 1.25]; }
-  return [Math.min(s.x, s.x + s.a), Math.min(s.y, s.y + s.b), Math.max(s.x, s.x + s.a), Math.max(s.y, s.y + s.b)];
-}
-function hit(ctx, s, x, y) {
-  const tol = 7 + (s.w || 2) / 2;
-  if (s.k === 'p') { const p = s.pts; if (p.length < 4) return Math.hypot(x - p[0], y - p[1]) < tol; for (let i = 0; i < p.length - 2; i += 2) if (segDist(x, y, p[i], p[i + 1], p[i + 2], p[i + 3]) < tol) return true; return false; }
-  if (s.k === 'l') return segDist(x, y, s.x, s.y, s.x + s.a, s.y + s.b) < tol;
-  const [a, b, c, d] = box(ctx, s);
-  if (x < a - tol || x > c + tol || y < b - tol || y > d + tol) return false;
-  if (s.k === 't' || s.f) return true;
-  return x < a + tol || x > c - tol || y < b + tol || y > d - tol; // open shapes: only near the outline
-}
-const TOOLS = [['p', 'Pen'], ['r', 'Rectangle'], ['e', 'Circle'], ['l', 'Line'], ['t', 'Text'], ['f', 'Fill'], ['m', 'Move'], ['x', 'Eraser']];
-const boardHTML = () => `<div class="board" id="board">
-  <div class="src" role="group" aria-label="Where you design"><button type="button" data-src="sketch" aria-pressed="true">Sketch here</button><button type="button" data-src="figma" aria-pressed="false">Design in Figma</button></div>
-  <div class="sk">
-  <div class="tools" role="toolbar" aria-label="Drawing tools">
-    <div>${TOOLS.map(([k, l]) => `<button type="button" data-tool="${k}" aria-pressed="${k === 'p'}">${l}</button>`).join('')}</div>
-    <div><button type="button" data-act="undo" disabled>Undo</button><button type="button" data-act="redo" disabled>Redo</button><button type="button" data-act="clear">Clear all</button><button type="button" data-act="png">Save PNG</button></div>
-  </div>
-  <div class="opts">
-    <label for="bd-stroke">Stroke <input type="color" id="bd-stroke" value="#16161d"></label>
-    <label for="bd-fill">Fill <input type="color" id="bd-fill" value="#ffe55a"></label>
-    <label for="bd-fillon"><input type="checkbox" id="bd-fillon"> Fill new shapes</label>
-    <label for="bd-weight">Weight <select id="bd-weight"><option value="1">1 px</option><option value="2" selected>2 px</option><option value="4">4 px</option><option value="8">8 px</option></select></label>
-  </div>
-  <div class="stage"><div class="art"><canvas aria-label="Drawing area for a phone screen"></canvas></div></div>
-  </div>
-  <div class="fg" hidden>
-    <div class="fg-how">
-      <h3>Design in Figma, bring your frame here.</h3>
-      <ol><li>Create a phone-sized frame in Figma, for example 360 × 720.</li><li>Design your screen while the clock keeps running here.</li><li>Select the frame, copy it as an image with <kbd>⇧⌘C</kbd> and paste it on this page with <kbd>⌘V</kbd>.</li></ol>
-      <div class="fg-row"><a class="btn ghost" href="https://figma.new" target="_blank" rel="noopener">Open a new Figma file</a><input class="vh" type="file" id="fg-file" accept="image/png,image/jpeg,image/webp"><label class="btn ghost" for="fg-file">Choose an image</label><button type="button" class="btn quiet" data-act="fig-clear" hidden>Remove</button></div>
-      <p class="status" id="fg-status" role="status"></p>
-    </div>
-    <div class="stage"><div class="art" id="fg-art" data-empty="1"><img id="fg-img" alt="Your design from Figma" hidden></div></div>
-  </div>
-</div>`;
-let activeBoard = null;
-function mountBoard(root, shapes, onChange) {
-  const cv = $('canvas', root), ctx = cv.getContext('2d'), art = $('.sk .art', root);
-  const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-  cv.width = AW * dpr; cv.height = AH * dpr;
-  let tool = 'p', cur = null, drag = null, tin = null, hist = [], redo = [];
-  const stroke = () => $('#bd-stroke', root).value, fillc = () => $('#bd-fill', root).value;
-  const fillOn = () => $('#bd-fillon', root).checked, weight = () => Number($('#bd-weight', root).value) || 2;
-  const draw = () => { ctx.setTransform(dpr, 0, 0, dpr, 0, 0); paint(ctx, shapes); if (cur) drawShape(ctx, cur); art.dataset.empty = shapes.length || cur || tin ? '0' : '1'; };
-  const sync = () => { $('[data-act="undo"]', root).disabled = !hist.length; $('[data-act="redo"]', root).disabled = !redo.length; };
-  const snap = () => { hist.push(JSON.stringify(shapes)); if (hist.length > 80) hist.shift(); redo = []; };
-  const put = json => { shapes.length = 0; shapes.push(...JSON.parse(json)); };
-  const changed = () => { draw(); sync(); onChange(); };
-  const pos = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * AW / r.width, (e.clientY - r.top) * AH / r.height]; };
-  const topHit = (x, y) => { for (let i = shapes.length - 1; i >= 0; i--) if (hit(ctx, shapes[i], x, y)) return i; return -1; };
-  const inside = (x, y) => { // smallest closed shape around the point
-    let best = -1, area = Infinity;
-    shapes.forEach((s, i) => { if (s.k !== 'r' && s.k !== 'e') return; if (x >= s.x && x <= s.x + s.a && y >= s.y && y <= s.y + s.b && s.a * s.b <= area) { area = s.a * s.b; best = i; } });
-    return best;
+/* ---------- images: handed-in frames and pasted references live in IndexedDB ---------- */
+const DB = (() => {
+  const mem = new Map(); let dbp = null; // mem takes over when IndexedDB is unavailable; images then last for this visit only
+  const open = () => dbp || (dbp = new Promise((res, rej) => {
+    const r = indexedDB.open('tastetest', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('img');
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  }));
+  const run = (mode, fn) => open().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('img', mode), rq = fn(tx.objectStore('img'));
+    tx.oncomplete = () => res(rq.result); tx.onerror = tx.onabort = () => rej(tx.error);
+  }));
+  return {
+    put: (k, blob) => run('readwrite', st => st.put(blob, k)).catch(() => { mem.set(k, blob); }),
+    get: k => run('readonly', st => st.get(k)).catch(() => null).then(b => b || mem.get(k) || null),
+    del: k => { mem.delete(k); return run('readwrite', st => st.delete(k)).catch(() => {}); },
+    keys: () => run('readonly', st => st.getAllKeys()).catch(() => []).then(a => [...a, ...mem.keys()]),
   };
-  const erase = (x, y) => { const i = topHit(x, y); if (i < 0) return; if (!drag.done) { snap(); drag.done = true; } shapes.splice(i, 1); };
-  function commitText() {
-    if (!tin) return; const t = tin, v = t.value.trim(); tin = null; t.remove();
-    if (v) { snap(); shapes.push({ k: 't', c: t._d.c, s: t._d.s, x: r1(t._d.x), y: r1(t._d.y), v: v.slice(0, 80) }); changed(); } else draw();
-  }
-  function openText(x, y) {
-    const r = cv.getBoundingClientRect(), s = { 1: 12, 2: 14, 4: 18, 8: 26 }[weight()] || 14, c = stroke();
-    tin = document.createElement('input'); tin.id = 'bd-text'; tin.className = 'art-text'; tin.setAttribute('aria-label', 'Text on the drawing area');
-    tin.style.cssText = `left:${x / AW * 100}%;top:${y / AH * 100}%;font-size:${s * r.width / AW}px;color:${c}`;
-    tin._d = { x, y, s, c, at: Date.now() };
-    const el = tin, refocus = () => { if (el.isConnected && document.activeElement !== el) el.focus(); };
-    tin.addEventListener('keydown', e => { if (e.key === 'Enter') commitText(); else if (e.key === 'Escape') { const t = tin; tin = null; t.remove(); draw(); } });
-    tin.addEventListener('blur', () => { if (tin === el && Date.now() - el._d.at < 250) setTimeout(refocus, 0); else commitText(); });
-    art.append(tin); tin.focus(); setTimeout(refocus, 30);
-  }
-  cv.addEventListener('pointerdown', e => {
-    if (e.button) return; commitText();
-    const [x, y] = pos(e);
-    if (tool === 't') { e.preventDefault(); openText(x, y); draw(); return; }
-    try { cv.setPointerCapture(e.pointerId); } catch {}
-    if (tool === 'p') cur = { k: 'p', c: stroke(), w: weight(), pts: [r1(x), r1(y)] };
-    else if (tool === 'r' || tool === 'e' || tool === 'l') { drag = { x: sn(x), y: sn(y) }; cur = { k: tool, c: stroke(), w: weight(), f: tool !== 'l' && fillOn() ? fillc() : null, x: drag.x, y: drag.y, a: 0, b: 0 }; }
-    else if (tool === 'f') { const i = inside(x, y); if (i >= 0) { snap(); shapes[i].f = fillc(); changed(); } }
-    else if (tool === 'm') { let i = topHit(x, y); if (i < 0) i = inside(x, y); if (i >= 0) drag = { i, x, y, done: false }; }
-    else if (tool === 'x') { drag = { done: false }; erase(x, y); }
-    draw();
-  });
-  cv.addEventListener('pointermove', e => {
-    if (!cur && !drag) return; const [x, y] = pos(e);
-    if (cur && cur.k === 'p') { const p = cur.pts, n = p.length; if (Math.hypot(x - p[n - 2], y - p[n - 1]) > 1.2) p.push(r1(x), r1(y)); }
-    else if (cur && drag) {
-      const x2 = sn(x), y2 = sn(y);
-      if (cur.k === 'l') { cur.a = x2 - drag.x; cur.b = y2 - drag.y; }
-      else { cur.x = Math.min(drag.x, x2); cur.y = Math.min(drag.y, y2); cur.a = Math.abs(x2 - drag.x); cur.b = Math.abs(y2 - drag.y); }
-    } else if (tool === 'm' && drag) {
-      const dx = x - drag.x, dy = y - drag.y;
-      if (!drag.done) { if (Math.hypot(dx, dy) < 2) return; snap(); drag.done = true; }
-      const s = shapes[drag.i]; if (s.k === 'p') { for (let i = 0; i < s.pts.length; i += 2) { s.pts[i] = r1(s.pts[i] + dx); s.pts[i + 1] = r1(s.pts[i + 1] + dy); } } else { s.x = r1(s.x + dx); s.y = r1(s.y + dy); }
-      drag.x = x; drag.y = y;
-    } else if (tool === 'x' && drag) erase(x, y);
-    draw();
-  });
-  const end = () => {
-    if (cur) {
-      const ok = cur.k === 'p' || (cur.k === 'l' ? Math.hypot(cur.a, cur.b) > 3 : cur.a > 3 && cur.b > 3);
-      if (ok) { snap(); shapes.push(cur); } cur = null; drag = null; changed(); return;
-    }
-    if (drag && drag.done) changed();
-    drag = null;
-  };
-  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
-  const api = {
-    undo() { if (!hist.length) return; redo.push(JSON.stringify(shapes)); put(hist.pop()); changed(); },
-    redo() { if (!redo.length) return; hist.push(JSON.stringify(shapes)); put(redo.pop()); changed(); },
-    replace(list) { commitText(); hist.push(JSON.stringify(shapes)); redo = []; put(JSON.stringify(list)); changed(); },
-  };
-  root.addEventListener('click', e => {
-    const tb = e.target.closest('[data-tool]');
-    if (tb) { commitText(); tool = tb.dataset.tool; $$('[data-tool]', root).forEach(b => b.setAttribute('aria-pressed', String(b === tb))); cv.style.cursor = tool === 'm' ? 'move' : tool === 't' ? 'text' : 'crosshair'; return; }
-    const ab = e.target.closest('[data-act]'); if (!ab) return;
-    const a = ab.dataset.act;
-    if (a === 'undo') api.undo(); else if (a === 'redo') api.redo();
-    else if (a === 'clear') { if (shapes.length) { snap(); shapes.length = 0; changed(); } }
-    else if (a === 'png') { commitText(); shotBlob(shapes).then(b => b && saveFile('tastetest-sketch.png', b)); }
-  });
-  draw(); sync();
-  return api;
+})();
+const urls = new Map(); // image key -> promise of an object URL ('' when the image is gone)
+const urlOf = k => { if (!urls.has(k)) urls.set(k, DB.get(k).then(b => (b ? URL.createObjectURL(b) : ''))); return urls.get(k); };
+const dropUrl = k => { const p = urls.get(k); urls.delete(k); if (p) p.then(u => u && URL.revokeObjectURL(u)); };
+const putImg = (k, blob) => { dropUrl(k); return DB.put(k, blob); };
+const delImg = k => { dropUrl(k); return DB.del(k); };
+const imgKey = (s, i) => `${s.id}.${i}`;
+const KEEP = 60; // frames are kept for the latest sessions; the log itself is kept in full
+async function pruneImages() {
+  const keep = new Set(S.log.slice(0, KEEP).map(l => l.id)); if (S.session) keep.add(S.session.id);
+  for (const k of await DB.keys()) if (!keep.has(String(k).split('.')[0])) delImg(k);
 }
-/* ---------- Figma as the design tool ---------- */
+function hydrate(root = V) { // views are written as strings; stored images are filled in right after
+  $$('img[data-key]', root).forEach(async im => {
+    const u = await urlOf(im.dataset.key); if (!im.isConnected) return;
+    if (u) im.src = u; else { const b = im.closest('.ba-b'); if (b) b.outerHTML = '<div class="ba-none">This frame is no longer stored in this browser</div>'; else im.dataset.gone = '1'; }
+  });
+}
 const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
-async function fitImage(src, scale = 2, q = .88) { // top-aligned on phone-shaped white paper, so before and after always compare like for like
-  const img = await loadImg(src); if (!img.naturalWidth) throw new Error('empty');
-  const c = document.createElement('canvas'); c.width = AW * scale; c.height = AH * scale;
-  const x = c.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, c.width, c.height);
-  const k = Math.min(c.width / img.naturalWidth, c.height / img.naturalHeight), w = img.naturalWidth * k;
-  x.drawImage(img, (c.width - w) / 2, 0, w, img.naturalHeight * k);
-  return c.toDataURL('image/jpeg', q);
-}
-function dataBlob(u) {
-  const i = u.indexOf(','), bin = atob(u.slice(i + 1)), a = new Uint8Array(bin.length);
-  for (let n = 0; n < bin.length; n++) a[n] = bin.charCodeAt(n);
-  return new Blob([a], { type: (u.slice(0, i).match(/^data:([^;]+)/) || [])[1] || 'image/jpeg' });
-}
-const shapesOf = (s, i) => (i ? s.after : s.before);
-const usesFigma = (s, i) => s.src[i] === 'figma' && !!s.fig[i];
-const imgOf = (s, i) => (usesFigma(s, i) ? s.fig[i] : shot(shapesOf(s, i)));
-const blobOf = (s, i) => (usesFigma(s, i) ? Promise.resolve(dataBlob(s.fig[i])) : shotBlob(shapesOf(s, i)));
-const thumbOf = (s, i) => (usesFigma(s, i) ? fitImage(s.fig[i], 1, .8) : Promise.resolve(shot(shapesOf(s, i))));
-const layerOf = (s, i) => (usesFigma(s, i) ? loadImg(s.fig[i]) : Promise.resolve(shotCanvas(shapesOf(s, i), 2)));
-function parseFigma(url) {
+async function normalise(file, maxW = 1600, maxH = 4800) { // frames keep their own proportions; white under transparent pixels, like the canvas in Figma
+  const src = URL.createObjectURL(file);
   try {
-    const u = new URL(String(url).trim()); if (!/(^|\.)figma\.com$/.test(u.hostname)) return null;
-    const p = u.pathname.split('/').filter(Boolean); if (!['design', 'file', 'board', 'slides'].includes(p[0])) return null;
-    const key = p[2] === 'branch' && p[3] ? p[3] : p[1], node = u.searchParams.get('node-id') || '';
-    return /^[0-9a-zA-Z]{22,128}$/.test(key || '') && /^\d+[:-]\d+$/.test(node) ? { fileKey: key, nodeId: node.replace('-', ':') } : null;
-  } catch { return null; }
+    const img = await loadImg(src), iw = img.naturalWidth, ih = img.naturalHeight; if (!iw || !ih) throw new Error('empty');
+    const k = Math.min(1, maxW / iw, maxH / ih), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(iw * k)); c.height = Math.max(1, Math.round(ih * k));
+    const x = c.getContext('2d'); x.fillStyle = tok('--shot-bg'); x.fillRect(0, 0, c.width, c.height); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, c.width, c.height);
+    const blob = await new Promise(res => c.toBlob(res, 'image/jpeg', .9)); if (!blob) throw new Error('encode');
+    return { blob, w: c.width, h: c.height };
+  } finally { URL.revokeObjectURL(src); }
 }
-let activeSource = null;
-function mountSource(root, s, idx) {
-  const status = t => { $('#fg-status', root).textContent = t || ''; };
-  const setSrc = v => {
-    s.src[idx] = v; root.dataset.src = v;
-    $$('.src [data-src]', root).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.src === v)));
-    $('.sk', root).hidden = v !== 'sketch'; $('.fg', root).hidden = v !== 'figma';
-  };
-  const show = () => {
-    const has = !!s.fig[idx], im = $('#fg-img', root);
-    $('#fg-art', root).dataset.empty = has ? '0' : '1'; im.hidden = !has; if (has) im.src = s.fig[idx]; else im.removeAttribute('src');
-    $('[data-act="fig-clear"]', root).hidden = !has;
-  };
-  async function take(src, revoke) {
-    status('Loading…');
-    try { s.fig[idx] = await fitImage(src); setSrc('figma'); show(); status(save() ? 'Frame loaded. Paste again to replace it.' : 'Frame loaded, but too large to save along the way. Keep this page open until you finish.'); }
-    catch { status('That could not be read as an image. Use a PNG or JPG.'); }
-    finally { if (revoke) URL.revokeObjectURL(src); }
-  }
-  const takeFile = f => { if (!f || !/^image\/(png|jpeg|webp)$/.test(f.type)) { setSrc('figma'); return status('Choose a PNG, JPG or WebP image.'); } take(URL.createObjectURL(f), true); };
-  root.addEventListener('click', e => {
-    const sb = e.target.closest('.src [data-src]'); if (sb) { setSrc(sb.dataset.src); saveSoon(); return; }
-    const ab = e.target.closest('[data-act]'); if (!ab) return;
-    if (ab.dataset.act === 'fig-clear') { s.fig[idx] = null; show(); save(); status('Removed.'); }
-  });
-  $('#fg-file', root).addEventListener('change', e => { takeFile(e.target.files && e.target.files[0]); e.target.value = ''; });
-  const hasFiles = e => e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
-  root.addEventListener('dragover', e => { if (hasFiles(e)) { e.preventDefault(); root.dataset.drop = '1'; } });
-  root.addEventListener('dragleave', () => { root.dataset.drop = '0'; });
-  root.addEventListener('drop', e => { if (!hasFiles(e)) return; e.preventDefault(); root.dataset.drop = '0'; takeFile(e.dataTransfer.files[0]); });
-  setSrc(s.src[idx] === 'figma' ? 'figma' : 'sketch'); show();
-  return { takeFile };
-}
-document.addEventListener('paste', e => { // a frame copied as PNG in Figma lands here
-  if (!activeSource || !e.clipboardData) return;
-  const it = [...e.clipboardData.items].find(i => i.kind === 'file' && i.type.startsWith('image/'));
-  if (it) { e.preventDefault(); activeSource.takeFile(it.getAsFile()); }
-});
-document.addEventListener('keydown', e => {
-  if (!activeBoard || !(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== 'z') return;
-  const t = e.target; if (t && (t.tagName === 'SELECT' || (t.tagName === 'INPUT' && !['color', 'checkbox'].includes(t.type)))) return;
-  e.preventDefault(); if (e.shiftKey) activeBoard.redo(); else activeBoard.undo();
-});
+document.addEventListener('error', e => { // a reference whose thumbnail has expired falls back to the original image, then to an empty tile
+  const im = e.target; if (!(im instanceof HTMLImageElement)) return;
+  const alt = im.dataset.alt; if (alt) { delete im.dataset.alt; im.src = alt; } else im.dataset.gone = '1';
+}, true);
 
 /* ---------- timer ---------- */
-let tick = 0, running = false;
+const Chime = (() => { // three short tones when a round ends
+  let ctx = null, nodes = [];
+  const disarm = () => { nodes.forEach(n => { try { n.stop(); } catch {} }); nodes = []; };
+  function arm(sec) { // scheduled on the audio clock, so it sounds on time while this tab sits in the background
+    disarm(); if (!S.sound || sec <= 0 || (navigator.userActivation && !navigator.userActivation.hasBeenActive)) return;
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume();
+      [0, .32, .64].forEach((d, i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain(), at = ctx.currentTime + sec + d;
+        o.frequency.value = i === 2 ? 880 : 660; g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(.2, at + .02); g.gain.exponentialRampToValueAtTime(.001, at + .28);
+        o.connect(g).connect(ctx.destination); o.start(at); o.stop(at + .3); nodes.push(o);
+      });
+    } catch {}
+  }
+  return { arm, disarm, idle: () => !nodes.length };
+})();
+let tick = 0;
+const running = () => !!(S.session && S.session.runAt);
+const leftOf = s => Math.max(0, s.t[s.step] - (s.runAt ? (Date.now() - s.runAt) / 1000 : 0));
 const fmt = sec => { const s = Math.ceil(sec); return `${pad(Math.floor(s / 60))}:${pad(s % 60)}`; };
 function paintTimer() {
-  const el = $('#timer'), s = S.session; if (!el || !s || s.step > 3) return;
-  const left = s.t[s.step], txt = fmt(left), up = left <= 0;
+  const s = S.session, on = view === 'round' && !!s && s.step <= 3;
+  document.title = on ? `${fmt(leftOf(s))} · ${ROUNDS[s.step].name} · TasteTest` : 'TasteTest';
+  const el = $('#timer'); if (!el || !on) return;
+  const left = leftOf(s), txt = fmt(left), up = left <= 0;
   if (el.dataset.v !== txt) { el.dataset.v = txt; el.innerHTML = [...txt].map(ch => `<span${ch === ':' ? ' class="c"' : ''}>${ch}</span>`).join(''); }
   el.closest('.round').dataset.up = up ? '1' : '0';
-  const b = $('#pause'), m = $('#more');
-  if (b) { b.textContent = up ? 'Time is up' : running ? 'Pause' : 'Resume'; b.disabled = up; }
+  const b = $('#pause'), m = $('#more'), so = $('#sound');
+  if (b) { b.textContent = up ? 'Time is up' : running() ? 'Pause' : 'Resume'; b.disabled = up; }
   if (m) m.hidden = !up;
+  if (so) { so.textContent = S.sound ? 'Sound on' : 'Sound off'; so.setAttribute('aria-pressed', String(!!S.sound)); }
 }
-function stopTimer() { running = false; clearInterval(tick); tick = 0; save(); paintTimer(); }
-function startTimer() {
-  const s = S.session; if (running || !s || s.step > 3 || s.t[s.step] <= 0) return paintTimer();
-  running = true; let last = Date.now(), n = 0;
-  tick = setInterval(() => {
-    const cur = S.session; if (!cur || cur.step > 3 || view !== 'round') return stopTimer();
-    const now = Date.now(); cur.t[cur.step] = Math.max(0, cur.t[cur.step] - (now - last) / 1000); last = now;
-    if (cur.t[cur.step] <= 0) return stopTimer();
-    if (++n % 20 === 0) save();
+function stopTimer() { // freezes the clock; what is left stays in s.t
+  const s = S.session; if (s && s.runAt && s.step <= 3) s.t[s.step] = leftOf(s);
+  if (s) s.runAt = 0;
+  clearInterval(tick); tick = 0; Chime.disarm(); save(); paintTimer();
+}
+function startTimer() { // counts on the wall clock, so it keeps going while you are in Figma or this tab sleeps
+  const s = S.session; if (!s || s.step > 3 || view !== 'round') return;
+  if (leftOf(s) <= 0) { s.t[s.step] = 0; s.runAt = 0; return paintTimer(); }
+  if (!s.runAt) { s.runAt = Date.now(); save(); }
+  if (!tick) tick = setInterval(() => {
+    const cur = S.session; if (!cur || cur.step > 3 || view !== 'round' || !cur.runAt) return stopTimer();
+    if (leftOf(cur) <= 0) { cur.t[cur.step] = 0; cur.runAt = 0; clearInterval(tick); tick = 0; save(); }
     paintTimer();
   }, 250);
-  paintTimer();
+  Chime.arm(leftOf(s)); paintTimer();
 }
+
+/* ---------- reference search: Google Programmable Search Element, image results drawn by us ---------- */
+const MAXREF = 8;
+const okUrl = u => (typeof u === 'string' && /^https?:\/\//i.test(u) ? u : '');
+const ELSEWHERE = [
+  ['Dribbble', q => 'https://dribbble.com/search/' + encodeURIComponent(q)],
+  ['Behance', q => 'https://www.behance.net/search/projects?search=' + encodeURIComponent(q)],
+  ['Pinterest', q => 'https://www.pinterest.com/search/pins/?q=' + encodeURIComponent(q)],
+  ['Google Images', q => 'https://www.google.com/search?udm=2&q=' + encodeURIComponent(q)],
+];
+const defaultQuery = c => c.title.replace(/^Design\s+(the|an?)\s+/i, '').replace(/[.“”]/g, '') + ' UI';
+const isPinned = h => !!S.session && S.session.refs.some(r => r.i === h.i && r.u === h.u);
+const Search = (() => {
+  let st = SEARCH_CX ? 'idle' : 'off', hits = [], wait = 0, want = '';
+  const OFF = 'In-page search is not available right now. The links below open the same search in a new tab; copy a screen you like there and paste it here to pin it.';
+  const say = (text, off) => { const e = $('#hits-msg'), b = $('#hits-box'); if (!e) return; e.hidden = !text; e.textContent = text || ''; b.dataset.off = off ? '1' : '0'; };
+  const toHit = r => {
+    const rs = r.richSnippet || {}, t = okUrl(r.thumbnailImage && r.thumbnailImage.url) || okUrl(rs.cseThumbnail && rs.cseThumbnail.src), i = okUrl(r.image && r.image.url) || okUrl(rs.cseImage && rs.cseImage.src);
+    return t || i ? { t: t || i, i: i || t, u: okUrl(r.contextUrl) || okUrl(r.url), title: String(r.titleNoFormatting || '').slice(0, 140), host: String(r.visibleUrl || '').slice(0, 60) } : null;
+  };
+  const hitsHTML = () => `<div class="hits">${hits.map((h, i) => `<figure class="hit"><button type="button" class="hit-b" data-hit="${i}" aria-label="Enlarge: ${esc(h.title)}"><img src="${esc(h.t)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button><figcaption><b>${esc(h.title)}</b><span>${esc(h.host)}</span></figcaption><button type="button" class="hit-pin" data-pin="${i}" aria-pressed="${isPinned(h)}">${isPinned(h) ? 'Pinned' : 'Pin'}</button></figure>`).join('')}</div>`;
+  function ready(name, q, promos, results, div) { // returning true tells Google we drew the results; its own footer and paging stay below
+    clearTimeout(wait); hits = (results || []).map(toHit).filter(Boolean);
+    div.innerHTML = hits.length ? hitsHTML() : '<p class="hits-none">Nothing found for this search. Try fewer or other words.</p>';
+    say('');
+    return true;
+  }
+  function load() {
+    st = 'loading';
+    window.__gcse = { parsetags: 'explicit', initializationCallback: () => { st = 'ready'; clearTimeout(wait); if (want) run(want); }, searchCallbacks: { image: { ready }, web: { ready } } };
+    const sc = document.createElement('script'); sc.async = true; sc.src = 'https://cse.google.com/cse.js?cx=' + encodeURIComponent(SEARCH_CX);
+    sc.onerror = () => { st = 'off'; say(OFF, true); };
+    wait = setTimeout(() => { if (st === 'loading') { st = 'off'; say(OFF, true); } }, 10000);
+    document.head.append(sc);
+  }
+  function run(q) {
+    q = String(q || '').trim().slice(0, 120); if (!q) return;
+    want = q; const s = S.session; if (s) { s.q = q; saveSoon(); }
+    const el = $('#else'); if (el) el.innerHTML = '<span>Also search on</span>' + ELSEWHERE.map(([n, f]) => `<a href="${esc(f(q))}" target="_blank" rel="noopener noreferrer">${n} ↗</a>`).join('');
+    if (st === 'off') return say(OFF, true);
+    say('Searching…');
+    if (st === 'idle') return load();
+    if (st !== 'ready') return;
+    try {
+      const box = $('#gcse'), api = window.google.search.cse.element; if (!box) return;
+      if (!box.dataset.on) { box.dataset.on = '1'; api.render({ div: box, tag: 'searchresults-only', gname: 'tt', attributes: { enableImageSearch: true, defaultToImageSearch: true, disableWebSearch: true, imageSearchResultSetSize: 'large', linkTarget: '_blank', enableHistory: false, overlayResults: false } }); }
+      clearTimeout(wait); wait = setTimeout(() => say('The search did not answer. Check your connection, or use the links below.'), 9000);
+      api.getElement('tt').execute(q);
+    } catch { st = 'off'; say(OFF, true); }
+  }
+  return { run, hit: i => hits[i] };
+})();
 
 /* ---------- views ---------- */
 function paintTop() {
@@ -858,156 +1002,307 @@ function paintTop() {
   const n = streak();
   $('#streak').textContent = on ? '' : n > 1 ? `${n}-day streak` : n === 1 ? '1-day streak' : '';
 }
+
+/* review maths: every principle is ticked for the first version and for the redesign */
+const stOf = c => (c && c[0] && c[1] ? 'held' : c && c[1] ? 'gain' : c && c[0] ? 'lost' : 'open');
+const tally = checks => checks.reduce((o, c) => (o[stOf(c)]++, o), { held: 0, gain: 0, lost: 0, open: 0 });
+const trioBox = (sw, h, items, none) => `<div><h3><i class="sw-${sw}"></i>${h}<span>${items.length}</span></h3>${items.length ? `<ul>${items.map(([t, d]) => `<li>${esc(t)}<small>${esc(d)}</small></li>`).join('')}</ul>` : `<p class="none">${none}</p>`}</div>`;
+function trioHTML(checks, k) {
+  const of = sts => k.checks.map((p, i) => [p, stOf(checks[i])]).filter(x => sts.includes(x[1])).map(([p, st]) => [p[1], SKILLS[p[0]] + (st === 'lost' ? ' · was in your first version, gone in the redesign' : '')]);
+  return `<div class="trio">${trioBox('a', 'You held on to', of(['held']), 'Nothing ticked in both versions.')}${trioBox('b', 'You got better at', of(['gain']), 'Nothing new in the redesign.')}${trioBox('c', 'Still to work on', of(['open', 'lost']), 'Nothing left open.')}</div>`;
+}
+
+const lib = { type: 'all', kind: 'all', q: '', n: 12 };
+const MIXED = ORDER.map(i => CH[i]); // the library shows the kinds interleaved, in the same order the daily challenge walks through
+const libList = () => { const q = lib.q.trim().toLowerCase(); return MIXED.filter(c => (lib.type === 'all' || c.type === lib.type) && (lib.kind === 'all' || c.kind === lib.kind) && (!q || `${c.title} ${c.context} ${KINDS[c.kind].name}`.toLowerCase().includes(q))); };
+function libParts() {
+  const list = libList(), done = doneMap(), kinds = Object.entries(KINDS).filter(([, k]) => lib.type === 'all' || k.type === lib.type);
+  return {
+    types: [['all', 'All', CH.length]].concat(Object.entries(TYPES).map(([t, v]) => [t, v.name, CH.filter(c => c.type === t).length]))
+      .map(([t, n, c]) => `<button type="button" data-type="${t}" aria-pressed="${lib.type === t}">${n}<span>${c}</span></button>`).join(''),
+    kinds: `<button type="button" class="chip" data-kind="all" aria-pressed="${lib.kind === 'all'}">Every kind</button>` + kinds.map(([id, k]) => `<button type="button" class="chip" data-kind="${id}" aria-pressed="${lib.kind === id}">${esc(k.name)}</button>`).join(''),
+    rows: (list.length ? `<ul class="rows lib-l">${list.slice(0, lib.n).map(c => { const d = done.get(c.id) || 0; return `<li><button type="button" data-ch="${c.id}"><span class="k">${esc(KINDS[c.kind].name)}</span><b>${esc(c.title)}</b><em>${esc(c.context)}</em><span class="st${d ? ' done' : ''}">${d > 1 ? `Done ×${d}` : d ? 'Done' : TYPES[c.type].name}</span></button></li>`; }).join('')}</ul>` : '<p class="log-empty">No challenge matches that. Try another word or clear a filter.</p>')
+      + (list.length > lib.n ? `<div><button type="button" class="btn ghost" id="lib-more">Show ${Math.min(24, list.length - lib.n)} more of ${list.length}</button></div>` : ''),
+  };
+}
+function libHTML() {
+  const p = libParts(), done = doneMap().size;
+  return `<div class="sec-h"><h2>Library</h2><p>${CH.length} challenges · ${done} done</p></div>
+    <div class="lib-f"><div class="seg" id="lib-types" role="group" aria-label="Type of challenge">${p.types}</div><input class="lib-q" id="lib-q" type="search" placeholder="Search challenges" aria-label="Search challenges" autocomplete="off" value="${esc(lib.q)}"></div>
+    <div class="chips" id="lib-kinds" role="group" aria-label="Kind of screen">${p.kinds}</div>
+    <div id="lib-rows">${p.rows}</div>`;
+}
+function paintLib() { const p = libParts(); $('#lib-types').innerHTML = p.types; $('#lib-kinds').innerHTML = p.kinds; $('#lib-rows').innerHTML = p.rows; }
+
+function progHTML() {
+  const L = S.log.filter(l => KINDS[l.kind] && Array.isArray(l.checks)).reverse(); // oldest first
+  const head = `<div class="sec-h"><h2>Progress</h2><p>${L.length ? `${L.length} ${L.length === 1 ? 'session' : 'sessions'} reviewed` : 'Fills up as you review'}</p></div>`;
+  if (!L.length) return head + '<p class="log-empty">Every session ends with a review: you check your first version and your redesign against eight principles. Here you will see which skills you already hold on to, where you got better and what still needs work.</p>';
+  const sk = {}; Object.keys(SKILLS).forEach(key => { sk[key] = { key, n: 0, held: 0, gain: 0, e: [0, 0], r: [0, 0], lastHeld: '', lastGain: '', lastMiss: '' }; });
+  const half = L.length >= 4 ? Math.floor(L.length / 2) : 0; // from four sessions on, the earlier half is compared with the later half
+  L.forEach((l, li) => KINDS[l.kind].checks.forEach((p, i) => {
+    const c = l.checks[i] || [], o = sk[p[0]], st = stOf(c); o.n++;
+    if (st === 'held') { o.held++; o.lastHeld = p[1]; } else if (st === 'gain') { o.gain++; o.lastGain = p[1]; } else o.lastMiss = p[1];
+    if (half) { const h = li < half ? o.e : o.r; h[1]++; if (c[0]) h[0]++; }
+  }));
+  const all = Object.values(sk).filter(o => o.n), pct = (a, n) => Math.round(100 * a / n), miss = o => o.n - o.held - o.gain, rise = o => o.r[0] / o.r[1] - o.e[0] / o.e[1];
+  const hold = all.filter(o => o.held / o.n >= .6).sort((x, y) => y.held / y.n - x.held / x.n || y.n - x.n).slice(0, 3)
+    .map(o => [SKILLS[o.key], `In both versions, ${o.held} out of ${o.n}. Last: ${o.lastHeld}.`]);
+  const trend = all.filter(o => o.e[1] >= 2 && o.r[1] >= 2 && rise(o) >= .15).sort((x, y) => rise(y) - rise(x));
+  const better = trend.map(o => [SKILLS[o.key], `Your first versions went from ${pct(o.e[0], o.e[1])}% to ${pct(o.r[0], o.r[1])}%.`])
+    .concat(all.filter(o => o.gain && !trend.includes(o)).sort((x, y) => y.gain / y.n - x.gain / x.n).map(o => [SKILLS[o.key], `Added in the redesign, ${o.gain} out of ${o.n}. Last: ${o.lastGain}.`])).slice(0, 3);
+  const work = all.filter(o => miss(o) / o.n > .4).sort((x, y) => miss(y) / y.n - miss(x) / x.n || y.n - x.n).slice(0, 3)
+    .map(o => [SKILLS[o.key], `Still missing after the redesign, ${miss(o)} out of ${o.n}. Last: ${o.lastMiss}.`]);
+  const recent = L.slice(-24), top = Math.max(...recent.map(l => l.checks.length), 1);
+  const cols = recent.map(l => {
+    const n = tally(l.checks);
+    const text = `${n.held} from the start, ${n.gain} added, ${n.open + n.lost} still open`;
+    return `<button type="button" class="col" data-log="${esc(l.id)}" aria-label="${esc(niceDate(l.finishedAt))}, ${esc(KINDS[l.kind].name)}: ${text}">${n.held ? `<i class="a" style="height:${100 * n.held / top}%"></i>` : ''}${n.gain ? `<i class="b" style="height:${100 * n.gain / top}%"></i>` : ''}${n.held + n.gain ? '' : '<i class="z"></i>'}<span class="tip">${esc(niceDate(l.finishedAt))} · ${esc(KINDS[l.kind].name)}<br>${text}</span></button>`;
+  }).join('');
+  const key = '<div class="key"><span><i class="sw-a"></i>There from your first version</span><span><i class="sw-b"></i>Added in the redesign</span></div>';
+  const meters = all.sort((x, y) => (y.held + y.gain) / y.n - (x.held + x.gain) / x.n).map(o => `<div class="meter"><span>${SKILLS[o.key]}</span><div class="bar" role="img" aria-label="${o.held} from the first version and ${o.gain} added, of ${o.n}">${o.held ? `<i class="a" style="width:${100 * o.held / o.n}%"></i>` : ''}${o.gain ? `<i class="b" style="width:${100 * o.gain / o.n}%"></i>` : ''}</div><span>${o.held} + ${o.gain} of ${o.n}</span></div>`).join('');
+  return head + `<div class="trio">${trioBox('a', 'You hold on to', hold, 'No skill stands out yet. Keep reviewing.')}${trioBox('b', 'You got better at', better, 'Nothing yet. This fills up when a redesign adds something.')}${trioBox('c', 'Still to work on', work, 'Nothing stands out. Try a kind of screen you have not done yet.')}</div>
+    <div class="prog-g">
+      <div class="card"><h3>Principles in your design, per session</h3>${key}<div class="plot"><div class="plot-y"><span>${top}</span><span>0</span></div><div class="cols">${cols}</div></div><p>${recent.length < L.length ? `Latest ${recent.length} sessions, oldest left.` : 'Oldest left.'} More cream over time means your first instinct is getting better.</p></div>
+      <div class="card"><h3>Per skill, all sessions</h3>${key}<div class="meters">${meters}</div></div>
+    </div>`;
+}
 function logHTML() {
-  const n = S.log.length, seen = S.log.reduce((a, l) => a + (l.seen || 0), 0), tot = S.log.reduce((a, l) => a + (l.total || 0), 0);
-  const line = n ? `${n} ${n === 1 ? 'session' : 'sessions'} · ${seen} of ${tot} observations spotted on your own` : '';
-  return `<div class="sec-h"><h2>Log</h2><p id="log-where">${esc(whereText())}</p></div>
-    ${n ? `<p class="status">${line}</p><ul class="log-l">${S.log.slice(0, 40).map(l => `<li><button type="button" data-log="${esc(l.id)}"><time>${esc(niceDate(l.finishedAt))}</time><b>${esc(l.short || l.title)}</b><span>${Number(l.seen) || 0} of ${Number(l.total) || 0} spotted</span><em>${esc(l.takeaway || '')}</em></button></li>`).join('')}</ul>`
-      : '<p class="log-empty">No sessions yet. After your first redesign your two versions show up here side by side, with what you spotted and what you missed.</p>'}`;
+  const n = S.log.length;
+  return `<div class="sec-h"><h2>Log</h2><p>Saved in this browser</p></div>
+    ${n ? `<ul class="rows log-l">${S.log.slice(0, 40).map(l => { const t = Array.isArray(l.checks) ? tally(l.checks) : null; return `<li><button type="button" data-log="${esc(l.id)}"><time>${esc(niceDate(l.finishedAt))}</time><b>${esc(l.title)}</b><span class="st">${t ? `${t.held + t.lost} → ${t.held + t.gain} of ${l.checks.length}` : ''}</span><em>${esc(l.takeaway || '')}</em></button></li>`; }).join('')}</ul>`
+      : '<p class="log-empty">No sessions yet. After your first redesign your two versions show up here side by side, with what you kept, what you gained and what is still open.</p>'}`;
 }
 function renderHome() {
-  view = 'home'; activeBoard = null; activeSource = null; stopTimer();
-  const s = S.session, c = s ? byId(s.cid) : todays(), n = s ? s.n : S.log.length + 1;
+  view = 'home'; activeDrop = null; stopTimer();
+  const s = S.session, c = s ? byId(s.cid) : todays(), n = s ? s.n : S.log.length + 1, t = TYPES[c.type];
   const resume = s ? (s.step > 3 ? 'View your before and after' : `Continue with ${ROUNDS[s.step].name}`) : '';
   V.innerHTML = `<section class="hero">
     <div>
-      <span class="eyebrow">One hour a day · four rounds</span>
+      <span class="eyebrow">One hour · four rounds · ${CH.length} challenges</span>
       <h1>Train your <mark>eye</mark> for design.</h1>
-      <p class="lead">AI makes a hundred screens in a minute. You have to see which one is good. You learn that by designing it yourself, looking closely and then doing it again.</p>
+      <p class="lead">AI makes a hundred screens in a minute. You have to see which one is good. Here you get a brief and a clock. You design it in Figma, study how others solved it and design it again.</p>
     </div>
     <div class="today">
-      <span class="eyebrow">${s ? 'In progress' : 'Today’s challenge'} · ${pad(n, 3)}</span>
+      <span class="eyebrow">${s ? 'In progress' : S.pick && S.pick.day === dayStr() ? 'Your pick' : 'Today’s challenge'} · ${pad(n, 3)}</span>
       <h2>${esc(c.title)}</h2>
       <p>${esc(c.context)}</p>
+      <p class="meta">${esc(t.name)} · ${esc(KINDS[c.kind].name)} · Figma frame ${esc(t.frame)}</p>
       <div class="acts">${s
         ? `<button type="button" class="btn" id="go">${resume}</button><button type="button" class="btn quiet" id="drop">Stop this session</button>`
-        : '<button type="button" class="btn" id="go">Start the challenge</button><button type="button" class="btn ghost" id="other">Another challenge</button>'}</div>
+        : '<button type="button" class="btn" id="go">Start the challenge</button><button type="button" class="btn ghost" id="other">Another challenge</button><button type="button" class="btn quiet" id="browse">Browse the library</button>'}</div>
     </div>
   </section>
   <section class="track" aria-label="The routine">
     <div class="sec-h"><h2>The routine</h2><p>60 minutes, to scale</p></div>
-    <div class="ruler" aria-hidden="true"><span style="left:0">0</span><span style="left:33.333%">20</span><span style="left:50%">30</span><span style="left:66.667%">40</span><span style="left:100%">60 min</span></div>
-    <ol>${ROUNDS.map((r, i) => `<li style="flex-grow:${r.min}"><span class="k">${pad(i + 1)} · ${r.min} min</span><b>${r.name}</b><p>${r.d}</p></li>`).join('')}</ol>
+    <div class="ruler" aria-hidden="true"><span style="left:0">0</span><span style="left:33.333%">20</span><span style="left:50%">30</span><span style="left:83.333%">50</span><span style="left:100%">60 min</span></div>
+    <ol>${ROUNDS.map((r, i) => `<li style="flex-grow:${r.min}"><span class="k">${pad(i + 1)} · ${r.min} min</span><b>${r.name}</b><p>${r.d}</p><span class="at${r.at === 'In Figma' ? ' on' : ''}">${r.at}</span></li>`).join('')}</ol>
+    <p>You design in Figma, not here. This site gives you the brief, runs the clock and takes in your frame when you paste it. Your frames stay in this browser; nothing is uploaded.</p>
   </section>
+  <section class="lib" id="lib">${libHTML()}</section>
+  <section class="prog" id="prog">${progHTML()}</section>
   <section class="log" id="log">${logHTML()}</section>`;
-  paintTop();
+  paintTop(); paintTimer();
 }
 function newSession(c) {
-  S.session = { id: 's' + Date.now().toString(36), cid: c.id, n: S.log.length + 1, step: 0, max: 0, t: ROUNDS.map(r => r.min * 60), extra: 0,
-    before: [], after: [], src: ['sketch', 'sketch'], fig: [null, null], notes: { p: ['', '', ''], d: ['', '', ''], x: ['', '', ''] }, seen: c.obs.map(() => false), takeaway: '' };
+  S.session = { id: 's' + Date.now().toString(36), cid: c.id, n: S.log.length + 1, step: 0, max: 0, t: ROUNDS.map(r => r.min * 60), runAt: 0, extra: 0,
+    dim: [null, null], refs: [], q: '', notes: { p: ['', '', ''], d: ['', '', ''], x: ['', '', ''] }, checks: KINDS[c.kind].checks.map(() => [false, false]), takeaway: '' };
 }
 function go(step) {
   const s = S.session; if (!s) return renderHome();
   stopTimer();
-  if (step === 3 && s.max < 3 && usesFigma(s, 0)) s.src[1] = 'figma'; // keep working where the first version was made
   s.step = step; s.max = Math.max(s.max, step); save();
   if (step > 3) finish(); else { view = 'round'; renderRound(); startTimer(); }
   window.scrollTo(0, 0);
 }
-const briefHTML = (s, c, sub2) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)}</span><h2>${esc(c.title)}</h2><p>${sub2}</p></div>`;
-const ownNotes = (s, tag = 'h4') => NOTES.map(g => { const v = s.notes[g.k].filter(x => x.trim()); return `<div><${tag}>${g.own}</${tag}><ul>${v.length ? v.map(x => `<li>${esc(x)}</li>`).join('') : '<li>No notes yet. Add them in Study.</li>'}</ul></div>`; }).join('');
-const seenText = (s, c) => `${s.seen.filter(Boolean).length} of ${c.obs.length} spotted`;
+
+/* handing in: paste, drop or choose the PNG of the Figma frame */
+let activeDrop = null; // where a pasted or dropped image goes on the current screen
+const HANDIN = 'Select the frame in Figma and copy it as PNG with <kbd>⇧⌘C</kbd> (<kbd>Ctrl ⇧ C</kbd> on Windows). Come back to this tab and paste with <kbd>⌘V</kbd>. Or export it as PNG and drop the file on this page.';
+const STEPS = [
+  t => [
+    ['Open Figma', 'Start a new design file: <a href="https://figma.new" target="_blank" rel="noopener noreferrer">new Figma file ↗</a>'],
+    [`Make a frame of ${t.frame}`, `Use ${t.preset}. ${t.note}`],
+    ['Design until the clock stops', 'No references, no AI, no templates. Only the brief and what you think is right.'],
+    ['Hand in your frame', HANDIN],
+  ],
+  () => [
+    ['Duplicate your first frame', 'Or start from an empty one. Leave the first version as it is.'],
+    ['Redesign it with what you saw', 'Your references and notes are below. Change whatever they made you doubt.'],
+    ['Hand in the new frame', HANDIN],
+  ],
+];
+function handHTML(s, c, idx) {
+  const d = s.dim[idx], name = idx ? 'redesign' : 'first version';
+  return `<div class="art" data-empty="${d ? 0 : 1}" style="--ar:${TYPES[c.type].ar}">${d ? `<img alt="Your ${name}" data-key="${imgKey(s, idx)}" width="${d[0]}" height="${d[1]}">` : '<p>Your Figma frame lands here<br>Paste with <kbd>⌘V</kbd></p>'}</div>
+    <div class="row"><input class="vh" type="file" id="hand-file" accept="image/png,image/jpeg,image/webp"><label class="btn ghost" for="hand-file">${d ? 'Replace with a file' : 'Choose a PNG'}</label>${d ? '<button type="button" class="btn quiet" id="hand-clear">Remove</button>' : ''}</div>
+    <p class="status" id="hand-status" role="status">${d ? `Your ${name} is handed in. Paste again to replace it.` : 'Nothing handed in yet.'}</p>`;
+}
+const figHTML = (s, c, idx) => `<div class="fig" data-type="${c.type}" data-zone>
+    <div class="how"><h3>${idx ? 'Back to Figma for round two' : 'You design in Figma'}</h3>
+      <p class="status">This page only keeps the time. The clock keeps running while you are in Figma; you can read it in the title of this tab.</p>
+      <ol>${STEPS[idx](TYPES[c.type]).map(([h, p]) => `<li><b>${h}</b><p>${p}</p></li>`).join('')}</ol>
+    </div>
+    <div class="hand" id="hand">${handHTML(s, c, idx)}</div>
+  </div>`;
+const handIdx = s => (s.step === 0 ? 0 : s.step === 2 ? 1 : -1);
+function paintHand(msg) {
+  const s = S.session, el = $('#hand'); if (!s || !el || handIdx(s) < 0) return;
+  el.innerHTML = handHTML(s, byId(s.cid), handIdx(s)); hydrate(el);
+  const nb = $('#next'); if (nb && nb.dataset.sure) { delete nb.dataset.sure; nb.textContent = nextLabel(s); }
+  if (msg) $('#hand-status').textContent = msg;
+}
+async function takeDesign(file) {
+  const s = S.session, idx = s ? handIdx(s) : -1; if (idx < 0) return;
+  const st = t => { const e = $('#hand-status'); if (e) e.textContent = t; };
+  if (!file || !/^image\/(png|jpeg|webp)$/.test(file.type)) return st('That is not an image. Use a PNG, JPG or WebP.');
+  st('Loading…');
+  try { const n = await normalise(file); await putImg(imgKey(s, idx), n.blob); s.dim[idx] = [n.w, n.h]; save(); paintHand(); }
+  catch { st('That could not be read as an image. Export the frame as PNG and try again.'); }
+}
+
+/* study: pinned references */
+const refImg = r => (r.key ? `<img alt="" data-key="${esc(r.key)}">` : `<img alt="" src="${esc(r.t)}"${r.i && r.i !== r.t ? ` data-alt="${esc(r.i)}"` : ''} loading="lazy" referrerpolicy="no-referrer">`);
+const pinTile = (r, x) => `<figure class="pin"><button type="button" class="pin-b" data-ref="${esc(r.id)}" aria-label="Enlarge ${esc(r.title || 'reference')}">${refImg(r)}</button>${x ? `<figcaption>${esc(r.host || r.title || 'Reference')}</figcaption><button type="button" class="pin-x" data-unpin="${esc(r.id)}" aria-label="Remove this reference">×</button>` : ''}</figure>`;
+function pinsHTML(s, msg) {
+  return `<div class="sec-h"><h3>Your references</h3><p>${s.refs.length} of ${MAXREF} pinned</p></div>` + (s.refs.length
+    ? `<div class="pins-l">${s.refs.map(r => pinTile(r, true)).join('')}</div>`
+    : '<p class="log-empty">Nothing pinned yet. Pin results from the search, or paste or drop any screenshot you found somewhere else.</p>')
+    + `<p class="status" id="pins-status" role="status">${msg || ''}</p>`;
+}
+function paintPins(msg) { const s = S.session, el = $('#pins'); if (s && el) { el.innerHTML = pinsHTML(s, msg); hydrate(el); } }
+const rid = () => 'r' + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36);
+function addRef(ref) {
+  const s = S.session; if (!s) return false;
+  if (s.refs.length >= MAXREF) { paintPins(`You have ${MAXREF} references. Remove one to add another.`); return false; }
+  s.refs.push(Object.assign({ id: rid() }, ref)); save(); paintPins(); return true;
+}
+function removeRef(id) {
+  const s = S.session, i = s ? s.refs.findIndex(r => r.id === id) : -1; if (i < 0) return;
+  const [r] = s.refs.splice(i, 1); if (r.key) delImg(r.key); save(); paintPins();
+  $$('.hit-pin').forEach(b => { const h = Search.hit(Number(b.dataset.pin)); if (h) { b.setAttribute('aria-pressed', String(isPinned(h))); b.textContent = isPinned(h) ? 'Pinned' : 'Pin'; } });
+}
+async function takeRef(file) {
+  const s = S.session; if (!s || s.step !== 1 || !file || !/^image\//.test(file.type)) return;
+  if (s.refs.length >= MAXREF) return paintPins(`You have ${MAXREF} references. Remove one to add another.`);
+  try { const n = await normalise(file, 1200, 3600), id = rid(), key = `${s.id}.r.${id}`; await putImg(key, n.blob); s.refs.push({ id, key, title: 'Pasted image' }); save(); paintPins(); }
+  catch { paintPins('That could not be read as an image.'); }
+}
+function zoomRef(r, hitIndex) {
+  const src = r.key ? `data-key="${esc(r.key)}"` : `src="${esc(r.i || r.t)}"${r.t && r.t !== r.i ? ` data-alt="${esc(r.t)}"` : ''} referrerpolicy="no-referrer"`;
+  openDlg(`<div class="zoom"><div class="zoom-i"><img alt="" ${src}></div><h3>${esc(r.title || 'Reference')}</h3>${r.host ? `<p>${esc(r.host)}</p>` : ''}
+    <div class="acts">${hitIndex >= 0 ? `<button type="button" class="btn" data-pin-hit="${hitIndex}">${isPinned(r) ? 'Unpin' : 'Pin as reference'}</button>` : ''}${okUrl(r.u) ? `<a class="btn ghost" href="${esc(r.u)}" target="_blank" rel="noopener noreferrer">Open the source ↗</a>` : ''}<button type="button" class="btn ghost" data-close>Close</button></div></div>`, true);
+  hydrate(DI);
+}
+function togglePin(i) {
+  const h = Search.hit(i), s = S.session; if (!h || !s) return;
+  const cur = s.refs.find(r => r.i === h.i && r.u === h.u);
+  if (cur) removeRef(cur.id); else addRef(h);
+  const b = $(`.hit-pin[data-pin="${i}"]`); if (b) { b.setAttribute('aria-pressed', String(isPinned(h))); b.textContent = isPinned(h) ? 'Pinned' : 'Pin'; }
+}
+
+const briefHTML = (s, c, sub2) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)} · ${esc(TYPES[c.type].name)}</span><h2>${esc(c.title)}</h2><p>${sub2}</p></div>`;
+const ownNotes = s => NOTES.map(g => { const v = s.notes[g.k].filter(x => x.trim()); return v.length ? `<div><h4>${g.own}</h4><ul>${v.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; }).join('');
+function baHTML(id, dim, type) {
+  const fig = (i, cap) => `<figure>${dim && dim[i] ? `<button type="button" class="ba-b" data-zoom="${esc(id)}.${i}" data-type="${type}" aria-label="Enlarge your ${cap.toLowerCase()}"><img alt="Your ${cap.toLowerCase()}" data-key="${esc(id)}.${i}" width="${Number(dim[i][0]) || 1}" height="${Number(dim[i][1]) || 1}"></button>` : `<div class="ba-none" style="--ar:${TYPES[type].ar}">No frame handed in</div>`}<figcaption>${cap}</figcaption></figure>`;
+  return `<div class="ba" data-type="${type}">${fig(0, 'First version')}${fig(1, 'Redesign')}</div>`;
+}
 const ROUND_BODY = [
-  (s, c) => briefHTML(s, c, `${esc(c.context)} No references, no AI. Sketch it here or design it in Figma, the way you think it should be.`) + boardHTML(),
-  (s, c) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)}</span><h2>${esc(c.intro)}</h2><p>Sketched examples of patterns strong apps use for this. Tap a screen to see it large.</p></div>
-    ${refsHTML(c)}
-    <div class="notes"><div class="sec-h"><h3>What do you notice?</h3><p>Your observations first. The analysis comes next.</p></div>
+  (s, c) => briefHTML(s, c, esc(c.context)) + figHTML(s, c, 0),
+  (s, c) => `<div class="brief"><span class="eyebrow">Your challenge · ${pad(s.n, 3)}</span><h2>How did others solve this?</h2><p>${esc(c.title)} Search for comparable screens, open the ones that look strong and pin up to ${MAXREF}. Then write down what they do that your first version does not.</p></div>
+    <div class="find" data-zone>
+      <form class="find-bar" id="find" role="search"><input type="search" id="find-q" aria-label="Search comparable screens" maxlength="120" autocomplete="off" enterkeyhint="search" value="${esc(s.q || defaultQuery(c))}"><button class="btn" type="submit">Search</button></form>
+      <div class="chips" role="group" aria-label="Suggested searches">${KINDS[c.kind].q.map(x => `<button type="button" class="chip" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+      <div class="paper" id="hits-box"><p class="hits-msg" id="hits-msg" role="status"></p><div id="gcse"></div></div>
+      <p class="else" id="else"></p>
+    </div>
+    <div class="pins" id="pins">${pinsHTML(s)}</div>
+    <div class="notes"><div class="sec-h"><h3>What do you notice?</h3><p>Write it down before you redesign</p></div>
       <div class="notes-g">${NOTES.map(g => `<div><h4>${g.label}</h4>${[0, 1, 2].map(i => `<label for="n-${g.k}-${i}"><span>${pad(i + 1)}</span><input id="n-${g.k}-${i}" data-n="${g.k}" data-i="${i}" maxlength="160" autocomplete="off" value="${esc(s.notes[g.k][i])}" placeholder="${g.ph}"></label>`).join('')}</div>`).join('')}</div>
     </div>`,
-  (s, c) => `<div class="cmp">
-    <div class="obs">
-      <div class="brief"><span class="eyebrow">${c.refs.length} reference screens · ${c.obs.length} observations</span><h2>A closer look at ${esc((c.short || 'this screen').toLowerCase())}.</h2></div>
-      <details class="again"><summary>Look at the references again</summary>${refsHTML(c)}</details>
-      <ol>${c.obs.map((o, i) => `<li class="${s.seen[i] ? 'seen' : ''}"><span class="num">${pad(i + 1)}</span><div><h3><span>${esc(o.t)}</span></h3><p>${esc(o.b)}</p></div><button type="button" class="tick" data-seen="${i}" aria-pressed="${!!s.seen[i]}">${s.seen[i] ? 'Spotted' : 'I spotted this'}</button></li>`).join('')}</ol>
+  (s, c) => briefHTML(s, c, 'Same brief, same you. Except you have now seen how others solved it.') + figHTML(s, c, 1) + `<div class="take"><h3>Take with you</h3>
+      ${s.dim[0] ? `<div><h4>Your first version</h4><button type="button" class="take-first" data-zoom="${imgKey(s, 0)}" data-type="${c.type}" aria-label="Enlarge your first version"><img alt="" data-key="${imgKey(s, 0)}"></button></div>` : ''}
+      <div><h4>Your references</h4>${s.refs.length ? `<div class="pins-l">${s.refs.map(r => pinTile(r, false)).join('')}</div>` : '<p class="status">None pinned. You can step back to Study in the bar at the top.</p>'}</div>
+      ${ownNotes(s) || '<div><h4>Your notes</h4><p class="status">No notes written in Study.</p></div>'}
+    </div>`,
+  (s, c) => { const k = KINDS[c.kind]; return `<div class="brief"><span class="eyebrow">${k.checks.length} principles · ${esc(k.name)}</span><h2>Put both versions next to the checklist.</h2><p>For each principle, tick the version it is really in. Tap a frame to see it large.</p></div>
+    <div class="rev" data-type="${c.type}">${baHTML(s.id, s.dim, c.type)}
+      <ol class="chk">${k.checks.map((p, i) => `<li data-st="${stOf(s.checks[i])}"><span class="num">${pad(i + 1)}</span><div><h3><span>${esc(p[1])}</span></h3><p>${esc(p[2])}</p><span class="tag">${SKILLS[p[0]]}</span></div>
+        <div class="vv">${['In my first version', 'In my redesign'].map((l, v) => `<button type="button" class="tick" data-chk="${i}" data-v="${v}" aria-pressed="${!!s.checks[i][v]}">${l}</button>`).join('')}</div></li>`).join('')}</ol>
     </div>
-    <aside class="eye">
-      <h3>Your eye vs. the analysis</h3>
-      <p>Tick what you had noticed yourself. Which details will you carry into your redesign?</p>
-      ${ownNotes(s)}
-      <div class="count"><b id="seen-n">${seenText(s, c)}</b><p>This is not a score. It is about what you can see now and could not an hour ago.</p></div>
-    </aside>
-  </div>`,
-  (s, c) => {
-    const missed = c.obs.filter((o, i) => !s.seen[i]), dos = s.notes.d.filter(x => x.trim());
-    return briefHTML(s, c, `Same screen, same you. Except you now know ${c.obs.length} more things to look for.`) + `<div class="re">${boardHTML()}
-    <aside class="take"><h3>Take with you</h3>
-      ${missed.length ? `<p>You missed these the first time:</p><ul>${missed.map(o => `<li>${esc(o.t)}</li>`).join('')}</ul>` : '<p>You had spotted every observation. Check that they are in your design too.</p>'}
-      ${dos.length ? `<p>Your do’s:</p><ul>${dos.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
-      ${s.src[0] === 'sketch' && s.before.length ? '<button type="button" class="btn ghost" id="copy-first">Start from my first sketch</button>' : ''}
-    </aside></div>`;
-  },
+    <div id="trio">${trioHTML(s.checks, k)}</div>
+    <label class="field" for="takeaway">What will you take into the next one?<input id="takeaway" maxlength="200" autocomplete="off" value="${esc(s.takeaway)}" placeholder="One sentence is enough"></label>`; },
 ];
+const nextLabel = s => (s.step < 3 ? `On to ${ROUNDS[s.step + 1].name}` : 'Finish');
 function renderRound() {
   const s = S.session, c = byId(s.cid), r = ROUNDS[s.step];
-  activeBoard = null;
   V.innerHTML = `<section class="round" data-step="${s.step}">
     <header class="clock">
       <div class="clock-t" id="timer" role="timer"></div>
-      <div class="clock-n"><span class="eyebrow">Round ${s.step + 1} of 4</span><h1>${r.name}</h1></div>
-      <div class="clock-c"><button type="button" class="btn ghost" id="more" hidden>+ 5 min</button><button type="button" class="btn ghost" id="pause">Pause</button></div>
+      <div class="clock-n"><span class="eyebrow">Round ${s.step + 1} of 4 · ${r.at}</span><h1>${r.name}</h1></div>
+      <div class="clock-c"><button type="button" class="btn ghost" id="more" hidden>+ 5 min</button><button type="button" class="btn quiet" id="sound"></button><button type="button" class="btn ghost" id="pause">Pause</button></div>
     </header>
     ${ROUND_BODY[s.step](s, c)}
-    <footer class="next"><p>${r.hint}</p><button type="button" class="btn" id="next">${s.step < 3 ? `On to ${ROUNDS[s.step + 1].name}` : 'Finish'}</button></footer>
+    <footer class="next"><p>${r.hint}</p><button type="button" class="btn" id="next">${nextLabel(s)}</button></footer>
   </section>`;
-  const bd = $('#board'); activeSource = null;
-  if (bd) {
-    const idx = s.step === 0 ? 0 : 1;
-    activeBoard = mountBoard(bd, shapesOf(s, idx), saveSoon); activeSource = mountSource(bd, s, idx);
-  }
-  paintTop(); paintTimer();
+  activeDrop = s.step === 1 ? takeRef : s.step === 3 ? null : takeDesign;
+  hydrate(); paintTop(); paintTimer();
+  if (s.step === 1) Search.run(s.q || defaultQuery(c));
 }
 const minsSpent = s => Math.max(1, Math.round((ROUNDS.reduce((a, r, i) => a + r.min * 60 - s.t[i], 0) + (s.extra || 0)) / 60));
 function finish() {
   const s = S.session, c = byId(s.cid), i = S.log.findIndex(l => l.id === s.id), old = i >= 0 ? S.log[i] : null;
-  const entry = { id: s.id, cid: s.cid, n: s.n, title: c.title, short: c.short || '', day: old ? old.day : dayStr(), finishedAt: old ? old.finishedAt : new Date().toISOString(),
-    seen: s.seen.filter(Boolean).length, total: c.obs.length, notes: s.notes, takeaway: s.takeaway || '', mins: minsSpent(s) };
+  const entry = { id: s.id, cid: s.cid, kind: c.kind, type: c.type, n: s.n, title: c.title, day: old ? old.day : dayStr(), finishedAt: old ? old.finishedAt : new Date().toISOString(),
+    mins: minsSpent(s), dim: s.dim, checks: s.checks, notes: s.notes, refs: s.refs, takeaway: s.takeaway || '' };
   if (old) S.log[i] = entry; else S.log.unshift(entry);
-  save();
-  Promise.all([thumbOf(s, 0), thumbOf(s, 1)]).then(([before, after]) => { writeLS(KEY + '.shot.' + s.id, { before, after }); pruneShots(); }).catch(() => {});
+  save(); pruneImages();
   view = 'result'; renderResult();
 }
 function renderResult() {
-  const s = S.session, c = byId(s.cid); activeBoard = null; activeSource = null;
-  const notes = NOTES.reduce((a, g) => a + s.notes[g.k].filter(x => x.trim()).length, 0);
+  const s = S.session, c = byId(s.cid), k = KINDS[c.kind], n = tally(s.checks), tot = s.checks.length; activeDrop = null;
   V.innerHTML = `<section class="result">
-    <div class="brief"><span class="eyebrow">Challenge ${pad(s.n, 3)} complete</span><h1>Before and after</h1><p>${esc(c.title)}</p></div>
-    <div class="res">
-      <div class="ba">
-        <figure><img alt="Your first version" src="${imgOf(s, 0)}"><figcaption>First version</figcaption></figure>
-        <figure><img alt="Your redesign" src="${imgOf(s, 1)}"><figcaption>Redesign</figcaption></figure>
-      </div>
+    <div class="brief"><span class="eyebrow">Challenge ${pad(s.n, 3)} complete · ${minsSpent(s)} min</span><h1>Before and after</h1><p>${esc(c.title)}</p></div>
+    <div class="res" data-type="${c.type}">${baHTML(s.id, s.dim, c.type)}
       <div class="sumup">
-        <p class="facts">${seenText(s, c).replace(' spotted', '')} observations spotted on your own, ${notes} ${notes === 1 ? 'note' : 'notes'}, ${minsSpent(s)} ${minsSpent(s) === 1 ? 'minute' : 'minutes'} of practice.</p>
-        <label class="field" for="takeaway">What will you take into tomorrow?<input id="takeaway" maxlength="200" autocomplete="off" value="${esc(s.takeaway)}" placeholder="One sentence is enough"></label>
-        <div class="acts"><button type="button" class="btn" id="done">Done for today</button><button type="button" class="btn ghost" id="png">Save before and after as PNG</button></div>
-        <p class="status" id="res-status">A new challenge is waiting tomorrow.</p>
+        <p class="facts">${n.held + n.lost} of ${tot} principles were in your first version, ${n.held + n.gain} of ${tot} are in your redesign.${s.takeaway ? ` You take with you: ${esc(s.takeaway)}` : ''}</p>
+        ${trioHTML(s.checks, k)}
+        <div class="acts"><button type="button" class="btn" id="done">Done</button><button type="button" class="btn ghost" id="png">Save before and after as PNG</button></div>
+        <p class="status" id="res-status">How this adds up over time is under Progress on the start page.</p>
       </div>
     </div>
   </section>`;
-  paintTop();
+  hydrate(); paintTop(); paintTimer();
 }
 
 /* ---------- dialog ---------- */
 const D = $('#dlg'), DI = $('#dlg-in');
-function openDlg(html) { DI.innerHTML = html; try { D.showModal(); } catch { D.setAttribute('open', ''); } }
-D.addEventListener('click', e => { if (e.target === D || e.target.closest('[data-close]')) { try { D.close(); } catch { D.removeAttribute('open'); } } });
-const okImg = v => (typeof v === 'string' && v.startsWith('data:image/') ? v : '');
-async function openLog(id) {
-  const l = S.log.find(x => x.id === id); if (!l) return;
-  const groups = NOTES.map(g => { const v = ((l.notes || {})[g.k] || []).filter(x => String(x).trim()); return v.length ? `<div><h4>${g.own}</h4><ul>${v.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; }).join('');
-  openDlg(`<div class="lg"><div class="brief"><span class="eyebrow">${esc(niceDate(l.finishedAt))} · challenge ${pad(Number(l.n) || 0, 3)}</span><h3>${esc(l.title)}</h3><p>${Number(l.seen) || 0} of ${Number(l.total) || 0} observations spotted on your own${l.takeaway ? '. ' + esc(l.takeaway) : ''}</p></div>
-    <div class="ba" id="lg-ba"><p class="status">Loading sketches…</p></div>${groups ? `<div class="lg-n">${groups}</div>` : ''}<div><button type="button" class="btn ghost" data-close>Close</button></div></div>`);
-  let sh = readLS(KEY + '.shot.' + id);
-  const el = $('#lg-ba'); if (!el) return;
-  const a = okImg(sh && sh.before), b = okImg(sh && sh.after);
-  el.innerHTML = a && b ? `<figure><img alt="First version" src="${esc(a)}"><figcaption>First version</figcaption></figure><figure><img alt="Redesign" src="${esc(b)}"><figcaption>Redesign</figcaption></figure>` : '<p class="status">The sketches from this session were not saved.</p>';
+function openDlg(html, wide) { DI.innerHTML = html; D.classList.toggle('wide', !!wide); try { if (!D.open) D.showModal(); } catch { D.setAttribute('open', ''); } }
+const closeDlg = () => { try { D.close(); } catch { D.removeAttribute('open'); } };
+const zoomKey = (key, type) => { openDlg(`<div class="zoom" data-type="${esc(type || '')}"><div class="zoom-i"><img alt="" data-key="${esc(key)}"></div><div><button type="button" class="btn ghost" data-close>Close</button></div></div>`, true); hydrate(DI); };
+D.addEventListener('click', e => {
+  const t = e.target.closest('[data-close],[data-start],[data-pin-hit],[data-zoom]');
+  if (e.target === D || (t && 'close' in t.dataset)) return closeDlg();
+  if (!t) return;
+  if (t.dataset.start) { const c = byId(t.dataset.start); if (c && !S.session) { closeDlg(); newSession(c); go(0); } }
+  else if (t.dataset.pinHit) { togglePin(Number(t.dataset.pinHit)); closeDlg(); }
+  else if (t.dataset.zoom) zoomKey(t.dataset.zoom, t.dataset.type);
+});
+function openCh(id) {
+  const c = byId(id); if (!c) return;
+  const k = KINDS[c.kind], t = TYPES[c.type], d = S.log.filter(l => l.cid === id).length, busy = !!S.session;
+  openDlg(`<div class="lg"><div class="brief"><span class="eyebrow">${esc(t.name)} · ${esc(k.name)}${d ? ` · done ${d}×` : ''}</span><h3>${esc(c.title)}</h3><p>${esc(c.context)}</p></div>
+    <ul class="facts-l"><li><b>Where</b><span>You design in Figma. This site keeps the time.</span></li><li><b>Frame</b><span>${esc(t.frame)}, ${esc(t.preset)}</span></li><li><b>Time</b><span>60 minutes in four rounds: ${ROUNDS.map(r => `${r.name} ${r.min}`).join(', ')}</span></li><li><b>Review</b><span>${k.checks.length} principles on ${[...new Set(k.checks.map(p => SKILLS[p[0]].toLowerCase()))].join(', ')}</span></li></ul>
+    <div class="acts"><button type="button" class="btn" data-start="${esc(c.id)}"${busy ? ' disabled' : ''}>Start this challenge</button><button type="button" class="btn ghost" data-close>Close</button></div>${busy ? '<p class="status">Finish or stop your current session first.</p>' : ''}</div>`);
 }
-
-/* ---------- logbook storage: this browser ---------- */
-const whereText = () => 'Saved in this browser';
-function pruneShots() {
-  const keep = new Set(S.log.slice(0, 30).map(l => l.id));
-  try { for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && k.startsWith(KEY + '.shot.') && !keep.has(k.slice(KEY.length + 6))) localStorage.removeItem(k); } } catch {}
+function openLog(id) {
+  const l = S.log.find(x => x.id === id); if (!l) return;
+  const k = KINDS[l.kind], type = TYPES[l.type] ? l.type : 'mobile';
+  const groups = NOTES.map(g => { const v = ((l.notes || {})[g.k] || []).filter(x => String(x).trim()); return v.length ? `<div><h4>${g.own}</h4><ul>${v.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; }).join('');
+  const refs = (l.refs || []).filter(r => okUrl(r.u)).map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener noreferrer">${esc(r.title || r.host || 'Reference')}</a></li>`).join('');
+  openDlg(`<div class="lg"><div class="brief"><span class="eyebrow">${esc(niceDate(l.finishedAt))} · challenge ${pad(Number(l.n) || 0, 3)} · ${Number(l.mins) || 0} min</span><h3>${esc(l.title)}</h3>${l.takeaway ? `<p>${esc(l.takeaway)}</p>` : ''}</div>
+    ${baHTML(l.id, l.dim, type)}${k && Array.isArray(l.checks) ? trioHTML(l.checks, k) : ''}${groups ? `<div class="lg-n">${groups}</div>` : ''}${refs ? `<div class="lg-r"><h4>References you pinned</h4><ul>${refs}</ul></div>` : ''}
+    <div><button type="button" class="btn ghost" data-close>Close</button></div></div>`, true);
+  hydrate(DI);
 }
 
 /* ---------- saving files ---------- */
@@ -1017,16 +1312,23 @@ function saveFile(name, blob) {
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 async function comparePNG(s, c) {
-  const layers = await Promise.all([layerOf(s, 0), layerOf(s, 1)]);
-  const P = 48, G = 40, W = P * 2 + AW * 2 + G, H = 150 + AH + P, cv = document.createElement('canvas'); cv.width = W * 2; cv.height = H * 2;
-  const x = cv.getContext('2d'); x.scale(2, 2); x.fillStyle = '#f1f1f5'; x.fillRect(0, 0, W, H);
-  x.fillStyle = '#16161d'; x.textBaseline = 'top'; x.font = '600 26px "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif';
-  let line = '', y = P - 8; const words = String(c.title).split(' ');
-  for (const w of words) { if (x.measureText(line + w).width > W - P * 2 && line) { x.fillText(line.trim(), P, y); y += 32; line = ''; } line += w + ' '; }
-  x.fillText(line.trim(), P, y);
-  x.font = '500 12px "DM Mono", ui-monospace, monospace'; x.fillStyle = '#5f5f6d';
+  const imgs = await Promise.all([0, 1].map(async i => { const u = s.dim[i] ? await urlOf(imgKey(s, i)) : ''; return u ? loadImg(u) : null; }));
+  const mobile = c.type === 'mobile', bw = mobile ? 360 : 640, cap = mobile ? 900 : 1100, P = 48, G = 40, W = P * 2 + bw * 2 + G;
+  const hs = imgs.map(im => (im ? Math.min(cap, Math.round(im.naturalHeight * bw / im.naturalWidth)) : Math.round(bw * .6)));
+  const cv = document.createElement('canvas'), x = cv.getContext('2d'); x.font = '600 26px "Helvetica Neue", Helvetica, Arial, sans-serif';
+  const lines = []; let line = '';
+  for (const w of String(c.title).split(' ')) { if (line && x.measureText(line + w).width > W - P * 2) { lines.push(line.trim()); line = ''; } line += w + ' '; }
+  lines.push(line.trim());
+  const top = P + lines.length * 32 + 58, H = top + Math.max(...hs) + P, n = tally(s.checks);
+  cv.width = W * 2; cv.height = H * 2; x.scale(2, 2); x.fillStyle = tok('--paper'); x.fillRect(0, 0, W, H);
+  x.textBaseline = 'top'; x.fillStyle = tok('--ink'); x.font = '600 26px "Helvetica Neue", Helvetica, Arial, sans-serif';
+  lines.forEach((t, i) => x.fillText(t, P, P - 8 + i * 32));
+  x.font = '500 12px "JetBrains Mono", ui-monospace, monospace'; x.fillStyle = tok('--muted');
+  x.fillText(`TASTETEST · HELD ${n.held} · GAINED ${n.gain} · OPEN ${n.open + n.lost}`, P, P + lines.length * 32);
   ['FIRST VERSION', 'REDESIGN'].forEach((label, i) => {
-    const ox = P + i * (AW + G); x.fillStyle = '#5f5f6d'; x.fillText(label, ox, 118); x.drawImage(layers[i], ox, 140, AW, AH); x.strokeStyle = '#dadae4'; x.lineWidth = 1; x.strokeRect(ox + .5, 140.5, AW - 1, AH - 1);
+    const ox = P + i * (bw + G), im = imgs[i]; x.fillStyle = tok('--muted'); x.fillText(label, ox, top - 22);
+    if (im) x.drawImage(im, 0, 0, im.naturalWidth, hs[i] * im.naturalWidth / bw, ox, top, bw, hs[i]);
+    x.strokeStyle = tok('--line'); x.lineWidth = 1; x.strokeRect(ox + .5, top + .5, bw - 1, hs[i] - 1);
   });
   return new Promise(res => cv.toBlob(res, 'image/png'));
 }
@@ -1034,44 +1336,68 @@ async function comparePNG(s, c) {
 /* ---------- events ---------- */
 $('#home').addEventListener('click', renderHome);
 $('#steps').addEventListener('click', e => { const b = e.target.closest('[data-step]'); if (b && !b.disabled && S.session) go(Number(b.dataset.step)); });
-let dropT = 0;
+let sureT = 0;
+function sure(t, ask, back) { // destructive or lossy steps need a second click within four seconds
+  if (t.dataset.sure) { clearTimeout(sureT); return true; }
+  t.dataset.sure = '1'; t.textContent = ask; sureT = setTimeout(() => { if (t.isConnected) { delete t.dataset.sure; t.textContent = back; } }, 4000);
+  return false;
+}
 V.addEventListener('click', e => {
-  const t = e.target.closest('button'); if (!t || t.closest('.tools, .src, .fg')) return;
+  const t = e.target.closest('button'); if (!t) return;
   const s = S.session, c = s && byId(s.cid);
   if (t.id === 'go') { if (!s) { newSession(todays()); go(0); } else go(s.step); }
-  else if (t.id === 'other') { const list = allCh(), i = list.indexOf(todays()); S.pick = { id: list[(i + 1) % list.length].id, day: dayStr() }; save(); renderHome(); }
-  else if (t.id === 'drop') {
-    if (t.dataset.sure) { clearTimeout(dropT); S.session = null; save(); renderHome(); }
-    else { t.dataset.sure = '1'; t.textContent = 'Are you sure? Your sketches will be lost'; dropT = setTimeout(() => { if (t.isConnected) { delete t.dataset.sure; t.textContent = 'Stop this session'; } }, 4000); }
-  }
+  else if (t.id === 'other') { const done = doneMap(), now = todays().id, pool = CH.filter(x => !done.has(x.id) && x.id !== now), from = pool.length ? pool : CH; S.pick = { id: from[Math.floor(Math.random() * from.length)].id, day: dayStr() }; save(); renderHome(); }
+  else if (t.id === 'browse') $('#lib').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  else if (t.id === 'drop') { if (sure(t, 'Are you sure? Your frames will be removed', 'Stop this session')) { S.session = null; save(); pruneImages(); renderHome(); } }
+  else if (t.dataset.type && t.closest('#lib-types')) { lib.type = t.dataset.type; lib.kind = 'all'; lib.n = 12; paintLib(); }
+  else if (t.dataset.kind) { lib.kind = t.dataset.kind; lib.n = 12; paintLib(); }
+  else if (t.id === 'lib-more') { lib.n += 24; paintLib(); }
+  else if (t.dataset.ch) openCh(t.dataset.ch);
   else if (t.dataset.log) openLog(t.dataset.log);
+  else if (t.dataset.zoom) zoomKey(t.dataset.zoom, t.dataset.type);
   else if (!s) return;
-  else if (t.id === 'pause') { if (running) stopTimer(); else startTimer(); }
+  else if (t.id === 'pause') { if (running()) stopTimer(); else startTimer(); }
   else if (t.id === 'more') { s.t[s.step] = 300; s.extra = (s.extra || 0) + 300; startTimer(); }
-  else if (t.id === 'next') go(s.step + 1);
-  else if (t.dataset.ref) { const r = c.refs[Number(t.dataset.ref)]; if (r) openDlg(`<div class="zoom">${phone(r)}<div><h3>${esc(r.name)}</h3><p>${esc(r.caption)}</p><button type="button" class="btn ghost" data-close>Close</button></div></div>`); }
-  else if (t.dataset.seen) {
-    const i = Number(t.dataset.seen); s.seen[i] = !s.seen[i]; save();
-    t.setAttribute('aria-pressed', String(s.seen[i])); t.textContent = s.seen[i] ? 'Spotted' : 'I spotted this'; t.closest('li').classList.toggle('seen', s.seen[i]);
-    $('#seen-n').textContent = seenText(s, c);
+  else if (t.id === 'sound') { S.sound = !S.sound; save(); if (running()) Chime.arm(leftOf(s)); else Chime.disarm(); paintTimer(); }
+  else if (t.id === 'next') { const i = handIdx(s); if (i < 0 || s.dim[i] || sure(t, 'No frame handed in. Continue anyway?', nextLabel(s))) go(s.step + 1); }
+  else if (t.id === 'hand-clear') { const i = handIdx(s); if (i >= 0) { s.dim[i] = null; delImg(imgKey(s, i)); save(); paintHand('Removed.'); } }
+  else if (t.dataset.q) { $('#find-q').value = t.dataset.q; Search.run(t.dataset.q); }
+  else if (t.dataset.pin) togglePin(Number(t.dataset.pin));
+  else if (t.dataset.hit) { const h = Search.hit(Number(t.dataset.hit)); if (h) zoomRef(h, Number(t.dataset.hit)); }
+  else if (t.dataset.unpin) removeRef(t.dataset.unpin);
+  else if (t.dataset.ref) { const r = s.refs.find(x => x.id === t.dataset.ref); if (r) zoomRef(r, -1); }
+  else if (t.dataset.chk) {
+    const i = Number(t.dataset.chk), v = Number(t.dataset.v); s.checks[i][v] = !s.checks[i][v]; save();
+    t.setAttribute('aria-pressed', String(s.checks[i][v])); t.closest('li').dataset.st = stOf(s.checks[i]);
+    $('#trio').innerHTML = trioHTML(s.checks, KINDS[c.kind]);
   }
-  else if (t.id === 'copy-first') { if (activeBoard) activeBoard.replace(s.before); }
   else if (t.id === 'done') { S.session = null; save(); renderHome(); window.scrollTo(0, 0); }
-  else if (t.id === 'png') comparePNG(s, c).then(b => b && saveFile('tastetest-before-and-after.png', b)).catch(() => {});
+  else if (t.id === 'png') comparePNG(s, c).then(b => b && saveFile('tastetest-before-and-after.png', b)).catch(() => { $('#res-status').textContent = 'The PNG could not be made.'; });
 });
+V.addEventListener('submit', e => { if (e.target.id === 'find') { e.preventDefault(); Search.run($('#find-q').value); } });
 V.addEventListener('input', e => {
-  const t = e.target, s = S.session; if (!s) return;
-  if (t.dataset.n) { s.notes[t.dataset.n][Number(t.dataset.i)] = t.value; saveSoon(); }
+  const t = e.target, s = S.session;
+  if (t.id === 'lib-q') { lib.q = t.value; lib.n = 12; paintLib(); }
+  else if (!s) return;
+  else if (t.dataset.n) { s.notes[t.dataset.n][Number(t.dataset.i)] = t.value; saveSoon(); }
   else if (t.id === 'takeaway') { s.takeaway = t.value; saveSoon(); }
 });
-V.addEventListener('change', e => {
-  const s = S.session; if (e.target.id !== 'takeaway' || !s) return;
-  const l = S.log.find(x => x.id === s.id); if (l) { l.takeaway = s.takeaway; save(); }
+V.addEventListener('change', e => { if (e.target.id === 'hand-file') { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (f) takeDesign(f); } });
+document.addEventListener('paste', e => { // a frame copied as PNG in Figma, or a screenshot for Study, lands here
+  if (!activeDrop || !e.clipboardData || D.open) return;
+  const it = [...e.clipboardData.items].find(i => i.kind === 'file' && i.type.startsWith('image/'));
+  if (it) { e.preventDefault(); activeDrop(it.getAsFile()); }
 });
-document.addEventListener('visibilitychange', () => { if (document.hidden) save(); });
+const hasFiles = e => !!e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
+const zone = () => $('[data-zone]', V);
+V.addEventListener('dragover', e => { if (activeDrop && hasFiles(e) && zone()) { e.preventDefault(); zone().dataset.drop = '1'; } });
+V.addEventListener('dragleave', e => { const z = zone(); if (z && !z.contains(e.relatedTarget)) z.dataset.drop = '0'; });
+V.addEventListener('drop', e => { const z = zone(); if (!activeDrop || !hasFiles(e) || !z) return; e.preventDefault(); z.dataset.drop = '0'; activeDrop(e.dataTransfer.files[0]); });
+document.addEventListener('pointerdown', () => { const s = S.session; if (s && running() && Chime.idle()) Chime.arm(leftOf(s)); }); // sound needs one touch after a reload
+document.addEventListener('visibilitychange', () => { if (document.hidden) save(); else paintTimer(); });
 window.addEventListener('pagehide', save);
 
-renderHome();
+if (S.session && S.session.runAt && S.session.step <= 3) { view = 'round'; renderRound(); startTimer(); } else renderHome(); // a running clock survives a reload
 })();
 </script>
 </body>
