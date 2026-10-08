@@ -282,6 +282,12 @@ img[data-gone]{visibility:hidden}
 .tick[aria-pressed="true"]{background:var(--mark);color:var(--mark-ink);border-color:transparent;font-weight:600}
 .tick[data-v="1"][aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 @media (max-width:520px){.chk li{grid-template-columns:26px minmax(0,1fr)}.vv{grid-column:2}}
+.congrats h1 mark{background:var(--mark);color:var(--mark-ink);padding-inline:.08em;border-radius:.06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats li{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.stats b{font:600 clamp(28px,4vw,40px)/1 var(--f-display);letter-spacing:-.03em;white-space:nowrap}
+.stats span{font-size:13px;color:var(--muted)}
 .res{display:flex;flex-direction:column;gap:clamp(18px,3vw,28px)}
 .res[data-type="mobile"]>.ba{max-width:520px}
 .sumup{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -1260,8 +1266,12 @@ function finish() {
 }
 function renderResult() {
   const s = S.session, c = byId(s.cid), k = KINDS[c.kind], n = tally(s.checks), tot = s.checks.length; activeDrop = null;
+  const days = streak(), cheer = n.gain ? `Your redesign does ${n.gain} ${n.gain === 1 ? 'thing' : 'things'} your first version did not. That is what an hour of looking closely buys you.`
+    : n.held ? 'What was right in your first version is still there in the redesign. Your instinct held up.' : 'You designed it, studied it and designed it again. That is the whole exercise.';
   V.innerHTML = `<section class="result">
-    <div class="brief"><span class="eyebrow">Challenge ${pad(s.n, 3)} complete · ${minsSpent(s)} min</span><h1>Before and after</h1><p>${esc(c.title)}</p></div>
+    <div class="brief congrats"><span class="eyebrow">Challenge ${pad(s.n, 3)} complete</span><h1>Congratulations. <mark>You did it.</mark></h1><p>${cheer}</p></div>
+    <ul class="stats">${[[minsSpent(s), minsSpent(s) === 1 ? 'minute of practice' : 'minutes of practice'], [`${n.held + n.lost} → ${n.held + n.gain}`, `of ${tot} principles, first version → redesign`], [S.log.length, S.log.length === 1 ? 'challenge done' : 'challenges done'], [days, days === 1 ? 'day in a row' : 'days in a row']].map(([v, l]) => `<li><b>${v}</b><span>${l}</span></li>`).join('')}</ul>
+    <div class="sec-h"><h2>Before and after</h2><p>${esc(c.title)}</p></div>
     <div class="res" data-type="${c.type}">${baHTML(s.id, s.dim, c.type)}
       <div class="sumup">
         <p class="facts">${n.held + n.lost} of ${tot} principles were in your first version, ${n.held + n.gain} of ${tot} are in your redesign.${s.takeaway ? ` You take with you: ${esc(s.takeaway)}` : ''}</p>

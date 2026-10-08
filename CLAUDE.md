@@ -24,7 +24,7 @@ Inspired by a "Design training camp" concept from an Instagram post by a UX desi
 - Images: `DB` (IndexedDB with an in-memory fallback), `urlOf`, `hydrate()` (views are strings; `img[data-key]` is filled in afterwards), `normalise()` (keeps the frame's own proportions, white under transparency).
 - Timer: counts on the wall clock via `session.runAt`, so it keeps going while the user is in Figma and survives a reload. `Chime` schedules the end-of-round sound on the audio clock. The remaining time is mirrored in `document.title`.
 - `Search`: loads Google's element with `parsetags: 'explicit'`, renders a `searchresults-only` element with `overlayResults: false`, and draws the image results itself in the `ready` callback so they can be pinned.
-- Views: `renderHome` (hero, routine, library via `libParts`, progress via `progHTML`, log), `renderRound` with `ROUND_BODY`, `renderResult`. Then dialog, PNG export, and delegated handlers on `#view` and the dialog.
+- Views: `renderHome` (hero, routine, library via `libParts`, progress via `progHTML`, log), `renderRound` with `ROUND_BODY`, `renderResult` (the congratulations page after a challenge: stats, before and after, the review summary). Then dialog, PNG export, and delegated handlers on `#view` and the dialog.
 - Review maths: `stOf()` turns the two ticks of a principle into `held`, `gain`, `lost` or `open`; `tally()` counts them; `trioHTML()` shows them as held on to, got better at and still to work on.
 
 ## Design system
